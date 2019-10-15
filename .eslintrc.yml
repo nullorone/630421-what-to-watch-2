@@ -3,4 +3,15 @@ env:
   browser: true
   commonjs: true
 
-extends: 'htmlacademy/es6'
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 6
+  sourceType: module
+
+plugins: ['react']
+extends: ['htmlacademy/es6', 'plugin:react/recommended']
+
+settings:
+  react:
+    version: '16'
