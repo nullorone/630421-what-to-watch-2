@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Yaroslav Sveshnikov](https://up.htmlacademy.ru/react/2/user/630421).
-* Наставник: `Неизвестно`.
+* Наставник: [Andrey Karyakin](https://htmlacademy.ru/profile/id133011).
 
 ---
 
