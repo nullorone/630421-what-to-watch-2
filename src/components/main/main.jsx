@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
+const {arrayOf, string, shape, exact} = PropTypes;
+
 const generateMovieCards = (movies) => {
   return movies.map(({title, img: {src, alt}}, index) => {
     return (
@@ -196,12 +198,12 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        img: PropTypes.exact({
-          src: PropTypes.string.isRequired,
-          alt: PropTypes.string.isRequired
+  movies: arrayOf(
+      shape({
+        title: string.isRequired,
+        img: exact({
+          src: string.isRequired,
+          alt: string.isRequired
         }),
       })
   )
