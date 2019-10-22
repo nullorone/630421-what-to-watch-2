@@ -4,7 +4,15 @@ import PropTypes from 'prop-types';
 const {arrayOf, string, shape, exact} = PropTypes;
 
 const generateMovieCards = (movies) => {
-  return movies.map(({title, img: {src, alt}}, index) => {
+  return movies.map((movie, index) => {
+    const {
+      title,
+      img: {
+        src,
+        alt,
+      }
+    } = movie;
+
     return (
       <article
         className = "small-movie-card catalog__movies-card"
