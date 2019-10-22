@@ -214,4 +214,4 @@ Main.propTypes = {
   )
 };
 
-export {Main};
+export default Main;
