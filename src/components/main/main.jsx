@@ -15,15 +15,14 @@ const generateMovieCards = (movies) => {
 
     return (
       <article
-        className = "small-movie-card catalog__movies-card"
+        className="small-movie-card catalog__movies-card"
         key={title + index}>
-        <div
-          className = "small-movie-card__image">
+        <div className = "small-movie-card__image">
           <img
-            src = {src}
-            alt = {alt}
-            width = "280"
-            height = "175" />
+            src={src}
+            alt={alt}
+            width="280"
+            height="175" />
         </div>
         <h3 className="small-movie-card__title">
           <a className="small-movie-card__link" href="movie-page.html">{title}</a>
@@ -135,12 +134,11 @@ const Main = (props) => {
         </div>
       </section>
 
-      <div
-        className = "page-content" >
-        <section
-          className = "catalog" >
-          <h2
-            className = "catalog__title visually-hidden"> Catalog </h2>
+      <div className="page-content" >
+        <section className="catalog" >
+          <h2 className="catalog__title visually-hidden">
+            Catalog
+          </h2>
 
           <ul className="catalog__genres-list">
             <li className="catalog__genres-item catalog__genres-item--active">
@@ -176,8 +174,7 @@ const Main = (props) => {
           </ul>
 
           {movies &&
-            <div
-              className = "catalog__movies-list">
+            <div className="catalog__movies-list">
               {generateMovieCards(movies)}
             </div>
           }
