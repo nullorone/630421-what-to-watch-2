@@ -2,18 +2,24 @@ import React from 'react';
 import {shallow} from "enzyme";
 import {Main} from "./main";
 
+const MOCK_MOVIES = [{
+  title: ``,
+  img: {
+    src: ``,
+    alt: ``,
+  },
+}];
+
 it(`Click on link of title movie card`, () => {
   const onMovieCardLinkClick = jest.fn();
+  const initialProps = {
+    movies: MOCK_MOVIES,
+    onMovieCardLinkClick,
+  };
   const wrapper = shallow(
       <Main
-        movies={[{
-          title: `0`,
-          img: {
-            src: `0`,
-            alt: `0`,
-          },
-        }]}
-        onMovieCardLinkClick={onMovieCardLinkClick} />
+        {...initialProps}
+      />
   );
 
   wrapper
