@@ -256,7 +256,7 @@ Array [
       <h2
         className="catalog__title visually-hidden"
       >
-         Catalog 
+        Catalog
       </h2>
       <ul
         className="catalog__genres-list"

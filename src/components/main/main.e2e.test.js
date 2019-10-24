@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from "enzyme";
-import {Main} from "./main";
+import Main from "./main";
 
 const MOCK_MOVIES = [{
   title: ``,
