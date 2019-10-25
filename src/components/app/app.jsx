@@ -7,6 +7,7 @@ const App = () => {
   return (
     <Main
       movies={movies}
+      onMovieCardLinkClick={() => {}}
     />
   );
 };

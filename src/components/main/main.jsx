@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-const {arrayOf, string, shape, exact} = PropTypes;
+const {arrayOf, string, shape, exact, func} = PropTypes;
 
-const generateMovieCards = (movies) => {
+const generateMovieCards = (movies, onMovieCardLinkClick) => {
   return movies.map((movie, index) => {
     const {
       title,
@@ -25,7 +25,7 @@ const generateMovieCards = (movies) => {
             height="175" />
         </div>
         <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html">{title}</a>
+          <a className="small-movie-card__link" href="movie-page.html" onClick={onMovieCardLinkClick}>{title}</a>
         </h3>
       </article>
     );
@@ -35,10 +35,11 @@ const generateMovieCards = (movies) => {
 const Main = (props) => {
   const {
     movies,
+    onMovieCardLinkClick,
   } = props;
 
   return (
-    <React.Fragment>
+    <>
       <div className="visually-hidden">
         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
           <symbol id="add" viewBox="0 0 19 20">
@@ -174,8 +175,9 @@ const Main = (props) => {
           </ul>
 
           {movies &&
-            <div className="catalog__movies-list">
-              {generateMovieCards(movies)}
+            <div
+              className = "catalog__movies-list">
+              {generateMovieCards(movies, onMovieCardLinkClick)}
             </div>
           }
 
@@ -198,7 +200,7 @@ const Main = (props) => {
           </div>
         </footer>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 
@@ -211,7 +213,8 @@ Main.propTypes = {
           alt: string.isRequired
         }),
       })
-  )
+  ),
+  onMovieCardLinkClick: func.isRequired,
 };
 
 export default Main;
