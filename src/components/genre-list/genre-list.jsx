@@ -9,9 +9,10 @@ const GenreList = (props) => {
   let genreList = [];
 
   for (let i = 0; i < genres.length; i++) {
+    const genre = genres[i];
     const keyComponent = `genre-item-${i + 1}`;
 
-    genreList.push(<Genre key={keyComponent} {...props}/>);
+    genreList.push(<Genre key={keyComponent} genre={genre}/>);
   }
 
   return (
