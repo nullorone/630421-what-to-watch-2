@@ -1,17 +1,15 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-const {string, bool} = PropTypes;
+const {string} = PropTypes;
 
 const Genre = (props) => {
-  const {genre, genreLink, isActive} = props;
-  const baseClass = `catalog__genres-item`;
-  const activeClass = isActive ? (baseClass + ` catalog__genres-item--active`) : baseClass;
-  const link = genreLink ? genreLink : `#`;
+  const {genre} = props;
+  // const activeClass = ` catalog__genres-item--active`;
 
   return (
-    <li className={activeClass}>
-      <a href={link} className="catalog__genres-link">{genre}</a>
+    <li className="catalog__genres-item">
+      <a href="#" className="catalog__genres-link">{genre}</a>
     </li>
   );
 
@@ -19,8 +17,6 @@ const Genre = (props) => {
 
 Genre.propTypes = {
   genre: string.isRequired,
-  genreLink: string.isRequired,
-  isActive: bool.isRequired,
 };
 
 export default Genre;
