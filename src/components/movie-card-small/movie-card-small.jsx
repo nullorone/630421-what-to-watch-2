@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 const {string, shape, func} = PropTypes;
 
 export default class MovieCardSmall extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     const {
       title,
@@ -11,13 +15,13 @@ export default class MovieCardSmall extends PureComponent {
         src,
         alt,
       },
-      onLinkClick,
+      onLinkEnter,
     } = this.props;
 
     return (
       <article
         className="small-movie-card catalog__movies-card">
-        <div className = "small-movie-card__image">
+        <div className="small-movie-card__image">
           <img
             src={src}
             alt={alt}
@@ -25,7 +29,7 @@ export default class MovieCardSmall extends PureComponent {
             height="175" />
         </div>
         <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html" onClick={onLinkClick}>{title}</a>
+          <a className="small-movie-card__link" href="movie-page.html" onMouseEnter={onLinkEnter}>{title}</a>
         </h3>
       </article>
     );
@@ -38,5 +42,5 @@ MovieCardSmall.propTypes = {
     src: string.isRequired,
     alt: string.isRequired,
   }),
-  onLinkClick: func.isRequired,
+  onLinkEnter: func.isRequired,
 };
