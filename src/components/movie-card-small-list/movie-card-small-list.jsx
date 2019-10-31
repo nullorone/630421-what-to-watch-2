@@ -1,35 +1,60 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
 import MovieCardSmall from "../movie-card-small/movie-card-small";
 
-const {string, shape, func, arrayOf} = PropTypes;
+const {string, shape, arrayOf} = PropTypes;
 
-const MovieCardSmallList = (props) => {
-  const {movies, onMovieCardLinkClick} = props;
-  let movieCards = [];
+export default class MovieCardSmallList extends PureComponent {
+  constructor(props) {
+    super(props);
 
-  for (let i = 0; i < movies.length; i++) {
-    const keyComponent = `movie-card-${i + 1}`;
+    this.state = {
+      title: ``,
+    };
 
-    movieCards.push(<MovieCardSmall key={keyComponent} {...props}/>);
+    this.onMovieCardMouseEnter = (evt) => {
+      evt.preventDefault();
+      const movieCardText = evt.target.innerText;
+
+      this.setState(() => ({
+        title: movieCardText,
+      }), () => {
+        // eslint-disable-next-line no-alert
+        alert(`Вы навели на ${this.state.title}`);
+      });
+    };
   }
 
-  return (
-    <div className="catalog__movies-list">
-      {movieCards}
-    </div>
-  );
-};
+  render() {
+    const {films} = this.props;
+    let movieCards = [];
+
+    for (let i = 0; i < films.length; i++) {
+      const film = films[i];
+      const keyComponent = `movie-card-${i + 1}`;
+
+      movieCards.push(
+          <MovieCardSmall
+            key={keyComponent}
+            onLinkEnter={this.onMovieCardMouseEnter}
+            {...film}
+          />);
+    }
+
+    return (
+      <div className="catalog__movies-list">
+        {movieCards}
+      </div>
+    );
+  }
+}
 
 MovieCardSmallList.propTypes = {
-  movies: arrayOf(shape({
+  films: arrayOf(shape({
     title: string.isRequired,
     img: shape({
       src: string.isRequired,
       alt: string.isRequired,
     })
   })),
-  onMovieCardLinkClick: func.isRequired,
 };
-
-export default MovieCardSmallList;
