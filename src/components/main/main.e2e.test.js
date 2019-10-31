@@ -11,10 +11,10 @@ const MOCK_MOVIES = [{
 }];
 
 it(`Click on link of title movie card`, () => {
-  const onMovieCardLinkClick = jest.fn();
+  const onMovieCardLinkEnter = jest.fn();
   const initialProps = {
     movies: MOCK_MOVIES,
-    onMovieCardLinkClick,
+    onMovieCardLinkEnter,
   };
   const wrapper = shallow(
       <Main
@@ -24,7 +24,7 @@ it(`Click on link of title movie card`, () => {
 
   wrapper
     .find(`.small-movie-card__link`)
-    .simulate(`click`);
+    .simulate(`mouseenter`);
 
-  expect(onMovieCardLinkClick).toHaveBeenCalledTimes(1);
+  expect(onMovieCardLinkEnter).toHaveBeenCalledTimes(1);
 });
