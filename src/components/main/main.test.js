@@ -11,10 +11,9 @@ const MOCK_MOVIES = [{
 }];
 
 it(`Render main screen`, () => {
-  const onMovieCardLinkClick = jest.fn();
   const initialProps = {
     movies: MOCK_MOVIES,
-    onMovieCardLinkClick,
+    genres: [``],
   };
 
   const tree = renderer
