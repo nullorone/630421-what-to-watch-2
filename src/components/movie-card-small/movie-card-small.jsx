@@ -19,8 +19,7 @@ export default class MovieCardSmall extends PureComponent {
     } = this.props;
 
     return (
-      <article
-        className="small-movie-card catalog__movies-card">
+      <article className="small-movie-card catalog__movies-card">
         <div className="small-movie-card__image">
           <img
             src={src}

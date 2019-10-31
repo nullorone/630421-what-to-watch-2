@@ -1,16 +1,24 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Genre from "./genre";
+import App from "./app";
+import {EMPTY_STRING} from "../../constants";
 
 describe(`Make snapshot`, () => {
   const initProps = {
-    genre: `Academy`,
+    films: [{
+      title: `My Awesome Movie`,
+      img: {
+        src: EMPTY_STRING,
+        alt: EMPTY_STRING,
+      },
+    }],
+    genres: [`Academy`]
   };
 
   it(`Get snapshot component`, () => {
     const tree = renderer
       .create(
-          <Genre
+          <App
             {...initProps}
           />
       )

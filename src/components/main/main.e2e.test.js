@@ -1,30 +1,27 @@
 import React from 'react';
 import {shallow} from "enzyme";
 import Main from "./main";
+import {EMPTY_STRING} from "../../constants";
 
-const MOCK_MOVIES = [{
-  title: ``,
-  img: {
-    src: ``,
-    alt: ``,
-  },
-}];
-
-it(`Click on link of title movie card`, () => {
-  const onMovieCardLinkEnter = jest.fn();
+describe(`Test Main component`, () => {
   const initialProps = {
-    movies: MOCK_MOVIES,
-    onMovieCardLinkEnter,
+    movies: [{
+      title: `My film`,
+      img: {
+        src: EMPTY_STRING,
+        alt: EMPTY_STRING,
+      },
+    }],
+    genres: [`ECMA`, `CSS`],
   };
-  const wrapper = shallow(
-      <Main
-        {...initialProps}
-      />
-  );
 
-  wrapper
-    .find(`.small-movie-card__link`)
-    .simulate(`mouseenter`);
+  it(`Return section movie-card`, () => {
+    const wrapper = shallow(
+        <Main
+          {...initialProps}
+        />
+    );
 
-  expect(onMovieCardLinkEnter).toHaveBeenCalledTimes(1);
+    expect(wrapper.find(`.movie-card`)).toBeTruthy();
+  });
 });
