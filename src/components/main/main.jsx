@@ -1,40 +1,14 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import MovieCardSmallList from "../movie-card-small-list/movie-card-small-list";
+import GenreList from "../genre-list/genre-list";
 
 const {arrayOf, string, shape, exact, func} = PropTypes;
 
-const generateMovieCards = (movies, onMovieCardLinkClick) => {
-  return movies.map((movie, index) => {
-    const {
-      title,
-      img: {
-        src,
-        alt,
-      }
-    } = movie;
-
-    return (
-      <article
-        className="small-movie-card catalog__movies-card"
-        key={title + index}>
-        <div className = "small-movie-card__image">
-          <img
-            src={src}
-            alt={alt}
-            width="280"
-            height="175" />
-        </div>
-        <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html" onClick={onMovieCardLinkClick}>{title}</a>
-        </h3>
-      </article>
-    );
-  });
-};
-
 const Main = (props) => {
   const {
-    movies,
+    films,
+    genres,
     onMovieCardLinkClick,
   } = props;
 
@@ -141,45 +115,9 @@ const Main = (props) => {
             Catalog
           </h2>
 
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
-          </ul>
+          {genres && <GenreList genres={genres}/>}
 
-          {movies &&
-            <div
-              className = "catalog__movies-list">
-              {generateMovieCards(movies, onMovieCardLinkClick)}
-            </div>
-          }
+          {films && <MovieCardSmallList films={films} onMovieCardLinkClick={onMovieCardLinkClick}/>}
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -205,7 +143,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  movies: arrayOf(
+  films: arrayOf(
       shape({
         title: string.isRequired,
         img: exact({

@@ -1,4 +1,4 @@
-export const movies = [
+export const films = [
   {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     img: {

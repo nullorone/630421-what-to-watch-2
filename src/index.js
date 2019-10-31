@@ -1,12 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
+import {films} from './mocks/films';
+import {genres} from './mocks/genres';
 
-const init = () => {
+const initData = {
+  films,
+  genres,
+};
+
+const init = (initialData) => {
   ReactDOM.render(
-      <App />,
+      <App
+        {...initialData}
+      />,
       document.querySelector(`#root`)
   );
 };
 
-init();
+init(initData);
