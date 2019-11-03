@@ -27,23 +27,19 @@ export default class MovieCardSmallList extends PureComponent {
 
   render() {
     const {films} = this.props;
-    let movieCards = [];
-
-    for (let i = 0; i < films.length; i++) {
-      const film = films[i];
-      const keyComponent = `movie-card-${i + 1}`;
-
-      movieCards.push(
-          <MovieCardSmall
-            key={keyComponent}
-            onLinkEnter={this.onMovieCardMouseEnter}
-            {...film}
-          />);
-    }
 
     return (
       <div className="catalog__movies-list">
-        {movieCards}
+        {films
+          .map((film, index) => {
+            const keyComponent = `movie-card-${index + 1}`;
+
+            return <MovieCardSmall
+              key={keyComponent}
+              onLinkEnter={this.onMovieCardMouseEnter}
+              {...film}
+            />;
+          })}
       </div>
     );
   }

@@ -6,18 +6,15 @@ const {string, arrayOf} = PropTypes;
 
 const GenreList = (props) => {
   const {genres} = props;
-  let genreList = [];
-
-  for (let i = 0; i < genres.length; i++) {
-    const genre = genres[i];
-    const keyComponent = `genre-item-${i + 1}`;
-
-    genreList.push(<Genre key={keyComponent} genre={genre}/>);
-  }
 
   return (
     <ul className="catalog__genres-list">
-      {genreList}
+      {genres
+        .map((genre, index) => {
+          const keyComponent = `genre-item-${index + 1}`;
+
+          return <Genre key={keyComponent} genre={genre}/>;
+        })}
     </ul>
   );
 
