@@ -1,26 +1,25 @@
-import React from 'react';
+import React from "react";
 import renderer from "react-test-renderer";
-import Main from './main';
+import App from "./app";
 import {EMPTY_STRING} from "../../constants";
 
-
 describe(`Make snapshot`, () => {
-  const initialProps = {
-    movies: [{
-      title: `My film`,
+  const initProps = {
+    films: [{
+      title: `My Awesome Movie`,
       img: {
         src: EMPTY_STRING,
         alt: EMPTY_STRING,
       },
     }],
-    genres: [`ECMA`, `CSS`],
+    genres: [`Academy`]
   };
 
-  it(`Render main screen`, () => {
+  it(`Get snapshot component`, () => {
     const tree = renderer
       .create(
-          <Main
-            {...initialProps}
+          <App
+            {...initProps}
           />
       )
       .toJSON();
@@ -28,5 +27,3 @@ describe(`Make snapshot`, () => {
     expect(tree).toMatchSnapshot();
   });
 });
-
-

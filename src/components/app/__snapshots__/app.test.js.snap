@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Make snapshot Render main screen 1`] = `
+exports[`Make snapshot Get snapshot component 1`] = `
 Array [
   <div
     className="visually-hidden"
@@ -268,20 +268,39 @@ Array [
             className="catalog__genres-link"
             href="#"
           >
-            ECMA
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            CSS
+            Academy
           </a>
         </li>
       </ul>
+      <div
+        className="catalog__movies-list"
+      >
+        <article
+          className="small-movie-card catalog__movies-card"
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <img
+              alt=""
+              height="175"
+              src=""
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+              onMouseEnter={[Function]}
+            >
+              My Awesome Movie
+            </a>
+          </h3>
+        </article>
+      </div>
       <div
         className="catalog__more"
       >

@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Make snapshot Get snapshot component 1`] = `
+<ul
+  className="catalog__genres-list"
+>
+  <li
+    className="catalog__genres-item"
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+    >
+      Academy
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item"
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+    >
+      Javascript
+    </a>
+  </li>
+</ul>
+`;
