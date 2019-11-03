@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
+import MovieCardPicture from "../movie-card-picture/movie-card-picture";
 
 const {string, shape, func} = PropTypes;
 
@@ -20,15 +21,19 @@ export default class MovieCardSmall extends PureComponent {
 
     return (
       <article className="small-movie-card catalog__movies-card">
-        <div className="small-movie-card__image">
-          <img
-            src={src}
-            alt={alt}
-            width="280"
-            height="175" />
-        </div>
+        {<MovieCardPicture
+          className={`small-movie-card__image`}
+          picture={{
+            src,
+            alt,
+          }}
+        />}
         <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html" onMouseEnter={onLinkEnter}>{title}</a>
+          <a
+            className="small-movie-card__link"
+            href="movie-page.html"
+            onMouseEnter={onLinkEnter}>{title}
+          </a>
         </h3>
       </article>
     );
