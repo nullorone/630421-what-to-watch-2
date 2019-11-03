@@ -4,7 +4,9 @@
   "private": true,
   "description": "Личный проект «Что посмотреть» от HTML Academy",
   "jest": {
-    "setupFilesAfterEnv": ["<rootDir>src/setupTests.js"]
+    "setupFilesAfterEnv": [
+      "<rootDir>src/setupTests.js"
+    ]
   },
   "scripts": {
     "eslint": "eslint --ext .jsx --ext .js src/",
@@ -25,6 +27,7 @@
     "eslint-config-htmlacademy": "0.5.2",
     "eslint-plugin-react": "7.16.0",
     "jest": "24.9.0",
+    "react-router": "5.1.2",
     "react-test-renderer": "16.10.2",
     "webpack": "4.41.2",
     "webpack-cli": "3.3.9",
