@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import Main from '../main/main';
+import PageScreen from "../page-screen/page-screen";
 
 const {string, shape, arrayOf} = PropTypes;
 
@@ -10,14 +10,7 @@ export default class App extends PureComponent {
   }
 
   render() {
-    const {films, genres} = this.props;
-
-    return (
-      <Main
-        films={films}
-        genres={genres}
-      />
-    );
+    return <PageScreen {...this.props}/>;
   }
 }
 
@@ -30,4 +23,5 @@ App.propTypes = {
     }),
   })),
   genres: arrayOf(string.isRequired),
+  iconNames: arrayOf(string.isRequired),
 };
