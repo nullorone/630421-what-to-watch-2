@@ -8,6 +8,7 @@ export default class Adapter {
       preview: data.preview_image,
       previewAlt: data.name,
       background: data.background_image,
+      backgroundAlt: data.name,
     };
     this._backgroundColor = data.background_color;
     this._video = {
@@ -65,6 +66,7 @@ export default class Adapter {
         preview: this._image.preview,
         previewAlt: this._image.previewAlt,
         background: this._image.background,
+        backgroundAlt: this._image.backgroundAlt,
       },
       backgroundColor: this._backgroundColor,
       video: {
