@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Make snapshot Get snapshot component 1`] = `
+<p
+  className="movie-card__details-item"
+>
+  <strong
+    className="movie-card__details-name"
+  >
+    My dad
+  </strong>
+  <span
+    className="movie-card__details-value"
+  >
+    Vladimir Putin
+  </span>
+</p>
+`;

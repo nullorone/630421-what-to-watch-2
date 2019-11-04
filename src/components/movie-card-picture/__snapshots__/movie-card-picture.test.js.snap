@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Make snapshot Get snapshot component 1`] = `
+<div
+  className="my-picture"
+  onClick={[MockFunction]}
+>
+  <img
+    alt="Empty picture"
+    height="1"
+    src=".img/empty.jpg"
+    width="1"
+  />
+</div>
+`;
