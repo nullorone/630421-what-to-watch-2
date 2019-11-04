@@ -143,6 +143,7 @@ MoviePageDetails.propTypes = {
       preview: string.isRequired,
       previewAlt: string.isRequired,
       background: string.isRequired,
+      backgroundAlt: string.isRequired,
     }),
     backgroundColor: string.isRequired,
     video: shape({
@@ -168,6 +169,7 @@ MoviePageDetails.propTypes = {
       preview: string.isRequired,
       previewAlt: string.isRequired,
       background: string.isRequired,
+      backgroundAlt: string.isRequired,
     }),
     backgroundColor: string.isRequired,
     video: shape({
