@@ -7,19 +7,15 @@ const {arrayOf, shape, string, bool} = PropTypes;
 const MovieNavList = (props) => {
   const {navItems} = props;
 
-  let initialList = [];
-
-  for (let i = 0; i < navItems.length; i++) {
-    const itemKey = `movie-nav-item-${i + 1}`;
-    const currentItem = navItems[i];
-
-    initialList.push(<MovieNavItem key={itemKey} {...currentItem}/>);
-  }
-
   return (
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
-        {initialList}
+        {navItems
+          .map((item, index) => {
+            const itemKey = `movie-nav-item-${index + 1}`;
+
+            return <MovieNavItem key={itemKey} {...item}/>;
+          })}
       </ul>
     </nav>
   );
