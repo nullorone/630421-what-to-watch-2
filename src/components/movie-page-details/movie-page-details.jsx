@@ -8,7 +8,7 @@ import Title from "../title/title";
 import MovieCardPicture from "../movie-card-picture/movie-card-picture";
 import Copyright from "../copyright/copyright";
 import MovieCardSmallList from "../movie-card-small-list/movie-card-small-list";
-import {Value, COPYRIGHT, CINEMA_NAME, MOVIE_CARD_BUTTONS, Img, MOVIE_NAV_ITEMS, TypeCol, AMOUNT_SIMILAR_FILMS} from "../../constants";
+import {Value, COPYRIGHT, CINEMA_NAME, MOVIE_CARD_BUTTONS, Img, MOVIE_NAV_ITEMS, TypeCol, AmountSimilarFilms} from "../../constants";
 import MovieCardDescription from "../movie-card-description/movie-card-description";
 import MovieCardButtonList from "../movie-card-button-list/movie-card-button-list";
 import MovieNavList from "../movie-nav-list/movie-nav-list";
@@ -17,7 +17,7 @@ import MovieCardCol from "../movie-card-col/movie-card-col";
 import MovieCardDetailsItem from "../movie-card-details-item/movie-card-details-item";
 
 
-const {arrayOf, string, shape, exact} = PropTypes;
+const {arrayOf, string, shape, number, bool} = PropTypes;
 
 export default class MoviePageDetails extends PureComponent {
   constructor(props) {
@@ -26,11 +26,27 @@ export default class MoviePageDetails extends PureComponent {
 
   render() {
     const {
+      clickedFilm,
       films,
       icons,
     } = this.props;
 
-    const similarFilms = films.slice(Value.EMPTY, AMOUNT_SIMILAR_FILMS);
+    const {
+      name,
+      image: {
+        poster,
+        posterAlt,
+        background,
+        backgroundAlt,
+      },
+      director,
+      starring,
+      runTime,
+      genre,
+      released,
+    } = clickedFilm;
+
+    const similarFilms = films.slice(Value.EMPTY, AmountSimilarFilms.ON_PAGE_FILM);
 
     return (
       <>
@@ -42,8 +58,8 @@ export default class MoviePageDetails extends PureComponent {
             {<MovieCardPicture
               className={`movie-card__bg`}
               picture={{
-                src: `./img/bg-the-grand-budapest-hotel.jpg`,
-                alt: `The Grand Budapest Hotel`,
+                src: background,
+                alt: backgroundAlt,
               }}/>}
 
             {<Title className={`visually-hidden`} text={CINEMA_NAME}/>}
@@ -55,9 +71,9 @@ export default class MoviePageDetails extends PureComponent {
 
             <div className="movie-card__wrap">
               {<MovieCardDescription
-                title={`The Grand Budapest Hotel`}
-                genre={`Drama`}
-                year={`2014`}
+                title={name}
+                genre={genre}
+                year={released}
               >
                 <MovieCardButtonList buttons={MOVIE_CARD_BUTTONS}>
                   <a href="add-review.html" className="btn movie-card__button">Add review</a>
@@ -72,8 +88,8 @@ export default class MoviePageDetails extends PureComponent {
               {<MovieCardPicture
                 className={`movie-card__poster movie-card__poster--big`}
                 picture={{
-                  src: `./img/the-grand-budapest-hotel-poster.jpg`,
-                  alt: `The Grand Budapest Hotel poster`,
+                  src: poster,
+                  alt: posterAlt,
                   width: Img.BIG.width,
                   height: Img.BIG.height,
                 }}/>}
@@ -82,30 +98,17 @@ export default class MoviePageDetails extends PureComponent {
                 {<MovieNavList navItems={MOVIE_NAV_ITEMS}/>}
                 {<MovieCardRow type={TypeCol.TEXT}>
                   <MovieCardCol type={TypeCol.TEXT}>
-                    <MovieCardDetailsItem name={`Director`} value={`Wes Andreson`}/>
+                    <MovieCardDetailsItem name={`Director`} value={director}/>
                     <MovieCardDetailsItem
                       name={`Starring`}
-                      value={[
-                        `Bill Murray`,
-                        `Edward Norton`,
-                        `Jude Law`,
-                        `Willem Dafoe`,
-                        `Saoirse Ronan`,
-                        `Tony Revoloru`,
-                        `Tilda Swinton`,
-                        `Tom Wilkinson`,
-                        `Owen Wilkinson`,
-                        `Adrien Brody`,
-                        `Ralph Fiennes`,
-                        `Jeff Goldblum`
-                      ]}
+                      value={starring}
                     />
                   </MovieCardCol>
 
                   <MovieCardCol type={TypeCol.TEXT}>
-                    <MovieCardDetailsItem name={`Run Time`} value={99} />
-                    <MovieCardDetailsItem name={`Genre`} value={`Comedy`} />
-                    <MovieCardDetailsItem name={`Released`} value={`2014`} />
+                    <MovieCardDetailsItem name={`Run Time`} value={runTime} />
+                    <MovieCardDetailsItem name={`Genre`} value={genre} />
+                    <MovieCardDetailsItem name={`Released`} value={released} />
                   </MovieCardCol>
                 </MovieCardRow>}
               </div>
@@ -131,14 +134,55 @@ export default class MoviePageDetails extends PureComponent {
 }
 
 MoviePageDetails.propTypes = {
-  films: arrayOf(
-      shape({
-        title: string.isRequired,
-        img: exact({
-          src: string.isRequired,
-          alt: string.isRequired
-        }),
-      })
-  ),
+  clickedFilm: shape({
+    id: number.isRequired,
+    name: string.isRequired,
+    image: shape({
+      poster: string.isRequired,
+      posterAlt: string.isRequired,
+      preview: string.isRequired,
+      previewAlt: string.isRequired,
+      background: string.isRequired,
+    }),
+    backgroundColor: string.isRequired,
+    video: shape({
+      link: string.isRequired,
+      preview: string.isRequired,
+    }),
+    description: string.isRequired,
+    rating: number.isRequired,
+    scoresCount: number.isRequired,
+    director: string.isRequired,
+    starring: arrayOf(string.isRequired),
+    runTime: number.isRequired,
+    genre: string.isRequired,
+    released: number.isRequired,
+    isFavorite: bool.isRequired,
+  }),
+  films: arrayOf(shape({
+    id: number.isRequired,
+    name: string.isRequired,
+    image: shape({
+      poster: string.isRequired,
+      posterAlt: string.isRequired,
+      preview: string.isRequired,
+      previewAlt: string.isRequired,
+      background: string.isRequired,
+    }),
+    backgroundColor: string.isRequired,
+    video: shape({
+      link: string.isRequired,
+      preview: string.isRequired,
+    }),
+    description: string.isRequired,
+    rating: number.isRequired,
+    scoresCount: number.isRequired,
+    director: string.isRequired,
+    starring: arrayOf(string.isRequired),
+    runTime: number.isRequired,
+    genre: string.isRequired,
+    released: number.isRequired,
+    isFavorite: bool.isRequired,
+  })),
   icons: arrayOf(string.isRequired),
 };
