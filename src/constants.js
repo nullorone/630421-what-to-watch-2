@@ -8,6 +8,7 @@ export const Value = {
 export const Pathname = {
   DEFAULT: `/`,
   DETAILS: `/details`,
+  FILM: `/film`,
 };
 
 export const Img = {
@@ -36,6 +37,8 @@ export const MOVIE_CARD_BUTTONS = [
   }
 ];
 
+export const MAX_TIME_LENGTH = 3;
+
 export const COPYRIGHT = `© 2019 What to watch Ltd.`;
 
 export const CINEMA_NAME = `WTW`;
@@ -60,6 +63,11 @@ export const TypeCol = {
   REVIEWS: `reviews`,
 };
 
-export const AMOUNT_SIMILAR_FILMS = 4;
+export const AmountSimilarFilms = {
+  DEFAULT: 8,
+  ON_PAGE_FILM: 4,
+};
+
+export const AMOUNT_ADDED_FILMS = 4;
 
 export const MINUTES_IN_HOUR = 60;
