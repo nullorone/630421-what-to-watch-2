@@ -6,7 +6,7 @@ const {string, any} = PropTypes;
 const MovieCardCol = (props) => {
   const {type} = props;
 
-  const colClassName = type && `movie-card__text-col`;
+  const colClassName = type && `movie-card__${type}-col`;
 
   return (
     <div className={colClassName}>
