@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import Main from "../main/main";
 import MoviePageDetails from "../movie-page-details/movie-page-details";
-import {Pathname} from "../../constants";
+import {Pathname, AmountSimilarFilms, Value} from "../../constants";
 
-const {arrayOf, shape, string} = PropTypes;
+const {arrayOf, number, bool, shape, string} = PropTypes;
 
 const PageScreen = (props) => {
   const {
@@ -22,10 +22,16 @@ const PageScreen = (props) => {
           icons={iconNames}
         />
       );
-    case Pathname.DETAILS:
+    case (location.pathname):
+      const indexPathname = location.pathname.lastIndexOf(`/`) + Value.FULL;
+      const filmId = location.pathname.slice(indexPathname);
+      const similarFilms = films.slice(Value.EMPTY, AmountSimilarFilms.ON_PAGE_FILM);
+      const clickedFilm = films.find((film) => film.id === Number(filmId));
+
       return (
         <MoviePageDetails
-          films={films}
+          clickedFilm={clickedFilm}
+          films={similarFilms}
           icons={iconNames}
         />
       );
@@ -36,11 +42,29 @@ const PageScreen = (props) => {
 
 PageScreen.propTypes = {
   films: arrayOf(shape({
-    title: string.isRequired,
-    img: shape({
-      src: string.isRequired,
-      alt: string.isRequired,
+    id: number.isRequired,
+    name: string.isRequired,
+    image: shape({
+      poster: string.isRequired,
+      posterAlt: string.isRequired,
+      preview: string.isRequired,
+      previewAlt: string.isRequired,
+      background: string.isRequired,
     }),
+    backgroundColor: string.isRequired,
+    video: shape({
+      link: string.isRequired,
+      preview: string.isRequired,
+    }),
+    description: string.isRequired,
+    rating: number.isRequired,
+    scoresCount: number.isRequired,
+    director: string.isRequired,
+    starring: arrayOf(string.isRequired),
+    runTime: number.isRequired,
+    genre: string.isRequired,
+    released: number.isRequired,
+    isFavorite: bool.isRequired,
   })),
   genres: arrayOf(string.isRequired),
   iconNames: arrayOf(string.isRequired),

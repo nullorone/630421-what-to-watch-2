@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const {any, string} = PropTypes;
+const {any, string, number} = PropTypes;
 
 const MovieCardDescription = (props) => {
   const {title, genre, year} = props;
@@ -23,7 +23,7 @@ const MovieCardDescription = (props) => {
 MovieCardDescription.propTypes = {
   title: string.isRequired,
   genre: string.isRequired,
-  year: string.isRequired,
+  year: number.isRequired,
   children: any,
 };
 

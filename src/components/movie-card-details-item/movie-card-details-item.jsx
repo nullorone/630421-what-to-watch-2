@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {MINUTES_IN_HOUR} from "../../constants";
+import {MINUTES_IN_HOUR, MAX_TIME_LENGTH} from "../../constants";
 
-const MAX_TIME_LENGTH = 3;
 
 const {string, arrayOf, oneOfType, number} = PropTypes;
 
@@ -54,7 +53,7 @@ const MovieCardDetailsItem = (props) => {
 
 MovieCardDetailsItem.propTypes = {
   name: string.isRequired,
-  value: oneOfType([string, arrayOf(string.isRequired)], number),
+  value: oneOfType([string, arrayOf(string.isRequired), number]),
 };
 
 export default MovieCardDetailsItem;
