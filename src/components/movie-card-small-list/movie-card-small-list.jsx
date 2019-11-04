@@ -1,26 +1,55 @@
 import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
 import MovieCardSmall from "../movie-card-small/movie-card-small";
+import {EMPTY_STRING, Value} from "../../constants";
 
-const {string, shape, arrayOf} = PropTypes;
+const {string, number, bool, shape, arrayOf} = PropTypes;
 
 export default class MovieCardSmallList extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      title: ``,
+      id: Value.EMPTY,
+      title: EMPTY_STRING,
+      genre: EMPTY_STRING,
+      year: Value.EMPTY,
+      image: {
+        poster: EMPTY_STRING,
+        posterAlt: EMPTY_STRING,
+        background: EMPTY_STRING,
+        backgroundAlt: EMPTY_STRING,
+      },
     };
 
-    this.onMovieCardMouseEnter = (evt) => {
+    this.onMovieCardClick = (evt, ...filmData) => {
       evt.preventDefault();
-      const movieCardText = evt.target.innerText;
+      const {
+        id,
+        name,
+        genre,
+        released,
+        image: {
+          poster,
+          posterAlt,
+          background,
+          backgroundAlt,
+        }
+      } = filmData[0];
 
       this.setState(() => ({
-        title: movieCardText,
+        id,
+        title: name,
+        genre,
+        year: released,
+        image: {
+          poster,
+          posterAlt,
+          background,
+          backgroundAlt,
+        },
       }), () => {
-        // eslint-disable-next-line no-alert
-        alert(`Вы навели на ${this.state.title}`);
+        location.href = (`${location.origin}/${id}`);
       });
     };
   }
@@ -34,11 +63,13 @@ export default class MovieCardSmallList extends PureComponent {
           .map((film, index) => {
             const keyComponent = `movie-card-${index + 1}`;
 
-            return <MovieCardSmall
-              key={keyComponent}
-              onLinkEnter={this.onMovieCardMouseEnter}
-              {...film}
-            />;
+            return (
+              <MovieCardSmall
+                key={keyComponent}
+                onLinkClick={this.onMovieCardClick}
+                {...film}
+              />
+            );
           })}
       </div>
     );
@@ -47,10 +78,28 @@ export default class MovieCardSmallList extends PureComponent {
 
 MovieCardSmallList.propTypes = {
   films: arrayOf(shape({
-    title: string.isRequired,
-    img: shape({
-      src: string.isRequired,
-      alt: string.isRequired,
-    })
+    id: number.isRequired,
+    name: string.isRequired,
+    image: shape({
+      poster: string.isRequired,
+      posterAlt: string.isRequired,
+      preview: string.isRequired,
+      previewAlt: string.isRequired,
+      background: string.isRequired,
+    }),
+    backgroundColor: string.isRequired,
+    video: shape({
+      link: string.isRequired,
+      preview: string.isRequired,
+    }),
+    description: string.isRequired,
+    rating: number.isRequired,
+    scoresCount: number.isRequired,
+    director: string.isRequired,
+    starring: arrayOf(string.isRequired),
+    runTime: number.isRequired,
+    genre: string.isRequired,
+    released: number.isRequired,
+    isFavorite: bool.isRequired,
   })),
 };

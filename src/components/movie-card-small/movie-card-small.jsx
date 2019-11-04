@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
 import MovieCardPicture from "../movie-card-picture/movie-card-picture";
 
-const {string, shape, func} = PropTypes;
+const {string, number, bool, shape, func, arrayOf} = PropTypes;
 
 export default class MovieCardSmall extends PureComponent {
   constructor(props) {
@@ -11,12 +11,13 @@ export default class MovieCardSmall extends PureComponent {
 
   render() {
     const {
-      title,
-      img: {
-        src,
-        alt,
+      id,
+      name,
+      image: {
+        preview,
+        previewAlt,
       },
-      onLinkEnter,
+      onLinkClick,
     } = this.props;
 
     return (
@@ -24,15 +25,17 @@ export default class MovieCardSmall extends PureComponent {
         {<MovieCardPicture
           className={`small-movie-card__image`}
           picture={{
-            src,
-            alt,
+            src: preview,
+            alt: previewAlt,
           }}
+          onImgClick={(evt) => onLinkClick(evt, this.props)}
         />}
         <h3 className="small-movie-card__title">
           <a
             className="small-movie-card__link"
-            href="movie-page.html"
-            onMouseEnter={onLinkEnter}>{title}
+            href={`/${id}`}
+            onClick={(evt) => onLinkClick(evt, this.props)}>
+            {name}
           </a>
         </h3>
       </article>
@@ -41,10 +44,28 @@ export default class MovieCardSmall extends PureComponent {
 }
 
 MovieCardSmall.propTypes = {
-  title: string.isRequired,
-  img: shape({
-    src: string.isRequired,
-    alt: string.isRequired,
+  id: number.isRequired,
+  name: string.isRequired,
+  image: shape({
+    poster: string.isRequired,
+    posterAlt: string.isRequired,
+    preview: string.isRequired,
+    previewAlt: string.isRequired,
+    background: string.isRequired,
   }),
-  onLinkEnter: func.isRequired,
+  backgroundColor: string.isRequired,
+  video: shape({
+    link: string.isRequired,
+    preview: string.isRequired,
+  }),
+  description: string.isRequired,
+  rating: number.isRequired,
+  scoresCount: number.isRequired,
+  director: string.isRequired,
+  starring: arrayOf(string.isRequired),
+  runTime: number.isRequired,
+  genre: string.isRequired,
+  released: number.isRequired,
+  isFavorite: bool.isRequired,
+  onLinkClick: func.isRequired,
 };
