@@ -4,7 +4,9 @@ export default class Adapter {
     this._name = data.name;
     this._image = {
       poster: data.poster_image,
+      posterAlt: data.name,
       preview: data.preview_image,
+      previewAlt: data.name,
       background: data.background_image,
     };
     this._backgroundColor = data.background_color;
@@ -59,7 +61,9 @@ export default class Adapter {
       name: this._name,
       image: {
         poster: this._image.poster,
+        posterAlt: this._image.posterAlt,
         preview: this._image.preview,
+        previewAlt: this._image.previewAlt,
         background: this._image.background,
       },
       backgroundColor: this._backgroundColor,
