@@ -51,8 +51,11 @@ MovieCardSmallList.propTypes = {
     }),
     backgroundColor: string.isRequired,
     video: shape({
-      link: string.isRequired,
-      preview: string.isRequired,
+      link: shape({
+        mp4: string.isRequired,
+        webm: string.isRequired,
+      }),
+      poster: string.isRequired,
     }),
     description: string.isRequired,
     rating: number.isRequired,
