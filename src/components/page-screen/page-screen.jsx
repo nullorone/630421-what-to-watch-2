@@ -1,15 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {AmountSimilarFilms, Pathname, Value} from "../../constants";
+import React from "react";
+import PropTypes from "prop-types";
 import Main from "../main/main";
 import MoviePageDetails from "../movie-page-details/movie-page-details";
+import {Pathname, AmountSimilarFilms, Value} from "../../constants";
 
-const {string, number, bool, shape, arrayOf} = PropTypes;
+const {arrayOf, number, bool, shape, string} = PropTypes;
 
-const App = (props) => {
+const PageScreen = (props) => {
   const {
     films,
-    promo,
     genres,
     iconNames,
   } = props;
@@ -18,7 +17,6 @@ const App = (props) => {
     case Pathname.DEFAULT:
       return (
         <Main
-          promo={promo}
           films={films}
           genres={genres}
           icons={iconNames}
@@ -42,7 +40,7 @@ const App = (props) => {
   return null;
 };
 
-App.propTypes = {
+PageScreen.propTypes = {
   films: arrayOf(shape({
     id: number.isRequired,
     name: string.isRequired,
@@ -52,7 +50,6 @@ App.propTypes = {
       preview: string.isRequired,
       previewAlt: string.isRequired,
       background: string.isRequired,
-      backgroundAlt: string.isRequired,
     }),
     backgroundColor: string.isRequired,
     video: shape({
@@ -72,34 +69,8 @@ App.propTypes = {
     released: number.isRequired,
     isFavorite: bool.isRequired,
   })),
-  promo: shape({
-    id: number.isRequired,
-    name: string.isRequired,
-    image: shape({
-      poster: string.isRequired,
-      posterAlt: string.isRequired,
-      preview: string.isRequired,
-      previewAlt: string.isRequired,
-      background: string.isRequired,
-      backgroundAlt: string.isRequired,
-    }),
-    backgroundColor: string.isRequired,
-    video: shape({
-      link: string.isRequired,
-      preview: string.isRequired,
-    }),
-    description: string.isRequired,
-    rating: number.isRequired,
-    scoresCount: number.isRequired,
-    director: string.isRequired,
-    starring: arrayOf(string.isRequired),
-    runTime: number.isRequired,
-    genre: string.isRequired,
-    released: number.isRequired,
-    isFavorite: bool.isRequired,
-  }),
   genres: arrayOf(string.isRequired),
   iconNames: arrayOf(string.isRequired),
 };
 
-export default App;
+export default PageScreen;

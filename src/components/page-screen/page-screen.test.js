@@ -1,17 +1,16 @@
-import React from 'react';
+import React from "react";
 import renderer from "react-test-renderer";
-import Main from './main';
+import PageScreen from "./page-screen";
 import {EMPTY_STRING, Value} from "../../constants";
 
-
 describe(`Make snapshot`, () => {
-  const initialProps = {
+  const initProps = {
     films: [{
       id: Value.EMPTY,
       name: `Keks`,
       image: {
         poster: EMPTY_STRING,
-        posterAlt: `1`,
+        posterAlt: EMPTY_STRING,
         preview: EMPTY_STRING,
         previewAlt: EMPTY_STRING,
         background: EMPTY_STRING,
@@ -35,47 +34,17 @@ describe(`Make snapshot`, () => {
       released: Value.FULL,
       isFavorite: true,
     }],
-    promo: {
-      id: Value.EMPTY,
-      name: `Keks`,
-      image: {
-        poster: EMPTY_STRING,
-        posterAlt: `1`,
-        preview: EMPTY_STRING,
-        previewAlt: EMPTY_STRING,
-        background: EMPTY_STRING,
-        backgroundAlt: EMPTY_STRING,
-      },
-      backgroundColor: EMPTY_STRING,
-      video: {
-        link: EMPTY_STRING,
-        preview: EMPTY_STRING,
-      },
-      description: EMPTY_STRING,
-      rating: Value.FULL,
-      scoresCount: Value.FULL,
-      director: `Keks`,
-      starring: [`Me`, `You`, `They`],
-      runTime: Value.EMPTY,
-      genre: EMPTY_STRING,
-      released: Value.FULL,
-      isFavorite: true,
-    },
     genres: [`ECMA`, `CSS`],
     icons: [`PAUSE`],
   };
 
-  it(`Render main screen`, () => {
+  it(`Get snapshot component`, () => {
     const tree = renderer
       .create(
-          <Main
-            {...initialProps}
-          />
+          <PageScreen {...initProps}/>
       )
       .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 });
-
-
