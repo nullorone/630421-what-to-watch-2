@@ -14,6 +14,7 @@ describe(`Make snapshot`, () => {
         preview: EMPTY_STRING,
         previewAlt: EMPTY_STRING,
         background: EMPTY_STRING,
+        backgroundAlt: EMPTY_STRING,
       },
       backgroundColor: EMPTY_STRING,
       video: {
@@ -28,7 +29,7 @@ describe(`Make snapshot`, () => {
       runTime: Value.EMPTY,
       genre: EMPTY_STRING,
       released: Value.FULL,
-      isFavorite: false,
+      isFavorite: true,
     }],
     genres: [`ECMA`, `CSS`],
     icons: [`PAUSE`],
@@ -37,7 +38,7 @@ describe(`Make snapshot`, () => {
   it(`Get snapshot component`, () => {
     const tree = renderer
       .create(
-          <PageScreen {...initProps[Value.EMPTY]}/>
+          <PageScreen {...initProps}/>
       )
       .toJSON();
 

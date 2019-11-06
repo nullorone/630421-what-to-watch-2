@@ -14,6 +14,7 @@ describe(`Test cases PageScreen component`, () =>{
         preview: EMPTY_STRING,
         previewAlt: EMPTY_STRING,
         background: EMPTY_STRING,
+        backgroundAlt: EMPTY_STRING,
       },
       backgroundColor: EMPTY_STRING,
       video: {
@@ -28,7 +29,7 @@ describe(`Test cases PageScreen component`, () =>{
       runTime: Value.EMPTY,
       genre: EMPTY_STRING,
       released: Value.FULL,
-      isFavorite: false,
+      isFavorite: true,
     }],
     genres: [`ECMA`, `CSS`],
     icons: [`PAUSE`],

@@ -29,7 +29,7 @@ describe(`Make snapshot`, () => {
       runTime: Value.EMPTY,
       genre: EMPTY_STRING,
       released: Value.FULL,
-      isFavorite: false,
+      isFavorite: true,
     }],
     genres: [`ECMA`, `CSS`],
     icons: [`PAUSE`],
@@ -39,7 +39,7 @@ describe(`Make snapshot`, () => {
     const tree = renderer
       .create(
           <App
-            {...initProps[Value.EMPTY]}
+            {...initProps}
           />
       )
       .toJSON();

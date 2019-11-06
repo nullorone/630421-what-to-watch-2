@@ -13,6 +13,7 @@ describe(`Test Movie Card component`, () => {
       preview: EMPTY_STRING,
       previewAlt: EMPTY_STRING,
       background: EMPTY_STRING,
+      backgroundAlt: EMPTY_STRING,
     },
     backgroundColor: EMPTY_STRING,
     video: {

@@ -38,7 +38,7 @@ describe(`Test App component`, () => {
   it(`Return Main component`, () => {
     const wrapper = shallow(
         <App
-          {...initProps[Value.EMPTY]}
+          {...initProps}
         />
     );
 

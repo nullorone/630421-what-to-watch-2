@@ -1,16 +1,35 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import MovieCardSmall from "../movie-card-small/movie-card-small";
-import {EMPTY_STRING} from "../../constants";
+import {EMPTY_STRING, Value} from "../../constants";
 
 describe(`Make snapshot`, () => {
   const initProps = {
-    title: `My Awesome film`,
-    img: {
-      src: EMPTY_STRING,
-      alt: EMPTY_STRING,
+    id: Value.EMPTY,
+    name: `My Card`,
+    image: {
+      poster: EMPTY_STRING,
+      posterAlt: EMPTY_STRING,
+      preview: EMPTY_STRING,
+      previewAlt: EMPTY_STRING,
+      background: EMPTY_STRING,
+      backgroundAlt: EMPTY_STRING,
     },
-    onLinkEnter: jest.fn(),
+    backgroundColor: EMPTY_STRING,
+    video: {
+      link: EMPTY_STRING,
+      preview: EMPTY_STRING,
+    },
+    description: EMPTY_STRING,
+    rating: Value.FULL,
+    scoresCount: Value.FULL,
+    director: `Keks`,
+    starring: [`Me`, `You`, `They`],
+    runTime: Value.FULL,
+    genre: EMPTY_STRING,
+    released: Value.FULL,
+    isFavorite: false,
+    onLinkClick: jest.fn(),
   };
 
   it(`Get snapshot component`, () => {
