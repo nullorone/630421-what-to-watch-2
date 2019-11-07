@@ -17,8 +17,11 @@ describe(`Make snapshot`, () => {
     },
     backgroundColor: EMPTY_STRING,
     video: {
-      link: EMPTY_STRING,
-      preview: EMPTY_STRING,
+      link: {
+        mp4: `New Year`,
+        webm: `Christmas`,
+      },
+      poster: `./img/Holly`,
     },
     description: EMPTY_STRING,
     rating: Value.FULL,

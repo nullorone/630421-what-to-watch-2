@@ -17,8 +17,11 @@ describe(`Test Movie Card component`, () => {
     },
     backgroundColor: EMPTY_STRING,
     video: {
-      link: EMPTY_STRING,
-      preview: EMPTY_STRING,
+      link: {
+        mp4: `New Year`,
+        webm: `Christmas`,
+      },
+      poster: `./img/Holly`,
     },
     description: EMPTY_STRING,
     rating: Value.FULL,
@@ -66,5 +69,15 @@ describe(`Test Movie Card component`, () => {
       .simulate(`click`);
 
     expect(initProps.onLinkClick).toBeCalledTimes(Value.FULL);
+  });
+
+  it(`Get VideoPlayer component`, () => {
+    const wrapper = shallow(
+        <MovieCardSmall {...initProps}/>
+    );
+
+    wrapper.setState({isVideo: true});
+
+    expect(wrapper.find(`VideoPlayer`)).toBeTruthy();
   });
 });
