@@ -73,4 +73,14 @@ describe(`Test Movie Card component`, () => {
 
     expect(initProps.onLinkClick).toBeCalledTimes(Value.FULL);
   });
+
+  it(`Get VideoPlayer component`, () => {
+    const wrapper = shallow(
+        <MovieCardSmall {...initProps}/>
+    );
+
+    wrapper.setState({isVideo: true});
+
+    expect(wrapper.find(`VideoPlayer`)).toBeTruthy();
+  });
 });
