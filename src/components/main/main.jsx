@@ -23,7 +23,7 @@ export default class Main extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._currentAmountSimilarFilm = AmountSimilarFilms.DEFAULT;
+    this._catalogButtonsClickHandler = this._catalogButtonsClickHandler.bind(this);
 
     this.state = {
       films: this.props.films.slice(Value.EMPTY, AmountSimilarFilms.DEFAULT),
@@ -106,27 +106,7 @@ export default class Main extends PureComponent {
 
             {this.state.hasCatalogButton && <CatalogButton
               text={`ShowMore`}
-              onButtonClick={(evt) => {
-                evt.preventDefault();
-                this.setState((prevState) => {
-                  const startIndexFilm = this._currentAmountSimilarFilm;
-                  let hasCatalogButton = this.state.hasCatalogButton;
-                  let endIndexFilm = Value.EMPTY;
-
-                  if ((startIndexFilm + AMOUNT_ADDED_FILMS) > this.props.films.length) {
-                    hasCatalogButton = false;
-                    endIndexFilm = this.props.films.length;
-                  } else {
-                    endIndexFilm = startIndexFilm + AMOUNT_ADDED_FILMS;
-                    this._currentAmountSimilarFilm = endIndexFilm;
-                  }
-
-                  return {
-                    films: [...prevState.films, ...this.props.films.slice(startIndexFilm, endIndexFilm)],
-                    hasCatalogButton,
-                  };
-                });
-              }}/>}
+              onButtonClick={this._catalogButtonsClickHandler}/>}
           </section>
 
           <footer className="page-footer">
@@ -138,6 +118,28 @@ export default class Main extends PureComponent {
         </div>
       </>
     );
+  }
+
+  _catalogButtonsClickHandler(evt) {
+    evt.preventDefault();
+    this.setState(() => {
+      const {
+        films,
+        hasCatalogButton
+      } = this.state;
+
+      let newStateCatalogButton = hasCatalogButton;
+      const endIndexFilm = films.length + AMOUNT_ADDED_FILMS;
+
+      if (endIndexFilm > this.props.films.length) {
+        newStateCatalogButton = false;
+      }
+
+      return {
+        films: this.props.films.slice(Value.EMPTY, endIndexFilm),
+        hasCatalogButton: newStateCatalogButton,
+      };
+    });
   }
 }
 
