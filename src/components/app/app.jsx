@@ -1,18 +1,44 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import PageScreen from "../page-screen/page-screen";
+import {AmountSimilarFilms, Pathname, Value} from "../../constants";
+import Main from "../main/main";
+import MoviePageDetails from "../movie-page-details/movie-page-details";
 
 const {string, number, bool, shape, arrayOf} = PropTypes;
 
-export default class App extends PureComponent {
-  constructor(props) {
-    super(props);
+const App = (props) => {
+  const {
+    films,
+    genres,
+    iconNames,
+  } = props;
+
+  switch (location.pathname) {
+    case Pathname.DEFAULT:
+      return (
+        <Main
+          films={films}
+          genres={genres}
+          icons={iconNames}
+        />
+      );
+    case (location.pathname):
+      const indexPathname = location.pathname.lastIndexOf(`/`) + Value.FULL;
+      const filmId = location.pathname.slice(indexPathname);
+      const similarFilms = films.slice(Value.EMPTY, AmountSimilarFilms.ON_PAGE_FILM);
+      const clickedFilm = films.find((film) => film.id === Number(filmId));
+
+      return (
+        <MoviePageDetails
+          clickedFilm={clickedFilm}
+          films={similarFilms}
+          icons={iconNames}
+        />
+      );
   }
 
-  render() {
-    return <PageScreen {...this.props}/>;
-  }
-}
+  return null;
+};
 
 App.propTypes = {
   films: arrayOf(shape({
@@ -44,3 +70,5 @@ App.propTypes = {
   genres: arrayOf(string.isRequired),
   iconNames: arrayOf(string.isRequired),
 };
+
+export default App;
