@@ -136,7 +136,9 @@ export default class Main extends PureComponent {
 
           <footer className="page-footer">
             <Logo light={true}/>
-            <Copyright text={COPYRIGHT}/>
+            <div className="copyright">
+              <p>© 2019 What to watch Ltd.</p>
+            </div>
           </footer>
         </div>
       </>
