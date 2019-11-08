@@ -32,12 +32,8 @@ export default class MovieCardSmallList extends PureComponent {
     );
   }
 
-  _onMovieCardClick(evt, ...filmData) {
+  _onMovieCardClick(evt, id) {
     evt.preventDefault();
-    const {
-      id,
-    } = filmData[0];
-
     location.href = (`${location.origin}/${id}`);
   }
 }

@@ -22,19 +22,19 @@ export default class MovieCardSmall extends PureComponent {
 
     return (
       <article className="small-movie-card catalog__movies-card">
-        {<MovieCardPicture
+        <MovieCardPicture
           className={`small-movie-card__image`}
           picture={{
             src: preview,
             alt: previewAlt,
           }}
-          onImgClick={(evt) => onLinkClick(evt, this.props)}
-        />}
+          onImgClick={(evt) => onLinkClick(evt, id)}
+        />
         <h3 className="small-movie-card__title">
           <a
             className="small-movie-card__link"
             href={`/${id}`}
-            onClick={(evt) => onLinkClick(evt, this.props)}>
+            onClick={(evt) => onLinkClick(evt, id)}>
             {name}
           </a>
         </h3>
