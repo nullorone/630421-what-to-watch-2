@@ -1,17 +1,12 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import IconsWrapper from "../icons-wrapper/icons-wrapper";
-import Header from "../header/header";
 import Logo from "../logo/logo";
 import UserBlock from "../user-block/user-block";
-import Title from "../title/title";
 import MovieCardPicture from "../movie-card-picture/movie-card-picture";
-import Copyright from "../copyright/copyright";
 import MovieCardSmallList from "../movie-card-small-list/movie-card-small-list";
 import {
   Value,
-  COPYRIGHT,
-  CINEMA_NAME,
   MOVIE_CARD_BUTTONS,
   Img,
   MOVIE_NAV_ITEMS,
