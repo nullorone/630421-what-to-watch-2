@@ -71,10 +71,10 @@ export default class Main extends PureComponent {
 
           <Title className={`visually-hidden`} text={CINEMA_NAME}/>
 
-          <Header>
+          <header className="page-header movie-card__head">
             <Logo light={false}/>
             <UserBlock avatarSrc={`./img/avatar.jpg`}/>
-          </Header>
+          </header>
 
           <div className="movie-card__wrap">
             <div className="movie-card__info">

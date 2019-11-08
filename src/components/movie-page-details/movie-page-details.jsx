@@ -8,7 +8,16 @@ import Title from "../title/title";
 import MovieCardPicture from "../movie-card-picture/movie-card-picture";
 import Copyright from "../copyright/copyright";
 import MovieCardSmallList from "../movie-card-small-list/movie-card-small-list";
-import {Value, COPYRIGHT, CINEMA_NAME, MOVIE_CARD_BUTTONS, Img, MOVIE_NAV_ITEMS, TypeCol, AmountSimilarFilms} from "../../constants";
+import {
+  Value,
+  COPYRIGHT,
+  CINEMA_NAME,
+  MOVIE_CARD_BUTTONS,
+  Img,
+  MOVIE_NAV_ITEMS,
+  TypeCol,
+  AmountSimilarFilms,
+} from "../../constants";
 import MovieCardDescription from "../movie-card-description/movie-card-description";
 import MovieCardButtonList from "../movie-card-button-list/movie-card-button-list";
 import MovieNavList from "../movie-nav-list/movie-nav-list";
@@ -64,10 +73,10 @@ export default class MoviePageDetails extends PureComponent {
 
             <Title className={`visually-hidden`} text={CINEMA_NAME}/>
 
-            <Header>
+            <header className="page-header movie-card__head">
               <Logo light={false}/>
               <UserBlock avatarSrc={`./img/avatar.jpg`}/>
-            </Header>
+            </header>
 
             <div className="movie-card__wrap">
               <MovieCardDescription
@@ -106,9 +115,9 @@ export default class MoviePageDetails extends PureComponent {
                   </MovieCardCol>
 
                   <MovieCardCol type={TypeCol.TEXT}>
-                    <MovieCardDetailsItem name={`Run Time`} value={runTime} />
-                    <MovieCardDetailsItem name={`Genre`} value={genre} />
-                    <MovieCardDetailsItem name={`Released`} value={released} />
+                    <MovieCardDetailsItem name={`Run Time`} value={runTime}/>
+                    <MovieCardDetailsItem name={`Genre`} value={genre}/>
+                    <MovieCardDetailsItem name={`Released`} value={released}/>
                   </MovieCardCol>
                 </MovieCardRow>
               </div>
