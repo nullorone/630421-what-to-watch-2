@@ -55,22 +55,22 @@ export default class MoviePageDetails extends PureComponent {
         <section className="movie-card movie-card--full">
           <div className="movie-card__hero">
 
-            {<MovieCardPicture
+            <MovieCardPicture
               className={`movie-card__bg`}
               picture={{
                 src: background,
                 alt: backgroundAlt,
-              }}/>}
+              }}/>
 
-            {<Title className={`visually-hidden`} text={CINEMA_NAME}/>}
+            <Title className={`visually-hidden`} text={CINEMA_NAME}/>
 
-            {<Header>
+            <Header>
               <Logo light={false}/>
               <UserBlock avatarSrc={`./img/avatar.jpg`}/>
-            </Header>}
+            </Header>
 
             <div className="movie-card__wrap">
-              {<MovieCardDescription
+              <MovieCardDescription
                 title={name}
                 genre={genre}
                 year={released}
@@ -78,25 +78,25 @@ export default class MoviePageDetails extends PureComponent {
                 <MovieCardButtonList buttons={MOVIE_CARD_BUTTONS}>
                   <a href="add-review.html" className="btn movie-card__button">Add review</a>
                 </MovieCardButtonList>
-              </MovieCardDescription>}
+              </MovieCardDescription>
             </div>
           </div>
 
           <div className="movie-card__wrap movie-card__translate-top">
             <div className="movie-card__info">
 
-              {<MovieCardPicture
+              <MovieCardPicture
                 className={`movie-card__poster movie-card__poster--big`}
                 picture={{
                   src: poster,
                   alt: posterAlt,
                   width: Img.BIG.width,
                   height: Img.BIG.height,
-                }}/>}
+                }}/>
 
               <div className="movie-card__desc">
-                {<MovieNavList navItems={MOVIE_NAV_ITEMS}/>}
-                {<MovieCardRow type={TypeCol.TEXT}>
+                <MovieNavList navItems={MOVIE_NAV_ITEMS}/>
+                <MovieCardRow type={TypeCol.TEXT}>
                   <MovieCardCol type={TypeCol.TEXT}>
                     <MovieCardDetailsItem name={`Director`} value={director}/>
                     <MovieCardDetailsItem
@@ -110,7 +110,7 @@ export default class MoviePageDetails extends PureComponent {
                     <MovieCardDetailsItem name={`Genre`} value={genre} />
                     <MovieCardDetailsItem name={`Released`} value={released} />
                   </MovieCardCol>
-                </MovieCardRow>}
+                </MovieCardRow>
               </div>
             </div>
           </div>
@@ -124,8 +124,8 @@ export default class MoviePageDetails extends PureComponent {
           </section>
 
           <footer className="page-footer">
-            {<Logo light={true}/>}
-            {<Copyright text={COPYRIGHT}/>}
+            <Logo light={true}/>
+            <Copyright text={COPYRIGHT}/>
           </footer>
         </div>
       </>

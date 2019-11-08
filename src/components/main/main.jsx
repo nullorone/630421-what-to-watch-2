@@ -62,39 +62,39 @@ export default class Main extends PureComponent {
 
         <section className="movie-card">
 
-          {<MovieCardPicture
+          <MovieCardPicture
             className={`movie-card__bg`}
             picture={{
               src: background,
               alt: backgroundAlt,
-            }}/>}
+            }}/>
 
-          {<Title className={`visually-hidden`} text={CINEMA_NAME}/>}
+          <Title className={`visually-hidden`} text={CINEMA_NAME}/>
 
-          {<Header>
+          <Header>
             <Logo light={false}/>
             <UserBlock avatarSrc={`./img/avatar.jpg`}/>
-          </Header>}
+          </Header>
 
           <div className="movie-card__wrap">
             <div className="movie-card__info">
 
-              {<MovieCardPicture
+              <MovieCardPicture
                 className={`movie-card__poster`}
                 picture={{
                   src: poster,
                   alt: posterAlt,
                   width: Img.BIG.width,
                   height: Img.BIG.height,
-                }}/>}
+                }}/>
 
-              {<MovieCardDescription
+              <MovieCardDescription
                 title={name}
                 genre={genre}
                 year={released}
               >
                 <MovieCardButtonList buttons={MOVIE_CARD_BUTTONS}/>
-              </MovieCardDescription>}
+              </MovieCardDescription>
             </div>
           </div>
         </section>
@@ -135,8 +135,8 @@ export default class Main extends PureComponent {
           </section>
 
           <footer className="page-footer">
-            {<Logo light={true}/>}
-            {<Copyright text={COPYRIGHT}/>}
+            <Logo light={true}/>
+            <Copyright text={COPYRIGHT}/>
           </footer>
         </div>
       </>
