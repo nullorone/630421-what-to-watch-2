@@ -4,17 +4,12 @@ import MovieCardSmallList from "../movie-card-small-list/movie-card-small-list";
 import GenreList from "../genre-list/genre-list";
 import IconsWrapper from "../icons-wrapper/icons-wrapper";
 import CatalogButton from "../catalog-button/catalog-button";
-import Copyright from "../copyright/copyright";
 import Logo from "../logo/logo";
 import UserBlock from "../user-block/user-block";
-import Header from "../header/header";
-import Title from "../title/title";
 import MovieCardPicture from "../movie-card-picture/movie-card-picture";
 import MovieCardButtonList from "../movie-card-button-list/movie-card-button-list";
 import {
   MOVIE_CARD_BUTTONS,
-  COPYRIGHT,
-  CINEMA_NAME,
   Img,
   AmountSimilarFilms,
   AMOUNT_ADDED_FILMS,
@@ -43,7 +38,7 @@ export default class Main extends PureComponent {
       icons,
     } = this.props;
 
-    const favoriteFilm = films.findIndex((film) => film.isFavorite);
+    const favoriteFilm = films.find((film) => film.isFavorite);
     const {
       name,
       image: {
@@ -54,7 +49,7 @@ export default class Main extends PureComponent {
       },
       genre,
       released,
-    } = films[favoriteFilm];
+    } = favoriteFilm;
 
     return (
       <>
