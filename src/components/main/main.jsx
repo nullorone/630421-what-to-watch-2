@@ -69,7 +69,7 @@ export default class Main extends PureComponent {
               alt: backgroundAlt,
             }}/>
 
-          <Title className={`visually-hidden`} text={CINEMA_NAME}/>
+          <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header movie-card__head">
             <Logo light={false}/>

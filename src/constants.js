@@ -39,8 +39,6 @@ export const MOVIE_CARD_BUTTONS = [
 
 export const MAX_TIME_LENGTH = 3;
 
-export const CINEMA_NAME = `WTW`;
-
 export const MOVIE_NAV_ITEMS = [
   {
     active: false,
