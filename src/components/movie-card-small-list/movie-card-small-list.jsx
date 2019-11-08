@@ -1,7 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
 import MovieCardSmall from "../movie-card-small/movie-card-small";
-import {EMPTY_STRING, Value} from "../../constants";
 
 const {string, number, bool, shape, arrayOf} = PropTypes;
 
@@ -9,49 +8,7 @@ export default class MovieCardSmallList extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      id: Value.EMPTY,
-      title: EMPTY_STRING,
-      genre: EMPTY_STRING,
-      year: Value.EMPTY,
-      image: {
-        poster: EMPTY_STRING,
-        posterAlt: EMPTY_STRING,
-        background: EMPTY_STRING,
-        backgroundAlt: EMPTY_STRING,
-      },
-    };
-
-    this.onMovieCardClick = (evt, ...filmData) => {
-      evt.preventDefault();
-      const {
-        id,
-        name,
-        genre,
-        released,
-        image: {
-          poster,
-          posterAlt,
-          background,
-          backgroundAlt,
-        }
-      } = filmData[0];
-
-      this.setState(() => ({
-        id,
-        title: name,
-        genre,
-        year: released,
-        image: {
-          poster,
-          posterAlt,
-          background,
-          backgroundAlt,
-        },
-      }), () => {
-        location.href = (`${location.origin}/${id}`);
-      });
-    };
+    this._onMovieCardClick = this._onMovieCardClick.bind(this);
   }
 
   render() {
@@ -66,13 +23,22 @@ export default class MovieCardSmallList extends PureComponent {
             return (
               <MovieCardSmall
                 key={keyComponent}
-                onLinkClick={this.onMovieCardClick}
+                onLinkClick={this._onMovieCardClick}
                 {...film}
               />
             );
           })}
       </div>
     );
+  }
+
+  _onMovieCardClick(evt, ...filmData) {
+    evt.preventDefault();
+    const {
+      id,
+    } = filmData[0];
+
+    location.href = (`${location.origin}/${id}`);
   }
 }
 
