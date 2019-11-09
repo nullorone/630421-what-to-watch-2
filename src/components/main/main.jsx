@@ -68,21 +68,11 @@ export default class Main extends PureComponent {
   _catalogButtonsClickHandler(evt) {
     evt.preventDefault();
     this.setState(() => {
-      const {
-        films,
-        hasCatalogButton
-      } = this.state;
-
-      let newStateCatalogButton = hasCatalogButton;
-      const endIndexFilm = films.length + AMOUNT_ADDED_FILMS;
-
-      if (endIndexFilm > this.props.films.length) {
-        newStateCatalogButton = false;
-      }
+      const endIndexFilm = this.state.films.length + AMOUNT_ADDED_FILMS;
 
       return {
         films: this.props.films.slice(Value.EMPTY, endIndexFilm),
-        hasCatalogButton: newStateCatalogButton,
+        hasCatalogButton: endIndexFilm > this.props.films.length,
       };
     });
   }
