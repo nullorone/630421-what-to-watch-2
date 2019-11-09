@@ -35,7 +35,7 @@ const MovieCardSmall = (props) => {
       </h3>
     </article>
   );
-}
+};
 
 MovieCardSmall.propTypes = {
   id: number.isRequired,

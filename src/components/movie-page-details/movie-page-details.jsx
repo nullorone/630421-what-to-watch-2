@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import IconsWrapper from "../icons-wrapper/icons-wrapper";
 import Logo from "../logo/logo";
@@ -131,7 +131,7 @@ const MoviePageDetails = (props) => {
       </div>
     </>
   );
-}
+};
 
 MoviePageDetails.propTypes = {
   clickedFilm: shape({
