@@ -23,120 +23,114 @@ import MovieCardDetailsItem from "../movie-card-details-item/movie-card-details-
 
 const {arrayOf, string, shape, number, bool} = PropTypes;
 
-export default class MoviePageDetails extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const MoviePageDetails = (props) => {
+  const {
+    clickedFilm,
+    films,
+    icons,
+  } = props;
 
-  render() {
-    const {
-      clickedFilm,
-      films,
-      icons,
-    } = this.props;
+  const {
+    name,
+    image: {
+      poster,
+      posterAlt,
+      background,
+      backgroundAlt,
+    },
+    director,
+    starring,
+    runTime,
+    genre,
+    released,
+  } = clickedFilm;
 
-    const {
-      name,
-      image: {
-        poster,
-        posterAlt,
-        background,
-        backgroundAlt,
-      },
-      director,
-      starring,
-      runTime,
-      genre,
-      released,
-    } = clickedFilm;
+  const similarFilms = films.slice(Value.EMPTY, AmountSimilarFilms.ON_PAGE_FILM);
 
-    const similarFilms = films.slice(Value.EMPTY, AmountSimilarFilms.ON_PAGE_FILM);
+  return (
+    <>
+      {icons && <IconsWrapper iconNames={icons}/>}
 
-    return (
-      <>
-        {icons && <IconsWrapper iconNames={icons}/>}
+      <section className="movie-card movie-card--full">
+        <div className="movie-card__hero">
 
-        <section className="movie-card movie-card--full">
-          <div className="movie-card__hero">
+          <MovieCardPicture
+            className={`movie-card__bg`}
+            picture={{
+              src: background,
+              alt: backgroundAlt,
+            }}/>
+
+          <h1 className="visually-hidden">WTW</h1>
+
+          <header className="page-header movie-card__head">
+            <Logo light={false}/>
+            <UserBlock avatarSrc={`./img/avatar.jpg`}/>
+          </header>
+
+          <div className="movie-card__wrap">
+            <MovieCardDescription
+              title={name}
+              genre={genre}
+              year={released}
+            >
+              <MovieCardButtonList buttons={MOVIE_CARD_BUTTONS}>
+                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+              </MovieCardButtonList>
+            </MovieCardDescription>
+          </div>
+        </div>
+
+        <div className="movie-card__wrap movie-card__translate-top">
+          <div className="movie-card__info">
 
             <MovieCardPicture
-              className={`movie-card__bg`}
+              className={`movie-card__poster movie-card__poster--big`}
               picture={{
-                src: background,
-                alt: backgroundAlt,
+                src: poster,
+                alt: posterAlt,
+                width: Img.BIG.width,
+                height: Img.BIG.height,
               }}/>
 
-            <h1 className="visually-hidden">WTW</h1>
+            <div className="movie-card__desc">
+              <MovieNavList navItems={MOVIE_NAV_ITEMS}/>
+              <MovieCardRow type={TypeCol.TEXT}>
+                <MovieCardCol type={TypeCol.TEXT}>
+                  <MovieCardDetailsItem name={`Director`} value={director}/>
+                  <MovieCardDetailsItem
+                    name={`Starring`}
+                    value={starring}
+                  />
+                </MovieCardCol>
 
-            <header className="page-header movie-card__head">
-              <Logo light={false}/>
-              <UserBlock avatarSrc={`./img/avatar.jpg`}/>
-            </header>
-
-            <div className="movie-card__wrap">
-              <MovieCardDescription
-                title={name}
-                genre={genre}
-                year={released}
-              >
-                <MovieCardButtonList buttons={MOVIE_CARD_BUTTONS}>
-                  <a href="add-review.html" className="btn movie-card__button">Add review</a>
-                </MovieCardButtonList>
-              </MovieCardDescription>
+                <MovieCardCol type={TypeCol.TEXT}>
+                  <MovieCardDetailsItem name={`Run Time`} value={runTime}/>
+                  <MovieCardDetailsItem name={`Genre`} value={genre}/>
+                  <MovieCardDetailsItem name={`Released`} value={released}/>
+                </MovieCardCol>
+              </MovieCardRow>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="movie-card__wrap movie-card__translate-top">
-            <div className="movie-card__info">
+      <div className="page-content">
+        <section className="catalog catalog--like-this">
+          <h2 className="catalog__title">More like this</h2>
 
-              <MovieCardPicture
-                className={`movie-card__poster movie-card__poster--big`}
-                picture={{
-                  src: poster,
-                  alt: posterAlt,
-                  width: Img.BIG.width,
-                  height: Img.BIG.height,
-                }}/>
-
-              <div className="movie-card__desc">
-                <MovieNavList navItems={MOVIE_NAV_ITEMS}/>
-                <MovieCardRow type={TypeCol.TEXT}>
-                  <MovieCardCol type={TypeCol.TEXT}>
-                    <MovieCardDetailsItem name={`Director`} value={director}/>
-                    <MovieCardDetailsItem
-                      name={`Starring`}
-                      value={starring}
-                    />
-                  </MovieCardCol>
-
-                  <MovieCardCol type={TypeCol.TEXT}>
-                    <MovieCardDetailsItem name={`Run Time`} value={runTime}/>
-                    <MovieCardDetailsItem name={`Genre`} value={genre}/>
-                    <MovieCardDetailsItem name={`Released`} value={released}/>
-                  </MovieCardCol>
-                </MovieCardRow>
-              </div>
-            </div>
-          </div>
+          {films && <MovieCardSmallList films={similarFilms}/>}
         </section>
 
-        <div className="page-content">
-          <section className="catalog catalog--like-this">
-            <h2 className="catalog__title">More like this</h2>
-
-            {films && <MovieCardSmallList films={similarFilms}/>}
-          </section>
-
-          <footer className="page-footer">
-            <Logo light={true}/>
-            <div className="copyright">
-              <p>© 2019 What to watch Ltd.</p>
-            </div>
-          </footer>
-        </div>
-      </>
-    );
-  }
+        <footer className="page-footer">
+          <Logo light={true}/>
+          <div className="copyright">
+            <p>© 2019 What to watch Ltd.</p>
+          </div>
+        </footer>
+      </div>
+    </>
+  );
 }
 
 MoviePageDetails.propTypes = {
@@ -194,3 +188,5 @@ MoviePageDetails.propTypes = {
   })),
   icons: arrayOf(string.isRequired),
 };
+
+export default MoviePageDetails;
