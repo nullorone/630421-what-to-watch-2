@@ -9,6 +9,7 @@ const {string, number, bool, shape, arrayOf} = PropTypes;
 const App = (props) => {
   const {
     films,
+    promo,
     genres,
     iconNames,
   } = props;
@@ -17,6 +18,7 @@ const App = (props) => {
     case Pathname.DEFAULT:
       return (
         <Main
+          promo={promo}
           films={films}
           genres={genres}
           icons={iconNames}
@@ -67,6 +69,32 @@ App.propTypes = {
     released: number.isRequired,
     isFavorite: bool.isRequired,
   })),
+  promo: shape({
+    id: number.isRequired,
+    name: string.isRequired,
+    image: shape({
+      poster: string.isRequired,
+      posterAlt: string.isRequired,
+      preview: string.isRequired,
+      previewAlt: string.isRequired,
+      background: string.isRequired,
+      backgroundAlt: string.isRequired,
+    }),
+    backgroundColor: string.isRequired,
+    video: shape({
+      link: string.isRequired,
+      preview: string.isRequired,
+    }),
+    description: string.isRequired,
+    rating: number.isRequired,
+    scoresCount: number.isRequired,
+    director: string.isRequired,
+    starring: arrayOf(string.isRequired),
+    runTime: number.isRequired,
+    genre: string.isRequired,
+    released: number.isRequired,
+    isFavorite: bool.isRequired,
+  }),
   genres: arrayOf(string.isRequired),
   iconNames: arrayOf(string.isRequired),
 };

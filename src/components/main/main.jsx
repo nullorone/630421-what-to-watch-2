@@ -33,12 +33,11 @@ export default class Main extends PureComponent {
 
   render() {
     const {
-      films,
+      promo,
       genres,
       icons,
     } = this.props;
 
-    const favoriteFilm = films.find((film) => film.isFavorite);
     const {
       name,
       image: {
@@ -49,7 +48,7 @@ export default class Main extends PureComponent {
       },
       genre,
       released,
-    } = favoriteFilm;
+    } = promo;
 
     return (
       <>
@@ -170,6 +169,31 @@ Main.propTypes = {
     released: number.isRequired,
     isFavorite: bool.isRequired,
   })),
+  promo: shape({
+    id: number.isRequired,
+    name: string.isRequired,
+    image: shape({
+      poster: string.isRequired,
+      posterAlt: string.isRequired,
+      preview: string.isRequired,
+      previewAlt: string.isRequired,
+      background: string.isRequired,
+    }),
+    backgroundColor: string.isRequired,
+    video: shape({
+      link: string.isRequired,
+      preview: string.isRequired,
+    }),
+    description: string.isRequired,
+    rating: number.isRequired,
+    scoresCount: number.isRequired,
+    director: string.isRequired,
+    starring: arrayOf(string.isRequired),
+    runTime: number.isRequired,
+    genre: string.isRequired,
+    released: number.isRequired,
+    isFavorite: bool.isRequired,
+  }),
   genres: arrayOf(string.isRequired),
   icons: arrayOf(string.isRequired),
 };
