@@ -5,17 +5,12 @@ import GenreList from "../genre-list/genre-list";
 import IconsWrapper from "../icons-wrapper/icons-wrapper";
 import CatalogButton from "../catalog-button/catalog-button";
 import Logo from "../logo/logo";
-import UserBlock from "../user-block/user-block";
-import MovieCardPicture from "../movie-card-picture/movie-card-picture";
-import MovieCardButtonList from "../movie-card-button-list/movie-card-button-list";
 import {
-  MOVIE_CARD_BUTTONS,
-  Img,
   AmountSimilarFilms,
   AMOUNT_ADDED_FILMS,
   Value,
 } from "../../constants";
-import MovieCardDescription from "../movie-card-description/movie-card-description";
+import MovieCard from "../movie-card/movie-card";
 
 const {string, shape, number, bool, arrayOf} = PropTypes;
 
@@ -38,60 +33,11 @@ export default class Main extends PureComponent {
       icons,
     } = this.props;
 
-    const {
-      name,
-      image: {
-        poster,
-        posterAlt,
-        background,
-        backgroundAlt,
-      },
-      genre,
-      released,
-    } = promo;
-
     return (
       <>
         {icons && <IconsWrapper iconNames={icons}/>}
 
-        <section className="movie-card">
-
-          <MovieCardPicture
-            className={`movie-card__bg`}
-            picture={{
-              src: background,
-              alt: backgroundAlt,
-            }}/>
-
-          <h1 className="visually-hidden">WTW</h1>
-
-          <header className="page-header movie-card__head">
-            <Logo light={false}/>
-            <UserBlock avatarSrc={`./img/avatar.jpg`}/>
-          </header>
-
-          <div className="movie-card__wrap">
-            <div className="movie-card__info">
-
-              <MovieCardPicture
-                className={`movie-card__poster`}
-                picture={{
-                  src: poster,
-                  alt: posterAlt,
-                  width: Img.BIG.width,
-                  height: Img.BIG.height,
-                }}/>
-
-              <MovieCardDescription
-                title={name}
-                genre={genre}
-                year={released}
-              >
-                <MovieCardButtonList buttons={MOVIE_CARD_BUTTONS}/>
-              </MovieCardDescription>
-            </div>
-          </div>
-        </section>
+        <MovieCard {...promo}/>
 
         <div className="page-content" >
           <section className="catalog" >
