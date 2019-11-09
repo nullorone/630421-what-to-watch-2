@@ -8,7 +8,7 @@ export default class MovieCardSmallList extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._onMovieCardClick = this._onMovieCardClick.bind(this);
+    this._handleMovieCardSmallClick = this._handleMovieCardSmallClick.bind(this);
   }
 
   render() {
@@ -23,7 +23,7 @@ export default class MovieCardSmallList extends PureComponent {
             return (
               <MovieCardSmall
                 key={keyComponent}
-                onLinkClick={this._onMovieCardClick}
+                onLinkClick={this._handleMovieCardSmallClick}
                 {...film}
               />
             );
@@ -32,7 +32,7 @@ export default class MovieCardSmallList extends PureComponent {
     );
   }
 
-  _onMovieCardClick(evt, id) {
+  _handleMovieCardSmallClick(evt, id) {
     evt.preventDefault();
     location.href = (`${location.origin}/${id}`);
   }
