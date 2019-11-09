@@ -1,46 +1,40 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 import MovieCardPicture from "../movie-card-picture/movie-card-picture";
 
 const {string, number, bool, shape, func, arrayOf} = PropTypes;
 
-export default class MovieCardSmall extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const MovieCardSmall = (props) => {
+  const {
+    id,
+    name,
+    image: {
+      preview,
+      previewAlt,
+    },
+    onLinkClick,
+  } = props;
 
-  render() {
-    const {
-      id,
-      name,
-      image: {
-        preview,
-        previewAlt,
-      },
-      onLinkClick,
-    } = this.props;
-
-    return (
-      <article className="small-movie-card catalog__movies-card">
-        <MovieCardPicture
-          className={`small-movie-card__image`}
-          picture={{
-            src: preview,
-            alt: previewAlt,
-          }}
-          onImgClick={(evt) => onLinkClick(evt, id)}
-        />
-        <h3 className="small-movie-card__title">
-          <a
-            className="small-movie-card__link"
-            href={`/${id}`}
-            onClick={(evt) => onLinkClick(evt, id)}>
-            {name}
-          </a>
-        </h3>
-      </article>
-    );
-  }
+  return (
+    <article className="small-movie-card catalog__movies-card">
+      <MovieCardPicture
+        className={`small-movie-card__image`}
+        picture={{
+          src: preview,
+          alt: previewAlt,
+        }}
+        onImgClick={(evt) => onLinkClick(evt, id)}
+      />
+      <h3 className="small-movie-card__title">
+        <a
+          className="small-movie-card__link"
+          href={`/${id}`}
+          onClick={(evt) => onLinkClick(evt, id)}>
+          {name}
+        </a>
+      </h3>
+    </article>
+  );
 }
 
 MovieCardSmall.propTypes = {
@@ -69,3 +63,5 @@ MovieCardSmall.propTypes = {
   isFavorite: bool.isRequired,
   onLinkClick: func.isRequired,
 };
+
+export default MovieCardSmall;
