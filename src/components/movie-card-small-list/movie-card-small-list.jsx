@@ -9,6 +9,14 @@ export default class MovieCardSmallList extends PureComponent {
     super(props);
 
     this._handleMovieCardSmallClick = this._handleMovieCardSmallClick.bind(this);
+    this._handleMovieCardSmallListMouseEnter = this._handleMovieCardSmallListMouseEnter.bind(this);
+    this._handleMovieCardSmallListMouseLeave = this._handleMovieCardSmallListMouseLeave.bind(this);
+
+    this._videoTimer = null;
+
+    this.state = {
+      currentIndexCard: null,
+    };
   }
 
   render() {
@@ -23,7 +31,10 @@ export default class MovieCardSmallList extends PureComponent {
             return (
               <MovieCardSmall
                 key={keyComponent}
+                isPlaying={this.state.currentIndexCard === index + 1}
                 onLinkClick={this._handleMovieCardSmallClick}
+                onCardMouseEnter={this._handleMovieCardSmallListMouseEnter}
+                onCardMouseLeave={this._handleMovieCardSmallListMouseLeave}
                 {...film}
               />
             );
@@ -35,6 +46,17 @@ export default class MovieCardSmallList extends PureComponent {
   _handleMovieCardSmallClick(evt, id) {
     evt.preventDefault();
     location.href = (`${location.origin}/${id}`);
+  }
+
+  _handleMovieCardSmallListMouseEnter(id) {
+    this._videoTimer = setTimeout(() => {
+      this.setState(() => ({currentIndexCard: id}));
+    }, 1000);
+  }
+
+  _handleMovieCardSmallListMouseLeave() {
+    clearTimeout(this._videoTimer);
+    this.setState(() => ({currentIndexCard: null}));
   }
 }
 
@@ -51,8 +73,11 @@ MovieCardSmallList.propTypes = {
     }),
     backgroundColor: string.isRequired,
     video: shape({
-      link: string.isRequired,
-      preview: string.isRequired,
+      link: shape({
+        mp4: string.isRequired,
+        webm: string.isRequired,
+      }),
+      poster: string.isRequired,
     }),
     description: string.isRequired,
     rating: number.isRequired,

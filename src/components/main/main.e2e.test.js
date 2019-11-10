@@ -18,8 +18,11 @@ describe(`Test Main component`, () => {
       },
       backgroundColor: EMPTY_STRING,
       video: {
-        link: EMPTY_STRING,
-        preview: EMPTY_STRING,
+        link: {
+          mp4: EMPTY_STRING,
+          webm: EMPTY_STRING,
+        },
+        poster: EMPTY_STRING,
       },
       description: EMPTY_STRING,
       rating: Value.FULL,

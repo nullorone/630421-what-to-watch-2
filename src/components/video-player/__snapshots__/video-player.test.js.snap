@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Make snapshot Get snapshot component 1`] = `
+<video
+  muted={true}
+  poster="./img/Holly"
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <source
+    src="New Year"
+    type="video/mp4"
+  />
+  <source
+    src="Christmas"
+    type="video/webm"
+  />
+</video>
+`;

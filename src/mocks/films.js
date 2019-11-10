@@ -7,13 +7,16 @@ export const films = [
       posterAlt: `Fantastic Beasts: The Crimes of Grindelwald`,
       preview: `./img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
       previewAlt: `Fantastic Beasts: The Crimes of Grindelwald`,
-      background: `./img/the-grand-budapest-hotel-bg.jpg`,
+      background: `./img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
       backgroundAlt: `Fantastic Beasts: The Crimes of Grindelwald`,
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 8.9,
@@ -38,8 +41,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/bohemian-rhapsody.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 9.9,
@@ -64,8 +70,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/macbeth.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 9.9,
@@ -90,8 +99,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/aviator.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 4.9,
@@ -116,8 +128,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/we-need-to-talk-about-kevin.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 9.9,
@@ -142,8 +157,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/what-we-do-in-the-shadows.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 9.9,
@@ -168,8 +186,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/revenant.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 9.9,
@@ -194,8 +215,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/johnny-english.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 9.9,
@@ -220,8 +244,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/shutter-island.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 9.9,
@@ -246,8 +273,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/pulp-fiction.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 9.9,
@@ -272,8 +302,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/no-country-for-old-men.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 9.9,
@@ -298,8 +331,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/snatch.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 9.9,
@@ -324,8 +360,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/moonrise-kingdom.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 9.9,
@@ -350,8 +389,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/seven-years-in-tibet.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 9.9,
@@ -376,8 +418,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/midnight-special.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 9.9,
@@ -402,8 +447,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/war-of-the-worlds.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 9.9,
@@ -428,8 +476,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/dardjeeling-limited.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 9.9,
@@ -454,8 +505,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/orlando.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 9.9,
@@ -480,8 +534,11 @@ export const films = [
     },
     backgroundColor: `#ffffff`,
     video: {
-      link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      link: {
+        mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      },
+      poster: `./img/mindhunter.jpg`,
     },
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 4.9,

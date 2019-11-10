@@ -17,8 +17,11 @@ describe(`Test Movie Card component`, () => {
     },
     backgroundColor: EMPTY_STRING,
     video: {
-      link: EMPTY_STRING,
-      preview: EMPTY_STRING,
+      link: {
+        mp4: `New Year`,
+        webm: `Christmas`,
+      },
+      poster: `./img/Holly`,
     },
     description: EMPTY_STRING,
     rating: Value.FULL,
@@ -30,6 +33,9 @@ describe(`Test Movie Card component`, () => {
     released: Value.FULL,
     isFavorite: false,
     onLinkClick: jest.fn(),
+    isPlaying: false,
+    onCardMouseEnter: jest.fn(),
+    onCardMouseLeave: jest.fn(),
   };
 
   it(`Return article node`, () => {
