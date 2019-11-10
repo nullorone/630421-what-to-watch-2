@@ -1,45 +1,67 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from 'prop-types';
+import MovieCardPicture from "../movie-card-picture/movie-card-picture";
 
-const {string, shape, func} = PropTypes;
+const {string, number, bool, shape, func, arrayOf} = PropTypes;
 
-export default class MovieCardSmall extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const MovieCardSmall = (props) => {
+  const {
+    id,
+    name,
+    image: {
+      preview,
+      previewAlt,
+    },
+    onLinkClick,
+  } = props;
 
-  render() {
-    const {
-      title,
-      img: {
-        src,
-        alt,
-      },
-      onLinkEnter,
-    } = this.props;
-
-    return (
-      <article className="small-movie-card catalog__movies-card">
-        <div className="small-movie-card__image">
-          <img
-            src={src}
-            alt={alt}
-            width="280"
-            height="175" />
-        </div>
-        <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html" onMouseEnter={onLinkEnter}>{title}</a>
-        </h3>
-      </article>
-    );
-  }
-}
+  return (
+    <article className="small-movie-card catalog__movies-card">
+      <MovieCardPicture
+        className={`small-movie-card__image`}
+        picture={{
+          src: preview,
+          alt: previewAlt,
+        }}
+        onImgClick={(evt) => onLinkClick(evt, id)}
+      />
+      <h3 className="small-movie-card__title">
+        <a
+          className="small-movie-card__link"
+          href={`/${id}`}
+          onClick={(evt) => onLinkClick(evt, id)}>
+          {name}
+        </a>
+      </h3>
+    </article>
+  );
+};
 
 MovieCardSmall.propTypes = {
-  title: string.isRequired,
-  img: shape({
-    src: string.isRequired,
-    alt: string.isRequired,
+  id: number.isRequired,
+  name: string.isRequired,
+  image: shape({
+    poster: string.isRequired,
+    posterAlt: string.isRequired,
+    preview: string.isRequired,
+    previewAlt: string.isRequired,
+    background: string.isRequired,
   }),
-  onLinkEnter: func.isRequired,
+  backgroundColor: string.isRequired,
+  video: shape({
+    link: string.isRequired,
+    preview: string.isRequired,
+  }),
+  description: string.isRequired,
+  rating: number.isRequired,
+  scoresCount: number.isRequired,
+  director: string.isRequired,
+  starring: arrayOf(string.isRequired),
+  runTime: number.isRequired,
+  genre: string.isRequired,
+  released: number.isRequired,
+  isFavorite: bool.isRequired,
+  onLinkClick: func.isRequired,
 };
+
+export default MovieCardSmall;

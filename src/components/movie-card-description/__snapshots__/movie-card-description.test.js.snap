@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Make snapshot Get snapshot component 1`] = `
+<div
+  className="movie-card__desc"
+>
+  <h2
+    className="movie-card__title"
+  >
+    New Year
+  </h2>
+  <p
+    className="movie-card__meta"
+  >
+    <span
+      className="movie-card__genre"
+    >
+      Art - House
+    </span>
+    <span
+      className="movie-card__year"
+    >
+      1
+    </span>
+  </p>
+</div>
+`;

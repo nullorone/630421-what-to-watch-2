@@ -5,12 +5,31 @@ import {EMPTY_STRING, Value} from "../../constants";
 
 describe(`Test Movie Card component`, () => {
   const initProps = {
-    title: `My Awesome film`,
-    img: {
-      src: EMPTY_STRING,
-      alt: EMPTY_STRING,
+    id: Value.EMPTY,
+    name: `My Card`,
+    image: {
+      poster: EMPTY_STRING,
+      posterAlt: EMPTY_STRING,
+      preview: EMPTY_STRING,
+      previewAlt: EMPTY_STRING,
+      background: EMPTY_STRING,
+      backgroundAlt: EMPTY_STRING,
     },
-    onLinkEnter: jest.fn(),
+    backgroundColor: EMPTY_STRING,
+    video: {
+      link: EMPTY_STRING,
+      preview: EMPTY_STRING,
+    },
+    description: EMPTY_STRING,
+    rating: Value.FULL,
+    scoresCount: Value.FULL,
+    director: `Keks`,
+    starring: [`Me`, `You`, `They`],
+    runTime: Value.FULL,
+    genre: EMPTY_STRING,
+    released: Value.FULL,
+    isFavorite: false,
+    onLinkClick: jest.fn(),
   };
 
   it(`Return article node`, () => {
@@ -34,7 +53,7 @@ describe(`Test Movie Card component`, () => {
         <MovieCardSmall {...initProps}/>
     );
 
-    expect(wrapper.find(`.small-movie-card__link`).text()).toBe(initProps.title);
+    expect(wrapper.find(`.small-movie-card__link`).text()).toBe(initProps.name);
   });
 
   it(`Call onLinkEnter listener`, () => {
@@ -44,8 +63,8 @@ describe(`Test Movie Card component`, () => {
 
     wrapper
       .find(`.small-movie-card__link`)
-      .simulate(`mouseenter`);
+      .simulate(`click`);
 
-    expect(initProps.onLinkEnter).toBeCalledTimes(Value.FULL);
+    expect(initProps.onLinkClick).toBeCalledTimes(Value.FULL);
   });
 });
