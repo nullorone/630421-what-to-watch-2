@@ -33,6 +33,9 @@ describe(`Make snapshot`, () => {
     released: Value.FULL,
     isFavorite: false,
     onLinkClick: jest.fn(),
+    isPlaying: false,
+    onCardMouseEnter: jest.fn(),
+    onCardMouseLeave: jest.fn(),
   };
 
   it(`Get snapshot component`, () => {

@@ -33,6 +33,9 @@ describe(`Test Movie Card component`, () => {
     released: Value.FULL,
     isFavorite: false,
     onLinkClick: jest.fn(),
+    isPlaying: false,
+    onCardMouseEnter: jest.fn(),
+    onCardMouseLeave: jest.fn(),
   };
 
   it(`Return article node`, () => {
@@ -69,15 +72,5 @@ describe(`Test Movie Card component`, () => {
       .simulate(`click`);
 
     expect(initProps.onLinkClick).toBeCalledTimes(Value.FULL);
-  });
-
-  it(`Get VideoPlayer component`, () => {
-    const wrapper = shallow(
-        <MovieCardSmall {...initProps}/>
-    );
-
-    wrapper.setState({isVideo: true});
-
-    expect(wrapper.find(`VideoPlayer`)).toBeTruthy();
   });
 });
