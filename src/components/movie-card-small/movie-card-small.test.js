@@ -32,7 +32,6 @@ describe(`Make snapshot`, () => {
     genre: EMPTY_STRING,
     released: Value.FULL,
     isFavorite: false,
-    onLinkClick: jest.fn(),
     isPlaying: false,
     onCardMouseEnter: jest.fn(),
     onCardMouseLeave: jest.fn(),
