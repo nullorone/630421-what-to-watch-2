@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import {Link} from "react-router-dom";
 import MovieCardPicture from "../movie-card-picture/movie-card-picture";
 import VideoPlayer from "../video-player/video-player";
 
@@ -14,7 +15,6 @@ const MovieCardSmall = (props) => {
       previewAlt,
     },
     video,
-    onLinkClick,
     isPlaying,
     onCardMouseEnter,
     onCardMouseLeave,
@@ -33,15 +33,13 @@ const MovieCardSmall = (props) => {
             src: preview,
             alt: previewAlt,
           }}
-          onImgClick={(evt) => onLinkClick(evt, id)}
         />}
       <h3 className="small-movie-card__title">
-        <a
+        <Link
           className="small-movie-card__link"
-          href={`/${id}`}
-          onClick={(evt) => onLinkClick(evt, id)}>
+          to={`/films/${id}`}>
           {name}
-        </a>
+        </Link>
       </h3>
     </article>
   );
@@ -74,7 +72,6 @@ MovieCardSmall.propTypes = {
   genre: string.isRequired,
   released: number.isRequired,
   isFavorite: bool.isRequired,
-  onLinkClick: func.isRequired,
   isPlaying: bool.isRequired,
   onCardMouseEnter: func.isRequired,
   onCardMouseLeave: func.isRequired,

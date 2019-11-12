@@ -8,7 +8,6 @@ export default class MovieCardSmallList extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._handleMovieCardSmallClick = this._handleMovieCardSmallClick.bind(this);
     this._handleMovieCardSmallListMouseEnter = this._handleMovieCardSmallListMouseEnter.bind(this);
     this._handleMovieCardSmallListMouseLeave = this._handleMovieCardSmallListMouseLeave.bind(this);
 
@@ -25,14 +24,13 @@ export default class MovieCardSmallList extends PureComponent {
     return (
       <div className="catalog__movies-list">
         {films
-          .map((film, index) => {
-            const keyComponent = `movie-card-${index + 1}`;
+          .map((film) => {
+            const keyComponent = `movie-card-${film.id}`;
 
             return (
               <MovieCardSmall
                 key={keyComponent}
-                isPlaying={this.state.currentIndexCard === index + 1}
-                onLinkClick={this._handleMovieCardSmallClick}
+                isPlaying={this.state.currentIndexCard === film.id}
                 onCardMouseEnter={this._handleMovieCardSmallListMouseEnter}
                 onCardMouseLeave={this._handleMovieCardSmallListMouseLeave}
                 {...film}
@@ -43,9 +41,8 @@ export default class MovieCardSmallList extends PureComponent {
     );
   }
 
-  _handleMovieCardSmallClick(evt, id) {
-    evt.preventDefault();
-    location.href = (`${location.origin}/${id}`);
+  componentWillUnmount() {
+    clearTimeout(this._videoTimer);
   }
 
   _handleMovieCardSmallListMouseEnter(id) {
