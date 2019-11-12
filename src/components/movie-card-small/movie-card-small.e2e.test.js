@@ -84,4 +84,20 @@ describe(`Test Movie Card component`, () => {
 
     expect(initProps.onCardMouseLeave).toBeCalledTimes(Value.FULL);
   });
+
+  it(`Render MovieCardPicture when prop isPlaying === false`, () => {
+    const wrapper = shallow(
+        <MovieCardSmall {...initProps}/>
+    );
+
+    expect(wrapper.find(`MovieCardPicture`)).toBeTruthy();
+  });
+
+  it(`Render VideoPlayer when prop isPlaying === true`, () => {
+    const wrapper = shallow(
+        <MovieCardSmall {...initProps} isPlaying={true}/>
+    );
+
+    expect(wrapper.find(`VideoPlayer`)).toBeTruthy();
+  });
 });
