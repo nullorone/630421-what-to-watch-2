@@ -61,25 +61,27 @@ describe(`Test Movie Card component`, () => {
     expect(wrapper.find(`.small-movie-card__link`).text()).toBe(initProps.name);
   });
 
-  it(`Call onLinkEnter listener`, () => {
+  it(`Call onCardMouseEnter listener with id === initProps.id`, () => {
     const wrapper = shallow(
         <MovieCardSmall {...initProps}/>
     );
 
     wrapper
-      .find(`.small-movie-card__link`)
-      .simulate(`click`);
+      .find(`.small-movie-card`)
+      .simulate(`mouseenter`);
 
-    expect(initProps.onLinkClick).toBeCalledTimes(Value.FULL);
+    expect(initProps.onCardMouseEnter).toBeCalledWith(initProps.id);
   });
 
-  it(`Get VideoPlayer component`, () => {
+  it(`Call onCardMouseLeave listener`, () => {
     const wrapper = shallow(
         <MovieCardSmall {...initProps}/>
     );
 
-    wrapper.setState({isVideo: true});
+    wrapper
+      .find(`.small-movie-card`)
+      .simulate(`mouseleave`);
 
-    expect(wrapper.find(`VideoPlayer`)).toBeTruthy();
+    expect(initProps.onCardMouseLeave).toBeCalledTimes(Value.FULL);
   });
 });
