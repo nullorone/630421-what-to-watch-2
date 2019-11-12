@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {AmountSimilarFilms, Pathname, Value} from "../../constants";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Main from "../main/main";
 import MoviePageDetails from "../movie-page-details/movie-page-details";
+import {AmountSimilarFilms, Value} from "../../constants";
 
 const {string, number, bool, shape, arrayOf} = PropTypes;
 
@@ -14,32 +15,36 @@ const App = (props) => {
     iconNames,
   } = props;
 
-  switch (location.pathname) {
-    case Pathname.DEFAULT:
-      return (
-        <Main
-          promo={promo}
-          films={films}
-          genres={genres}
-          icons={iconNames}
-        />
-      );
-    case (location.pathname):
-      const indexPathname = location.pathname.lastIndexOf(`/`) + Value.FULL;
-      const filmId = location.pathname.slice(indexPathname);
-      const similarFilms = films.slice(Value.EMPTY, AmountSimilarFilms.ON_PAGE_FILM);
-      const clickedFilm = films.find((film) => film.id === Number(filmId));
 
-      return (
-        <MoviePageDetails
-          clickedFilm={clickedFilm}
-          films={similarFilms}
-          icons={iconNames}
-        />
-      );
-  }
+  const getClickedFilm = (filmId) => films.find((film) => film.id === Number(filmId));
 
-  return null;
+  const getSimilarFilms = (clickedFilm) => films.filter((film) => film.genre === clickedFilm.genre);
+
+
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" render={() => (
+          <Main
+            promo={promo}
+            films={films}
+            genres={genres}
+            icons={iconNames}/>
+        )}/>
+        <Route path="/films/:id" render={({match}) => {
+          const clickedFilm = getClickedFilm(match.params.id);
+          const similarFilms = getSimilarFilms(clickedFilm).slice(Value.EMPTY, AmountSimilarFilms.ON_PAGE_FILM);
+
+          return (
+            <MoviePageDetails
+              clickedFilm={clickedFilm}
+              films={similarFilms}
+              icons={iconNames}/>
+          );
+        }}/>
+      </Switch>
+    </Router>
+  );
 };
 
 App.propTypes = {
