@@ -6,12 +6,10 @@ import UserBlock from "../user-block/user-block";
 import MovieCardPicture from "../movie-card-picture/movie-card-picture";
 import MovieCardSmallList from "../movie-card-small-list/movie-card-small-list";
 import {
-  Value,
   MOVIE_CARD_BUTTONS,
   Img,
   MOVIE_NAV_ITEMS,
   TypeCol,
-  AmountSimilarFilms,
 } from "../../constants";
 import MovieCardDescription from "../movie-card-description/movie-card-description";
 import MovieCardButtonList from "../movie-card-button-list/movie-card-button-list";
@@ -45,8 +43,6 @@ const MoviePageDetails = (props) => {
     released,
   } = clickedFilm;
 
-  const similarFilms = films.slice(Value.EMPTY, AmountSimilarFilms.ON_PAGE_FILM);
-
   return (
     <>
       {icons && <IconsWrapper iconNames={icons}/>}
@@ -65,7 +61,7 @@ const MoviePageDetails = (props) => {
 
           <header className="page-header movie-card__head">
             <Logo light={false}/>
-            <UserBlock avatarSrc={`./img/avatar.jpg`}/>
+            <UserBlock avatarSrc={`../img/avatar.jpg`}/>
           </header>
 
           <div className="movie-card__wrap">
@@ -119,7 +115,7 @@ const MoviePageDetails = (props) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          {films && <MovieCardSmallList films={similarFilms}/>}
+          {films && <MovieCardSmallList films={films}/>}
         </section>
 
         <footer className="page-footer">
