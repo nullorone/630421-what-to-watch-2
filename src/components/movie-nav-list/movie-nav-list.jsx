@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import MovieNavItem from "../movie-nav-item/movie-nav-item";
-import {TypeCol} from "../../constants";
+import {TypeCol, AMOUNT_COMMENT_IN_COL, Value} from "../../constants";
 import MovieCardCol from "../movie-card-col/movie-card-col";
 import MovieCardDetailsItem from "../movie-card-details-item/movie-card-details-item";
 import MovieCardRow from "../movie-card-row/movie-card-row";
@@ -77,7 +77,7 @@ class MovieNavList extends PureComponent {
 
               <p className="movie-card__director"><strong>Director: {director}</strong></p>
 
-              <p className="movie-card__starring"><strong>Starring: {starring} and other</strong></p>
+              <p className="movie-card__starring"><strong>Starring: {starring.join(`, `)} and other</strong></p>
             </div>
           </>
         );
@@ -100,24 +100,28 @@ class MovieNavList extends PureComponent {
           </MovieCardRow>
         );
       case (`reviews`):
+        let commentReview = [];
+
+        for (let i = Value.EMPTY; i < comments.length; i = i + AMOUNT_COMMENT_IN_COL) {
+          const cardReviews = comments
+            .slice(i, i + AMOUNT_COMMENT_IN_COL)
+            .map((comment) => {
+              const keyReview = `movie-card-review-${comment.id}`;
+              return (
+                <MovieCardReview key={keyReview} comment={comment}/>
+              );
+            });
+
+          commentReview.push(
+              <MovieCardCol key={`card-col-${i}`} type={TypeCol.REVIEWS}>
+                {cardReviews}
+              </MovieCardCol>
+          );
+        }
+
         return (
           <MovieCardRow type={TypeCol.REVIEWS}>
-            <MovieCardCol type={TypeCol.REVIEWS}>
-              {comments.slice(0, 3).map((comment) => {
-                const keyReview = `movie-card-review-${comment.id}`;
-                return (
-                  <MovieCardReview key={keyReview} comment={comment}/>
-                );
-              })}
-            </MovieCardCol>
-            <MovieCardCol type={TypeCol.REVIEWS}>
-              {comments.slice(3).map((comment) => {
-                const keyReview = `movie-card-review-${comment.id}`;
-                return (
-                  <MovieCardReview key={keyReview} comment={comment}/>
-                );
-              })}
-            </MovieCardCol>
+            {commentReview}
           </MovieCardRow>
         );
       default:
