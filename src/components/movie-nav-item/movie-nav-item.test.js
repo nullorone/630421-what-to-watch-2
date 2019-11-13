@@ -5,7 +5,8 @@ import MovieNavItem from "./movie-nav-item";
 describe(`Make snapshot`, () => {
   const initProps = {
     active: false,
-    text: `My link, bro`
+    text: `My link, bro`,
+    onTabClick: jest.fn(),
   };
 
   it(`Get snapshot component`, () => {

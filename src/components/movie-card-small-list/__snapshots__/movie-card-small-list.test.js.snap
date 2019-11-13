@@ -11,7 +11,6 @@ exports[`Make snapshot Get snapshot component 1`] = `
   >
     <div
       className="small-movie-card__image"
-      onClick={[Function]}
     >
       <img
         alt=""
@@ -25,7 +24,7 @@ exports[`Make snapshot Get snapshot component 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="/0"
+        href="/films/0"
         onClick={[Function]}
       >
         Keks

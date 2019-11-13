@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from "react-test-renderer";
 import Main from './main';
 import {EMPTY_STRING, Value} from "../../constants";
+import {BrowserRouter} from "react-router-dom";
 
 
 describe(`Make snapshot`, () => {
@@ -68,9 +69,11 @@ describe(`Make snapshot`, () => {
   it(`Render main screen`, () => {
     const tree = renderer
       .create(
-          <Main
-            {...initialProps}
-          />
+          <BrowserRouter>
+            <Main
+              {...initialProps}
+            />
+          </BrowserRouter>
       )
       .toJSON();
 

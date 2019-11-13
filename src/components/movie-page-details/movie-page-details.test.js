@@ -2,6 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import MoviePageDetails from "./movie-page-details";
 import {EMPTY_STRING, Value} from "../../constants";
+import {BrowserRouter} from "react-router-dom";
 
 describe(`Make snapshot`, () => {
   const initProps = {
@@ -69,7 +70,9 @@ describe(`Make snapshot`, () => {
   it(`Get snapshot component`, () => {
     const tree = renderer
       .create(
-          <MoviePageDetails {...initProps}/>
+          <BrowserRouter>
+            <MoviePageDetails {...initProps}/>
+          </BrowserRouter>
       )
       .toJSON();
 

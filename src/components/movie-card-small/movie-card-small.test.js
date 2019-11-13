@@ -2,6 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import MovieCardSmall from "../movie-card-small/movie-card-small";
 import {EMPTY_STRING, Value} from "../../constants";
+import {BrowserRouter} from "react-router-dom";
 
 describe(`Make snapshot`, () => {
   const initProps = {
@@ -40,9 +41,11 @@ describe(`Make snapshot`, () => {
   it(`Get snapshot component`, () => {
     const tree = renderer
       .create(
-          <MovieCardSmall
-            {...initProps}
-          />
+          <BrowserRouter>
+            <MovieCardSmall
+              {...initProps}
+            />
+          </BrowserRouter>
       )
       .toJSON();
 
