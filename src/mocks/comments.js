@@ -1,6 +1,3 @@
-import MovieCardReview from "../components/movie-card-review/movie-card-review";
-import React from "react";
-
 export const comments = [
   {
     id: 1,
@@ -53,5 +50,3 @@ export const comments = [
     date: `2016-12-20T19:34:56.569Z`
   }
 ];
-
-
