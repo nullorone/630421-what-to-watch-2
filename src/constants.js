@@ -67,3 +67,5 @@ export const AmountSimilarFilms = {
 export const AMOUNT_ADDED_FILMS = 4;
 
 export const MINUTES_IN_HOUR = 60;
+
+export const AMOUNT_COMMENT_IN_COL = 3;
