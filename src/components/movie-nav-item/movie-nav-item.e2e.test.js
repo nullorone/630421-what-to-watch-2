@@ -5,7 +5,8 @@ import MovieNavItem from "./movie-nav-item";
 describe(`Test cases MovieNavItem component`, () =>{
   const initProps = {
     active: false,
-    text: `Movie link`
+    text: `Movie link`,
+    onTabClick: jest.fn()
   };
 
   it(`Render component`, () => {

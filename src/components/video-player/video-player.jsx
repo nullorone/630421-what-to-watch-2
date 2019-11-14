@@ -40,6 +40,11 @@ export default class VideoPlayer extends PureComponent {
       </video>
     );
   }
+
+  componentWillUnmount() {
+    const video = this._videoRef.current;
+    video.pause();
+  }
 }
 
 VideoPlayer.propTypes = {

@@ -6,7 +6,9 @@ exports[`Make snapshot Get snapshot component 1`] = `
 >
   <a
     className="movie-nav__link"
+    data-tab-name="my link, bro"
     href="#"
+    onClick={[Function]}
   >
     My link, bro
   </a>

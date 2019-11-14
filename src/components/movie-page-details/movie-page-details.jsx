@@ -6,19 +6,13 @@ import UserBlock from "../user-block/user-block";
 import MovieCardPicture from "../movie-card-picture/movie-card-picture";
 import MovieCardSmallList from "../movie-card-small-list/movie-card-small-list";
 import {
-  Value,
   MOVIE_CARD_BUTTONS,
   Img,
   MOVIE_NAV_ITEMS,
-  TypeCol,
-  AmountSimilarFilms,
 } from "../../constants";
 import MovieCardDescription from "../movie-card-description/movie-card-description";
 import MovieCardButtonList from "../movie-card-button-list/movie-card-button-list";
 import MovieNavList from "../movie-nav-list/movie-nav-list";
-import MovieCardRow from "../movie-card-row/movie-card-row";
-import MovieCardCol from "../movie-card-col/movie-card-col";
-import MovieCardDetailsItem from "../movie-card-details-item/movie-card-details-item";
 
 
 const {arrayOf, string, shape, number, bool} = PropTypes;
@@ -38,14 +32,9 @@ const MoviePageDetails = (props) => {
       background,
       backgroundAlt,
     },
-    director,
-    starring,
-    runTime,
     genre,
     released,
   } = clickedFilm;
-
-  const similarFilms = films.slice(Value.EMPTY, AmountSimilarFilms.ON_PAGE_FILM);
 
   return (
     <>
@@ -65,7 +54,7 @@ const MoviePageDetails = (props) => {
 
           <header className="page-header movie-card__head">
             <Logo light={false}/>
-            <UserBlock avatarSrc={`./img/avatar.jpg`}/>
+            <UserBlock avatarSrc={`../img/avatar.jpg`}/>
           </header>
 
           <div className="movie-card__wrap">
@@ -94,22 +83,7 @@ const MoviePageDetails = (props) => {
               }}/>
 
             <div className="movie-card__desc">
-              <MovieNavList navItems={MOVIE_NAV_ITEMS}/>
-              <MovieCardRow type={TypeCol.TEXT}>
-                <MovieCardCol type={TypeCol.TEXT}>
-                  <MovieCardDetailsItem name={`Director`} value={director}/>
-                  <MovieCardDetailsItem
-                    name={`Starring`}
-                    value={starring}
-                  />
-                </MovieCardCol>
-
-                <MovieCardCol type={TypeCol.TEXT}>
-                  <MovieCardDetailsItem name={`Run Time`} value={runTime}/>
-                  <MovieCardDetailsItem name={`Genre`} value={genre}/>
-                  <MovieCardDetailsItem name={`Released`} value={released}/>
-                </MovieCardCol>
-              </MovieCardRow>
+              <MovieNavList clickedFilm={clickedFilm} navItems={MOVIE_NAV_ITEMS}/>
             </div>
           </div>
         </div>
@@ -119,7 +93,7 @@ const MoviePageDetails = (props) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          {films && <MovieCardSmallList films={similarFilms}/>}
+          {films && <MovieCardSmallList films={films}/>}
         </section>
 
         <footer className="page-footer">

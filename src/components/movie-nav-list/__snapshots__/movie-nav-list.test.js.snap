@@ -1,22 +1,110 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Make snapshot Get snapshot component 1`] = `
-<nav
-  className="movie-nav movie-card__nav"
->
-  <ul
-    className="movie-nav__list"
+Array [
+  <nav
+    className="movie-nav movie-card__nav"
   >
-    <li
-      className="movie-nav__item movie-nav__item--active"
+    <ul
+      className="movie-nav__list"
     >
-      <a
-        className="movie-nav__link"
-        href="#"
+      <li
+        className="movie-nav__item"
       >
-        Describe
-      </a>
-    </li>
-  </ul>
-</nav>
+        <a
+          className="movie-nav__link"
+          data-tab-name="describe"
+          href="#"
+          onClick={[Function]}
+        >
+          Describe
+        </a>
+      </li>
+    </ul>
+  </nav>,
+  <div
+    className="movie-card__text movie-card__row"
+  >
+    <div
+      className="movie-card__text-col"
+    >
+      <p
+        className="movie-card__details-item"
+      >
+        <strong
+          className="movie-card__details-name"
+        >
+          Director
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          Mask
+        </span>
+      </p>
+      <p
+        className="movie-card__details-item"
+      >
+        <strong
+          className="movie-card__details-name"
+        >
+          Starring
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          
+          , 
+          <br />
+        </span>
+      </p>
+    </div>
+    <div
+      className="movie-card__text-col"
+    >
+      <p
+        className="movie-card__details-item"
+      >
+        <strong
+          className="movie-card__details-name"
+        >
+          Run Time
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          0h 1m
+        </span>
+      </p>
+      <p
+        className="movie-card__details-item"
+      >
+        <strong
+          className="movie-card__details-name"
+        >
+          Genre
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          Life
+        </span>
+      </p>
+      <p
+        className="movie-card__details-item"
+      >
+        <strong
+          className="movie-card__details-name"
+        >
+          Released
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          0h 1m
+        </span>
+      </p>
+    </div>
+  </div>,
+]
 `;

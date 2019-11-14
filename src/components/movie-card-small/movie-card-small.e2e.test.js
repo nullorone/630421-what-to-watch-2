@@ -32,7 +32,6 @@ describe(`Test Movie Card component`, () => {
     genre: EMPTY_STRING,
     released: Value.FULL,
     isFavorite: false,
-    onLinkClick: jest.fn(),
     isPlaying: false,
     onCardMouseEnter: jest.fn(),
     onCardMouseLeave: jest.fn(),
@@ -62,15 +61,43 @@ describe(`Test Movie Card component`, () => {
     expect(wrapper.find(`.small-movie-card__link`).text()).toBe(initProps.name);
   });
 
-  it(`Call onLinkEnter listener`, () => {
+  it(`Call onCardMouseEnter listener with id === initProps.id`, () => {
     const wrapper = shallow(
         <MovieCardSmall {...initProps}/>
     );
 
     wrapper
-      .find(`.small-movie-card__link`)
-      .simulate(`click`);
+      .find(`.small-movie-card`)
+      .simulate(`mouseenter`);
 
-    expect(initProps.onLinkClick).toBeCalledTimes(Value.FULL);
+    expect(initProps.onCardMouseEnter).toBeCalledWith(initProps.id);
+  });
+
+  it(`Call onCardMouseLeave listener`, () => {
+    const wrapper = shallow(
+        <MovieCardSmall {...initProps}/>
+    );
+
+    wrapper
+      .find(`.small-movie-card`)
+      .simulate(`mouseleave`);
+
+    expect(initProps.onCardMouseLeave).toBeCalledTimes(Value.FULL);
+  });
+
+  it(`Render MovieCardPicture when prop isPlaying === false`, () => {
+    const wrapper = shallow(
+        <MovieCardSmall {...initProps}/>
+    );
+
+    expect(wrapper.find(`MovieCardPicture`)).toBeTruthy();
+  });
+
+  it(`Render VideoPlayer when prop isPlaying === true`, () => {
+    const wrapper = shallow(
+        <MovieCardSmall {...initProps} isPlaying={true}/>
+    );
+
+    expect(wrapper.find(`VideoPlayer`)).toBeTruthy();
   });
 });

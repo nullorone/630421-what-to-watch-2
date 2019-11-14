@@ -14,15 +14,6 @@ describe(`Render Component`, () => {
     isMuted: false,
   };
 
-  const createNodeMock = (element) => {
-    return element.type === `video`
-      ? {
-        play: () => {},
-        pause: () => {},
-      }
-      : null;
-  };
-
   jest
     .spyOn(window.HTMLMediaElement.prototype, `play`)
     .mockImplementation(() => {});
@@ -31,8 +22,7 @@ describe(`Render Component`, () => {
     const wrapper = mount(
         <VideoPlayer
           {...initProps}
-        />,
-        {createNodeMock}
+        />
     );
 
     expect(wrapper).toBeTruthy();
@@ -42,8 +32,7 @@ describe(`Render Component`, () => {
     const wrapper = mount(
         <VideoPlayer
           {...initProps}
-        />,
-        {createNodeMock}
+        />
     );
 
     expect(wrapper.find(`source`).length).toBe(2);
