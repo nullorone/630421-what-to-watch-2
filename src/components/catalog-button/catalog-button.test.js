@@ -4,7 +4,6 @@ import CatalogButton from "./catalog-button";
 
 describe(`Make snapshot`, () => {
   const initProps = {
-    text: `Click me`,
     onButtonClick: jest.fn(),
   };
 

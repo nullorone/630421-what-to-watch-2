@@ -210,17 +210,6 @@ Array [
           </h3>
         </article>
       </div>
-      <div
-        className="catalog__more"
-      >
-        <button
-          className="catalog__button"
-          onClick={[Function]}
-          type="button"
-        >
-          ShowMore
-        </button>
-      </div>
     </section>
     <footer
       className="page-footer"

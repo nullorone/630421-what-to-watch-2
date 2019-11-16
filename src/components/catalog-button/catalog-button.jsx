@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const {string, func} = PropTypes;
+const {func} = PropTypes;
 
 const CatalogButton = (props) => {
-  const {text, onButtonClick} = props;
+  const {onButtonClick} = props;
 
   return (
     <div className="catalog__more">
@@ -13,14 +13,13 @@ const CatalogButton = (props) => {
         type="button"
         onClick={onButtonClick}
       >
-        {text}
+        ShowMore
       </button>
     </div>
   );
 };
 
 CatalogButton.propTypes = {
-  text: string.isRequired,
   onButtonClick: func.isRequired,
 };
 
