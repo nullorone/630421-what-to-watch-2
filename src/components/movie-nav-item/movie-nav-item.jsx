@@ -13,10 +13,9 @@ const MovieNavItem = (props) => {
       <a
         href="#"
         className="movie-nav__link"
-        data-tab-name={text.toLowerCase()}
         onClick={(evt) => {
           evt.preventDefault();
-          onTabClick(evt.target.dataset.tabName);
+          onTabClick(evt.target.innerText.toLowerCase());
         }}>
         {text}
       </a>
