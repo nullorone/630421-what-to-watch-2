@@ -12,9 +12,9 @@ import {
 } from "../../constants";
 import MovieCard from "../movie-card/movie-card";
 
-const {string, shape, number, bool, arrayOf} = PropTypes;
+const {string, shape, number, bool, arrayOf, func} = PropTypes;
 
-export default class Main extends PureComponent {
+class Main extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -28,9 +28,12 @@ export default class Main extends PureComponent {
 
   render() {
     const {
+      films,
       promo,
       genres,
       icons,
+      selectedGenre,
+      onSelectedGenreClick,
     } = this.props;
 
     return (
@@ -45,9 +48,13 @@ export default class Main extends PureComponent {
               Catalog
             </h2>
 
-            {genres && <GenreList genres={genres}/>}
+            {genres
+              && <GenreList
+                genres={genres}
+                selectedGenre={selectedGenre}
+                onGenreClick={onSelectedGenreClick}/>}
 
-            {this.state.films && <MovieCardSmallList films={this.state.films}/>}
+            {films && <MovieCardSmallList films={films}/>}
 
             {this.state.hasCatalogButton && <CatalogButton
               text={`ShowMore`}
@@ -77,7 +84,6 @@ export default class Main extends PureComponent {
     });
   }
 }
-
 
 Main.propTypes = {
   films: arrayOf(shape({
@@ -134,6 +140,9 @@ Main.propTypes = {
     isFavorite: bool.isRequired,
   }),
   genres: arrayOf(string.isRequired),
+  selectedGenre: string.isRequired,
+  onSelectedGenreClick: func.isRequired,
   icons: arrayOf(string.isRequired),
 };
 
+export default Main;
