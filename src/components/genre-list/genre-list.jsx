@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from 'prop-types';
 import Genre from "../genre/genre";
 
-const {string, arrayOf} = PropTypes;
+const {string, arrayOf, func} = PropTypes;
 
 const GenreList = (props) => {
-  const {genres} = props;
+  const {genres, selectedGenre, onGenreClick} = props;
 
   return (
     <ul className="catalog__genres-list">
@@ -13,15 +13,23 @@ const GenreList = (props) => {
         .map((genre, index) => {
           const keyComponent = `genre-item-${index + 1}`;
 
-          return <Genre key={keyComponent} genre={genre}/>;
+          return (
+            <Genre
+              key={keyComponent}
+              genre={genre}
+              isSelected={selectedGenre === genre}
+              onGenreClick={onGenreClick}
+            />
+          );
         })}
     </ul>
   );
-
 };
 
 GenreList.propTypes = {
   genres: arrayOf(string.isRequired),
+  selectedGenre: string.isRequired,
+  onGenreClick: func.isRequired,
 };
 
 export default GenreList;

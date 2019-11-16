@@ -5,6 +5,8 @@ import Genre from "./genre";
 describe(`Make snapshot`, () => {
   const initProps = {
     genre: `Academy`,
+    isSelected: false,
+    onGenreClick: jest.fn(),
   };
 
   it(`Get snapshot component`, () => {

@@ -5,21 +5,23 @@ exports[`Make snapshot Get snapshot component 1`] = `
   className="catalog__genres-list"
 >
   <li
-    className="catalog__genres-item"
+    className="catalog__genres-item false"
   >
     <a
       className="catalog__genres-link"
       href="#"
+      onClick={[Function]}
     >
       Academy
     </a>
   </li>
   <li
-    className="catalog__genres-item"
+    className="catalog__genres-item false"
   >
     <a
       className="catalog__genres-link"
       href="#"
+      onClick={[Function]}
     >
       Javascript
     </a>

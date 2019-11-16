@@ -7,35 +7,19 @@ import {Value} from "../../constants";
 describe(`Test Genre component`, () => {
   const initProps = {
     genre: `Academy`,
+    isSelected: false,
+    onGenreClick: jest.fn(),
   };
 
-  it(`Return li node with className catalog__genres-item`, () => {
+  it(`Call onGenreClick`, () => {
     const wrapper = shallow(
         <Genre
           {...initProps}
         />
     );
 
-    expect(wrapper.find(`.catalog__genres-item`)).toHaveLength(Value.FULL);
-  });
+    wrapper.find(`.catalog__genres-link`).simulate(`click`, {preventDefault() {}});
 
-  it(`Return a node with className catalog__genres-link`, () => {
-    const wrapper = shallow(
-        <Genre
-          {...initProps}
-        />
-    );
-
-    expect(wrapper.find(`.catalog__genres-link`)).toHaveLength(Value.FULL);
-  });
-
-  it(`Compare genre props value`, () => {
-    const wrapper = shallow(
-        <Genre
-          {...initProps}
-        />
-    );
-
-    expect(wrapper.find(`.catalog__genres-link`).text()).toEqual(initProps.genre);
+    expect(initProps.onGenreClick).toBeCalledTimes(Value.FULL);
   });
 });
