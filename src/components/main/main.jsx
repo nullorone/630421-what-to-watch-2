@@ -21,8 +21,7 @@ class Main extends PureComponent {
     this._catalogButtonsClickHandler = this._catalogButtonsClickHandler.bind(this);
 
     this.state = {
-      films: this.props.films.slice(Value.EMPTY, AmountSimilarFilms.DEFAULT),
-      hasCatalogButton: true,
+      endIndexFilm: AmountSimilarFilms.DEFAULT,
     };
   }
 
@@ -42,23 +41,22 @@ class Main extends PureComponent {
 
         <MovieCard {...promo}/>
 
-        <div className="page-content" >
-          <section className="catalog" >
+        <div className="page-content">
+          <section className="catalog">
             <h2 className="catalog__title visually-hidden">
               Catalog
             </h2>
 
             {genres
-              && <GenreList
-                genres={genres}
-                selectedGenre={selectedGenre}
-                onGenreClick={onSelectedGenreClick}/>}
+            && <GenreList
+              genres={genres}
+              selectedGenre={selectedGenre}
+              onGenreClick={onSelectedGenreClick}/>}
 
-            {films && <MovieCardSmallList films={films}/>}
+            {films && <MovieCardSmallList films={films.slice(Value.EMPTY, this.state.endIndexFilm)}/>}
 
-            {this.state.hasCatalogButton && <CatalogButton
-              text={`ShowMore`}
-              onButtonClick={this._catalogButtonsClickHandler}/>}
+            {(this.state.endIndexFilm < films.length)
+            && <CatalogButton onButtonClick={this._catalogButtonsClickHandler}/>}
           </section>
 
           <footer className="page-footer">
@@ -74,14 +72,9 @@ class Main extends PureComponent {
 
   _catalogButtonsClickHandler(evt) {
     evt.preventDefault();
-    this.setState(() => {
-      const endIndexFilm = this.state.films.length + AMOUNT_ADDED_FILMS;
-
-      return {
-        films: this.props.films.slice(Value.EMPTY, endIndexFilm),
-        hasCatalogButton: endIndexFilm > this.props.films.length,
-      };
-    });
+    this.setState((prevState) => ({
+      endIndexFilm: prevState.endIndexFilm + AMOUNT_ADDED_FILMS
+    }));
   }
 }
 
