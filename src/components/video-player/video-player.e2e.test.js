@@ -18,23 +18,18 @@ describe(`Render Component`, () => {
     .spyOn(window.HTMLMediaElement.prototype, `play`)
     .mockImplementation(() => {});
 
-  it(`Get component`, () => {
-    const wrapper = mount(
-        <VideoPlayer
-          {...initProps}
-        />
-    );
-
-    expect(wrapper).toBeTruthy();
-  });
-
   it(`Get amount source node`, () => {
     const wrapper = mount(
         <VideoPlayer
           {...initProps}
         />
     );
+    const spy = jest.spyOn(wrapper, `play`);
+    const isPlaying = wrapper.play();
 
-    expect(wrapper.find(`source`).length).toBe(2);
+    expect(spy).toHaveBeenCalled();
+    expect(isPlaying).toBe(true);
+
+    spy.mockRestore();
   });
 });
