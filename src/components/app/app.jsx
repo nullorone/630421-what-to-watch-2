@@ -118,6 +118,7 @@ App.propTypes = {
 const mapStateToProps = (state) => Object.assign({}, {
   genre: state.genre,
   films: state.films,
+  genres: state.genres,
 });
 
 const mapDispatchToProps = (dispatch) => ({

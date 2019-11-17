@@ -1,9 +1,16 @@
 import {films} from "./mocks/films";
 import {ActionType} from "./constants";
 
+const getGenres = (filmsOnPage) => {
+  return new Set(filmsOnPage.map((film) => film.genre));
+};
+
+const genres = [`All genres`, ...getGenres(films)];
+
 const initState = {
   genre: `All genres`,
   films,
+  genres,
 };
 
 const ActionCreator = {

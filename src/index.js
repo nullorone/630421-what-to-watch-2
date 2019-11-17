@@ -8,16 +8,10 @@ import {Provider} from "react-redux";
 import {createStore} from "redux";
 import {reducer} from "./reducer";
 
-const getGenres = (filmsOnPage) => {
-  return new Set(filmsOnPage.map((film) => film.genre));
-};
-
-const genres = [`All genres`, ...getGenres(films)];
 
 const initData = {
   promo,
   films,
-  genres,
   iconNames,
 };
 
