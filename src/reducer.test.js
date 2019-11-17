@@ -1,6 +1,8 @@
-import {reducer, initState} from "./reducer";
+import {reducer, initState, ActionCreator} from "./reducer";
 import {films} from "./mocks/films";
 import {ActionType, Value} from "./constants";
+
+const FANTASY_GENRE = `Fantasy`;
 
 const lastFilm = initState.films[initState.films.length - Value.FULL];
 
@@ -32,6 +34,14 @@ describe(`Test actions`, () => {
       .toEqual({
         genre: initState.genre,
         films: [lastFilm]
+      });
+  });
+
+  it(`Filter films of ActionCreator`, () => {
+    expect(ActionCreator.filteredFilms(FANTASY_GENRE))
+      .toEqual({
+        type: ActionType.FILTERED_FILMS,
+        payload: initState.films.filter((film) => film.genre === FANTASY_GENRE)
       });
   });
 });
