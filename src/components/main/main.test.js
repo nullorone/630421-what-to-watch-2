@@ -68,6 +68,12 @@ describe(`Make snapshot`, () => {
     onSelectedGenreClick: jest.fn(),
   };
 
+  jest.mock(`../icons-wrapper/icons-wrapper`, () => `IconsWrapper`);
+  jest.mock(`../movie-card/movie-card`, () => `MovieCard`);
+  jest.mock(`../genre-list/genre-list`, () => `GenreList`);
+  jest.mock(`../movie-card-small-list/movie-card-small-list`, () => `MovieCardSmallList`);
+  jest.mock(`../logo/logo`, () => `Logo`);
+
   it(`Render main screen`, () => {
     const tree = renderer
       .create(
