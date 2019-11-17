@@ -69,3 +69,9 @@ export const AMOUNT_ADDED_FILMS = 4;
 export const MINUTES_IN_HOUR = 60;
 
 export const AMOUNT_COMMENT_IN_COL = 3;
+
+export const ActionType = {
+  SELECT_GENRE: `SELECT_GENRE`,
+  RESET: `RESET`,
+  FILTERED_FILMS: `FILTERED_FILMS`,
+};

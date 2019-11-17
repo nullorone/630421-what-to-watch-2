@@ -62,8 +62,10 @@ describe(`Make snapshot`, () => {
       released: Value.FULL,
       isFavorite: true,
     },
+    selectedGenre: EMPTY_STRING,
     genres: [`ECMA`, `CSS`],
     icons: [`PAUSE`],
+    onSelectedGenreClick: jest.fn(),
   };
 
   it(`Render main screen`, () => {

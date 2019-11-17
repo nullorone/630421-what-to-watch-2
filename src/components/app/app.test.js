@@ -1,7 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app";
+import {App} from "./app";
 import {EMPTY_STRING, Value} from "../../constants";
+import {BrowserRouter} from "react-router-dom";
 
 describe(`Make snapshot`, () => {
   const initProps = {
@@ -60,16 +61,20 @@ describe(`Make snapshot`, () => {
       released: Value.FULL,
       isFavorite: true,
     },
+    genre: EMPTY_STRING,
     genres: [`ECMA`, `CSS`],
     icons: [`PAUSE`],
+    onGenreClick: jest.fn(),
   };
 
   it(`Get snapshot component`, () => {
     const tree = renderer
       .create(
-          <App
-            {...initProps}
-          />
+          <BrowserRouter>
+            <App
+              {...initProps}
+            />
+          </BrowserRouter>
       )
       .toJSON();
 

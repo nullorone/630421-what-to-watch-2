@@ -1,12 +1,10 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import MovieNavItem from "../movie-nav-item/movie-nav-item";
-import {TypeCol, AMOUNT_COMMENT_IN_COL, Value} from "../../constants";
-import MovieCardCol from "../movie-card-col/movie-card-col";
-import MovieCardDetailsItem from "../movie-card-details-item/movie-card-details-item";
-import MovieCardRow from "../movie-card-row/movie-card-row";
 import {comments} from "../../mocks/comments";
-import MovieCardReview from "../movie-card-review/movie-card-review";
+import MovieTabReviews from "../movie-tab-reviews/movie-tab-reviews";
+import MovieTabOverview from "../movie-tab-overview/movie-tab-overview";
+import MovieTabDetails from "../movie-tab-details/movie-tab-details";
 
 const {arrayOf, shape, string, bool, number} = PropTypes;
 
@@ -51,7 +49,7 @@ class MovieNavList extends PureComponent {
   _getTabDescription() {
     const {
       rating,
-      scoreCount,
+      scoresCount,
       description,
       director,
       starring,
@@ -63,67 +61,26 @@ class MovieNavList extends PureComponent {
     switch (this.state.tab) {
       case (`overview`):
         return (
-          <>
-            <div className="movie-rating">
-              <div className="movie-rating__score">{rating}</div>
-              <p className="movie-rating__meta">
-                <span className="movie-rating__level">Very good</span>
-                <span className="movie-rating__count">{scoreCount} ratings</span>
-              </p>
-            </div>
-
-            <div className="movie-card__text">
-              <p>{description}</p>
-
-              <p className="movie-card__director"><strong>Director: {director}</strong></p>
-
-              <p className="movie-card__starring"><strong>Starring: {starring.join(`, `)} and other</strong></p>
-            </div>
-          </>
+          <MovieTabOverview
+            rating={rating}
+            scoresCount={scoresCount}
+            description={description}
+            director={director}
+            starring={starring}
+          />
         );
       case (`details`):
         return (
-          <MovieCardRow type={TypeCol.TEXT}>
-            <MovieCardCol type={TypeCol.TEXT}>
-              <MovieCardDetailsItem name={`Director`} value={director}/>
-              <MovieCardDetailsItem
-                name={`Starring`}
-                value={starring}
-              />
-            </MovieCardCol>
-
-            <MovieCardCol type={TypeCol.TEXT}>
-              <MovieCardDetailsItem name={`Run Time`} value={runTime}/>
-              <MovieCardDetailsItem name={`Genre`} value={genre}/>
-              <MovieCardDetailsItem name={`Released`} value={released}/>
-            </MovieCardCol>
-          </MovieCardRow>
+          <MovieTabDetails
+            director={director}
+            runTime={runTime}
+            genre={genre}
+            released={released}
+            starring={starring}
+          />
         );
       case (`reviews`):
-        let commentReview = [];
-
-        for (let i = Value.EMPTY; i < comments.length; i = i + AMOUNT_COMMENT_IN_COL) {
-          const cardReviews = comments
-            .slice(i, i + AMOUNT_COMMENT_IN_COL)
-            .map((comment) => {
-              const keyReview = `movie-card-review-${comment.id}`;
-              return (
-                <MovieCardReview key={keyReview} comment={comment}/>
-              );
-            });
-
-          commentReview.push(
-              <MovieCardCol key={`card-col-${i}`} type={TypeCol.REVIEWS}>
-                {cardReviews}
-              </MovieCardCol>
-          );
-        }
-
-        return (
-          <MovieCardRow type={TypeCol.REVIEWS}>
-            {commentReview}
-          </MovieCardRow>
-        );
+        return <MovieTabReviews comments={comments}/>;
       default:
         return null;
     }

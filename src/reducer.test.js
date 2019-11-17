@@ -1,0 +1,44 @@
+import {reducer, initState, ActionCreator} from "./reducer";
+import {ActionType, Value} from "./constants";
+
+const FANTASY_GENRE = `Fantasy`;
+
+const lastFilm = initState.films[initState.films.length - Value.FULL];
+
+describe(`Test actions`, () => {
+
+  it(`Select genre`, () => {
+    expect(reducer(initState, {
+      type: ActionType.SELECT_GENRE,
+      payload: `Drama`,
+    }))
+      .toEqual(Object.assign({}, initState, {
+        genre: `Drama`,
+      }));
+  });
+
+  it(`Select all genres`, () => {
+    expect(reducer(initState, {
+      type: ActionType.RESET,
+    }))
+      .toEqual(initState);
+  });
+
+  it(`Filter films`, () => {
+    expect(reducer(initState, {
+      type: ActionType.FILTERED_FILMS,
+      payload: [lastFilm]
+    }))
+      .toEqual(Object.assign({}, initState, {
+        films: [lastFilm]
+      }));
+  });
+
+  it(`Filter films of ActionCreator`, () => {
+    expect(ActionCreator.filteredFilms(FANTASY_GENRE))
+      .toEqual({
+        type: ActionType.FILTERED_FILMS,
+        payload: initState.films.filter((film) => film.genre === FANTASY_GENRE)
+      });
+  });
+});

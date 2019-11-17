@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {ActionCreator} from "../../reducer";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Main from "../main/main";
 import MoviePageDetails from "../movie-page-details/movie-page-details";
 import {AmountSimilarFilms, Value} from "../../constants";
 
-const {string, number, bool, shape, arrayOf} = PropTypes;
+const {string, number, bool, shape, arrayOf, func} = PropTypes;
 
 const App = (props) => {
   const {
     films,
     promo,
+    genre,
     genres,
     iconNames,
+    onGenreClick
   } = props;
 
 
@@ -29,6 +33,8 @@ const App = (props) => {
             promo={promo}
             films={films}
             genres={genres}
+            selectedGenre={genre}
+            onSelectedGenreClick={onGenreClick}
             icons={iconNames}/>
         )}/>
         <Route path="/films/:id" render={({match}) => {
@@ -103,8 +109,30 @@ App.propTypes = {
     released: number.isRequired,
     isFavorite: bool.isRequired,
   }),
+  genre: string.isRequired,
   genres: arrayOf(string.isRequired),
   iconNames: arrayOf(string.isRequired),
+  onGenreClick: func.isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => Object.assign({}, {
+  genre: state.genre,
+  films: state.films,
+  genres: state.genres,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGenreClick: (genre) => {
+    if (genre === `All genres`) {
+      dispatch(ActionCreator.reset());
+    } else {
+      dispatch(ActionCreator.selectGenre(genre));
+      dispatch(ActionCreator.filteredFilms(genre));
+    }
+  },
+});
+
+
+export {App};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

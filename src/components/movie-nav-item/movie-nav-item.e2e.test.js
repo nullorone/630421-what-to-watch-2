@@ -1,6 +1,7 @@
 import React from "react";
 import {shallow} from "enzyme";
 import MovieNavItem from "./movie-nav-item";
+import {Value} from "../../constants";
 
 describe(`Test cases MovieNavItem component`, () =>{
   const initProps = {
@@ -9,27 +10,17 @@ describe(`Test cases MovieNavItem component`, () =>{
     onTabClick: jest.fn()
   };
 
-  it(`Render component`, () => {
+  it(`Call onTabClick`, () => {
     const wrapper = shallow(
         <MovieNavItem {...initProps}/>
     );
 
-    expect(wrapper).toBeTruthy();
-  });
+    wrapper.find(`.movie-nav__link`).simulate(`click`, {
+      preventDefault() {},
+      target: {innerText: initProps.text}
+    });
 
-  it(`Get node with text prop`, () => {
-    const wrapper = shallow(
-        <MovieNavItem {...initProps}/>
-    );
-
-    expect(wrapper.find(`.movie-nav__link`)).toBeTruthy();
-  });
-
-  it(`Don't get className, when active prop === false`, () => {
-    const wrapper = shallow(
-        <MovieNavItem {...initProps}/>
-    );
-
-    expect(wrapper.hasClass(`movie-nav__item--active`)).toBeFalsy();
+    expect(initProps.onTabClick).toBeCalledTimes(Value.FULL);
+    expect(initProps.onTabClick).toBeCalledWith(initProps.text.toLowerCase());
   });
 });

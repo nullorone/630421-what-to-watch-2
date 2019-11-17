@@ -2,9 +2,13 @@ import React from "react";
 import renderer from "react-test-renderer";
 import GenreList from "./genre-list";
 
+const ACADEMY_STRING = `Academy`;
+
 describe(`Make snapshot`, () => {
   const initProps = {
-    genres: [`Academy`, `Javascript`],
+    genres: [ACADEMY_STRING, `Javascript`],
+    selectedGenre: ACADEMY_STRING,
+    onGenreClick: jest.fn(),
   };
 
   it(`Get snapshot component`, () => {
