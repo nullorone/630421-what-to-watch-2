@@ -157,7 +157,7 @@ Array [
         className="catalog__genres-list"
       >
         <li
-          className="catalog__genres-item false"
+          className="catalog__genres-item "
         >
           <a
             className="catalog__genres-link"
@@ -168,7 +168,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item false"
+          className="catalog__genres-item "
         >
           <a
             className="catalog__genres-link"

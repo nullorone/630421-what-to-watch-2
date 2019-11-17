@@ -2,7 +2,7 @@
 
 exports[`Make snapshot Get snapshot component 1`] = `
 <li
-  className="catalog__genres-item false"
+  className="catalog__genres-item "
 >
   <a
     className="catalog__genres-link"

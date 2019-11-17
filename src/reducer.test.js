@@ -1,5 +1,4 @@
 import {reducer, initState, ActionCreator} from "./reducer";
-import {films} from "./mocks/films";
 import {ActionType, Value} from "./constants";
 
 const FANTASY_GENRE = `Fantasy`;
@@ -13,10 +12,9 @@ describe(`Test actions`, () => {
       type: ActionType.SELECT_GENRE,
       payload: `Drama`,
     }))
-      .toEqual({
+      .toEqual(Object.assign({}, initState, {
         genre: `Drama`,
-        films,
-      });
+      }));
   });
 
   it(`Select all genres`, () => {
@@ -31,10 +29,9 @@ describe(`Test actions`, () => {
       type: ActionType.FILTERED_FILMS,
       payload: [lastFilm]
     }))
-      .toEqual({
-        genre: initState.genre,
+      .toEqual(Object.assign({}, initState, {
         films: [lastFilm]
-      });
+      }));
   });
 
   it(`Filter films of ActionCreator`, () => {
