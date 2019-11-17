@@ -21,5 +21,6 @@ describe(`Test cases MovieNavItem component`, () =>{
     });
 
     expect(initProps.onTabClick).toBeCalledTimes(Value.FULL);
+    expect(initProps.onTabClick).toBeCalledWith(initProps.text.toLowerCase());
   });
 });
