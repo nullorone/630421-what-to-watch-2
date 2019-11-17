@@ -21,5 +21,6 @@ describe(`Test Genre component`, () => {
     wrapper.find(`.catalog__genres-link`).simulate(`click`, {preventDefault() {}});
 
     expect(initProps.onGenreClick).toBeCalledTimes(Value.FULL);
+    expect(initProps.onGenreClick).toBeCalledWith(initProps.genre);
   });
 });
