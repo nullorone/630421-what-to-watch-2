@@ -115,7 +115,7 @@ App.propTypes = {
   onGenreClick: func.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+const mapStateToProps = (state) => Object.assign({}, {
   genre: state.genre,
   films: state.films,
 });
