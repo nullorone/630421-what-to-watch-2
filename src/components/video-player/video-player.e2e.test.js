@@ -24,11 +24,9 @@ describe(`Render Component`, () => {
           {...initProps}
         />
     );
-    const spy = jest.spyOn(wrapper, `play`);
-    const isPlaying = wrapper.play();
 
+    const spy = jest.spyOn(wrapper.instance()._videoRef.current, `play`);
     expect(spy).toHaveBeenCalled();
-    expect(isPlaying).toBe(true);
 
     spy.mockRestore();
   });
