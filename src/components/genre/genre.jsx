@@ -5,7 +5,7 @@ const {string, bool, func} = PropTypes;
 
 const Genre = (props) => {
   const {genre, isSelected, onGenreClick} = props;
-  const activeClass = isSelected && `catalog__genres-item--active`;
+  const activeClass = isSelected ? `catalog__genres-item--active` : ``;
 
   return (
     <li className={`catalog__genres-item ${activeClass}`}>
