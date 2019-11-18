@@ -13,6 +13,7 @@ import {
 import MovieCardDescription from "../movie-card-description/movie-card-description";
 import MovieCardButtonList from "../movie-card-button-list/movie-card-button-list";
 import MovieNavList from "../movie-nav-list/movie-nav-list";
+import withActiveItem from "../../hocs/with-active-item";
 
 
 const {arrayOf, string, shape, number, bool} = PropTypes;
@@ -35,6 +36,8 @@ const MoviePageDetails = (props) => {
     genre,
     released,
   } = clickedFilm;
+
+  const MovieNavListWrapped = withActiveItem(MovieNavList);
 
   return (
     <>
@@ -83,7 +86,7 @@ const MoviePageDetails = (props) => {
               }}/>
 
             <div className="movie-card__desc">
-              <MovieNavList clickedFilm={clickedFilm} navItems={MOVIE_NAV_ITEMS}/>
+              <MovieNavListWrapped clickedFilm={clickedFilm} navItems={MOVIE_NAV_ITEMS}/>
             </div>
           </div>
         </div>
