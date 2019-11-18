@@ -1,89 +1,54 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 import MovieCardSmallList from "../movie-card-small-list/movie-card-small-list";
 import GenreList from "../genre-list/genre-list";
 import IconsWrapper from "../icons-wrapper/icons-wrapper";
-import CatalogButton from "../catalog-button/catalog-button";
 import Logo from "../logo/logo";
-import {
-  AmountSimilarFilms,
-  AMOUNT_ADDED_FILMS,
-  Value,
-} from "../../constants";
 import MovieCard from "../movie-card/movie-card";
 
 const {string, shape, number, bool, arrayOf, func} = PropTypes;
 
-class Main extends PureComponent {
-  constructor(props) {
-    super(props);
+const Main = (props) => {
+  const {
+    films,
+    promo,
+    genres,
+    icons,
+    selectedGenre,
+    onSelectedGenreClick,
+  } = props;
 
-    this._catalogButtonsClickHandler = this._catalogButtonsClickHandler.bind(this);
+  return (
+    <>
+      {icons && <IconsWrapper iconNames={icons}/>}
 
-    this.state = {
-      films: this.props.films.slice(Value.EMPTY, AmountSimilarFilms.DEFAULT),
-      hasCatalogButton: true,
-    };
-  }
+      <MovieCard {...promo}/>
 
-  render() {
-    const {
-      films,
-      promo,
-      genres,
-      icons,
-      selectedGenre,
-      onSelectedGenreClick,
-    } = this.props;
+      <div className="page-content">
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">
+            Catalog
+          </h2>
 
-    return (
-      <>
-        {icons && <IconsWrapper iconNames={icons}/>}
+          {genres
+          && <GenreList
+            genres={genres}
+            selectedGenre={selectedGenre}
+            onGenreClick={onSelectedGenreClick}/>}
 
-        <MovieCard {...promo}/>
+          {films && <MovieCardSmallList films={films}/>}
+        </section>
 
-        <div className="page-content" >
-          <section className="catalog" >
-            <h2 className="catalog__title visually-hidden">
-              Catalog
-            </h2>
-
-            {genres
-              && <GenreList
-                genres={genres}
-                selectedGenre={selectedGenre}
-                onGenreClick={onSelectedGenreClick}/>}
-
-            {films && <MovieCardSmallList films={films}/>}
-
-            {this.state.hasCatalogButton && <CatalogButton
-              text={`ShowMore`}
-              onButtonClick={this._catalogButtonsClickHandler}/>}
-          </section>
-
-          <footer className="page-footer">
-            <Logo light={true}/>
-            <div className="copyright">
-              <p>© 2019 What to watch Ltd.</p>
-            </div>
-          </footer>
-        </div>
-      </>
-    );
-  }
-
-  _catalogButtonsClickHandler(evt) {
-    evt.preventDefault();
-    this.setState(() => {
-      const endIndexFilm = this.state.films.length + AMOUNT_ADDED_FILMS;
-
-      return {
-        films: this.props.films.slice(Value.EMPTY, endIndexFilm),
-        hasCatalogButton: endIndexFilm > this.props.films.length,
-      };
-    });
-  }
-}
+        <footer className="page-footer">
+          <Logo light={true}/>
+          <div className="copyright">
+            <p>© 2019 What to watch Ltd.</p>
+          </div>
+        </footer>
+      </div>
+    </>
+  );
+};
 
 Main.propTypes = {
   films: arrayOf(shape({

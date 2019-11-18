@@ -1,6 +1,7 @@
 import React from "react";
 import {mount} from "enzyme";
 import VideoPlayer from "./video-player";
+import {Value} from "../../constants";
 
 describe(`Render Component`, () => {
   const initProps = {
@@ -25,8 +26,11 @@ describe(`Render Component`, () => {
         />
     );
 
-    const spy = jest.spyOn(wrapper.instance()._videoRef.current, `play`);
+    const currentVideoElement = wrapper.instance()._videoRef.current;
+    const spy = jest.spyOn(currentVideoElement, `play`);
+
     expect(spy).toHaveBeenCalled();
+    expect(currentVideoElement.play).toBeCalledTimes(Value.FULL);
 
     spy.mockRestore();
   });

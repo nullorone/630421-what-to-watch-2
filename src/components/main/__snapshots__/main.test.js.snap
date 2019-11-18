@@ -2,186 +2,49 @@
 
 exports[`Make snapshot Render main screen 1`] = `
 Array [
-  <div
-    className="visually-hidden"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-    >
-      <symbol
-        id="pause"
-        viewBox="0 0 14 21"
-      >
-        <title>
-          Artboard
-        </title>
-        <desc>
-          Created with Sketch.
-        </desc>
-        <g
-          fill="none"
-          fillRule="evenodd"
-          id="Artboard"
-          stroke="none"
-          strokeWidth="1"
-        >
-          <polygon
-            fill="#EEE5B5"
-            fillRule="nonzero"
-            id="Line"
-            points="0 -1.11910481e-13 4 -1.11910481e-13 4 21 0 21"
-          />
-          <polygon
-            fill="#EEE5B5"
-            fillRule="nonzero"
-            id="Line"
-            points="10 -1.11910481e-13 14 -1.11910481e-13 14 21 10 21"
-          />
-        </g>
-      </symbol>
-    </svg>
-  </div>,
-  <section
-    className="movie-card"
-  >
-    <div
-      className="movie-card__bg"
-    >
-      <img
-        alt=""
-        height="175"
-        src=""
-        width="280"
-      />
-    </div>
-    <h1
-      className="visually-hidden"
-    >
-      WTW
-    </h1>
-    <header
-      className="page-header movie-card__head"
-    >
-      <div
-        className="logo"
-      >
-        <a
-          className="logo__link"
-          href="/"
-        >
-          <span
-            className="logo__letter logo__letter--1"
-          >
-            W
-          </span>
-          <span
-            className="logo__letter logo__letter--2"
-          >
-            T
-          </span>
-          <span
-            className="logo__letter logo__letter--3"
-          >
-            W
-          </span>
-        </a>
-      </div>
-      <div
-        className="user-block"
-      >
-        <div
-          className="user-block__avatar"
-        >
-          <img
-            alt="User avatar"
-            height="63"
-            src="./img/avatar.jpg"
-            width="63"
-          />
-        </div>
-      </div>
-    </header>
-    <div
-      className="movie-card__wrap"
-    >
-      <div
-        className="movie-card__info"
-      >
-        <div
-          className="movie-card__poster"
-        >
-          <img
-            alt="1"
-            height="327"
-            src=""
-            width="218"
-          />
-        </div>
-        <div
-          className="movie-card__desc"
-        >
-          <h2
-            className="movie-card__title"
-          >
-            Keks
-          </h2>
-          <p
-            className="movie-card__meta"
-          >
-            <span
-              className="movie-card__genre"
-            >
-              
-            </span>
-            <span
-              className="movie-card__year"
-            >
-              1
-            </span>
-          </p>
-          <div
-            className="movie-card__buttons"
-          >
-            <button
-              className="btn btn--play movie-card__button"
-              type="button"
-            >
-              <svg
-                height="19"
-                viewBox="0 0 19 19"
-                width="19"
-              >
-                <use
-                  xlinkHref="#play-s"
-                />
-              </svg>
-              <span>
-                Play
-              </span>
-            </button>
-            <button
-              className="btn btn--list movie-card__button"
-              type="button"
-            >
-              <svg
-                height="19"
-                viewBox="0 0 19 19"
-                width="19"
-              >
-                <use
-                  xlinkHref="#add"
-                />
-              </svg>
-              <span>
-                My list
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>,
+  <IconsWrapper
+    iconNames={
+      Array [
+        "PAUSE",
+      ]
+    }
+  />,
+  <MovieCard
+    backgroundColor=""
+    description=""
+    director="Keks"
+    genre=""
+    id={0}
+    image={
+      Object {
+        "background": "",
+        "backgroundAlt": "",
+        "poster": "",
+        "posterAlt": "1",
+        "preview": "",
+        "previewAlt": "",
+      }
+    }
+    isFavorite={true}
+    name="Keks"
+    rating={1}
+    released={1}
+    runTime={0}
+    scoresCount={1}
+    starring={
+      Array [
+        "Me",
+        "You",
+        "They",
+      ]
+    }
+    video={
+      Object {
+        "link": "",
+        "preview": "",
+      }
+    }
+  />,
   <div
     className="page-content"
   >
@@ -193,102 +56,62 @@ Array [
       >
         Catalog
       </h2>
-      <ul
-        className="catalog__genres-list"
-      >
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            ECMA
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            CSS
-          </a>
-        </li>
-      </ul>
-      <div
-        className="catalog__movies-list"
-      >
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt=""
-              height="175"
-              src=""
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="/films/0"
-              onClick={[Function]}
-            >
-              Keks
-            </a>
-          </h3>
-        </article>
-      </div>
-      <div
-        className="catalog__more"
-      >
-        <button
-          className="catalog__button"
-          onClick={[Function]}
-          type="button"
-        >
-          ShowMore
-        </button>
-      </div>
+      <GenreList
+        genres={
+          Array [
+            "ECMA",
+            "CSS",
+          ]
+        }
+        onGenreClick={[MockFunction]}
+        selectedGenre=""
+      />
+      <MovieCardSmallList
+        films={
+          Array [
+            Object {
+              "backgroundColor": "",
+              "description": "",
+              "director": "Keks",
+              "genre": "",
+              "id": 0,
+              "image": Object {
+                "background": "",
+                "backgroundAlt": "",
+                "poster": "",
+                "posterAlt": "1",
+                "preview": "",
+                "previewAlt": "",
+              },
+              "isFavorite": true,
+              "name": "Keks",
+              "rating": 1,
+              "released": 1,
+              "runTime": 0,
+              "scoresCount": 1,
+              "starring": Array [
+                "Me",
+                "You",
+                "They",
+              ],
+              "video": Object {
+                "link": Object {
+                  "mp4": "",
+                  "webm": "",
+                },
+                "poster": "",
+              },
+            },
+          ]
+        }
+      />
     </section>
     <footer
       className="page-footer"
     >
-      <div
-        className="logo"
-      >
-        <a
-          className="logo__link logo__link--light"
-          href="/"
-        >
-          <span
-            className="logo__letter logo__letter--1"
-          >
-            W
-          </span>
-          <span
-            className="logo__letter logo__letter--2"
-          >
-            T
-          </span>
-          <span
-            className="logo__letter logo__letter--3"
-          >
-            W
-          </span>
-        </a>
-      </div>
+      <Logo
+        light={true}
+      />
       <div
         className="copyright"
       >

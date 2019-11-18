@@ -64,7 +64,7 @@ export const AmountSimilarFilms = {
   ON_PAGE_FILM: 4,
 };
 
-export const AMOUNT_ADDED_FILMS = 4;
+export const AMOUNT_ADDED_FILMS = 20;
 
 export const MINUTES_IN_HOUR = 60;
 

@@ -4,6 +4,11 @@ import Main from './main';
 import {EMPTY_STRING, Value} from "../../constants";
 import {BrowserRouter} from "react-router-dom";
 
+jest.mock(`../icons-wrapper/icons-wrapper`, () => `IconsWrapper`);
+jest.mock(`../movie-card/movie-card`, () => `MovieCard`);
+jest.mock(`../genre-list/genre-list`, () => `GenreList`);
+jest.mock(`../movie-card-small-list/movie-card-small-list`, () => `MovieCardSmallList`);
+jest.mock(`../logo/logo`, () => `Logo`);
 
 describe(`Make snapshot`, () => {
   const initialProps = {

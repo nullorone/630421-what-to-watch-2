@@ -5,35 +5,10 @@ import {Value} from "../../constants";
 
 describe(`Test cases CatalogButton component`, () =>{
   const initProps = {
-    text: `Click me`,
     onButtonClick: jest.fn(),
   };
 
-  it(`Render component`, () => {
-    const wrapper = shallow(
-        <CatalogButton {...initProps}/>
-    );
-
-    expect(wrapper).toBeTruthy();
-  });
-
-  it(`Get node button`, () => {
-    const wrapper = shallow(
-        <CatalogButton {...initProps}/>
-    );
-
-    expect(wrapper.find(`.catalog__button`)).toBeTruthy();
-  });
-
-  it(`Get text in button node`, () => {
-    const wrapper = shallow(
-        <CatalogButton {...initProps}/>
-    );
-
-    expect(wrapper.find(`button`).text()).toBe(initProps.text);
-  });
-
-  it(`Render component`, () => {
+  it(`Called onButtonClick`, () => {
     const wrapper = shallow(
         <CatalogButton {...initProps}/>
     );

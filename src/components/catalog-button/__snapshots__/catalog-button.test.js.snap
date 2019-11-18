@@ -9,7 +9,7 @@ exports[`Make snapshot Get snapshot component 1`] = `
     onClick={[MockFunction]}
     type="button"
   >
-    Click me
+    ShowMore
   </button>
 </div>
 `;
