@@ -1,10 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {Value} from "../../constants";
+import {Comment} from "../../types";
 
-const {string, number, shape} = PropTypes;
+interface MovieCardReviewProps {
+  comment: Comment;
+}
 
-const MovieCardReview = (props) => {
+const MovieCardReview: React.FC<MovieCardReviewProps> = (props) => {
   const {
     user: {
       name,
@@ -33,19 +35,6 @@ const MovieCardReview = (props) => {
       <div className="review__rating">{rating}</div>
     </div>
   );
-};
-
-MovieCardReview.propTypes = {
-  comment: shape({
-    id: number.isRequired,
-    user: shape({
-      id: number.isRequired,
-      name: string.isRequired,
-    }),
-    rating: number.isRequired,
-    comment: string.isRequired,
-    date: string.isRequired,
-  })
 };
 
 export default MovieCardReview;

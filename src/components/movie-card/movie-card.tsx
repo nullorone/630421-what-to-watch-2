@@ -1,15 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import MovieCardPicture from "../movie-card-picture/movie-card-picture";
 import Logo from "../logo/logo";
 import UserBlock from "../user-block/user-block";
 import {Img, MOVIE_CARD_BUTTONS} from "../../constants";
 import MovieCardDescription from "../movie-card-description/movie-card-description";
 import MovieCardButtonList from "../movie-card-button-list/movie-card-button-list";
+import {Image} from "../../types";
 
-const {number, string, shape} = PropTypes;
+interface MovieCardProps {
+  name: string;
+  image: Image;
+  genre: string;
+  released: number;
+}
 
-const MovieCard = (props) => {
+const MovieCard: React.FC<MovieCardProps> = (props) => {
   const {
     name,
     image: {
@@ -61,18 +66,6 @@ const MovieCard = (props) => {
       </div>
     </section>
   );
-};
-
-MovieCard.propTypes = {
-  name: string.isRequired,
-  image: shape({
-    poster: string.isRequired,
-    posterAlt: string.isRequired,
-    background: string.isRequired,
-    backgroundAlt: string.isRequired,
-  }),
-  genre: string.isRequired,
-  released: number.isRequired,
 };
 
 export default MovieCard;

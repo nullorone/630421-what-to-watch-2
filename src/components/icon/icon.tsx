@@ -1,16 +1,13 @@
-import PropTypes from "prop-types";
 import {IconSymbol} from "../../icons";
 
-const {string} = PropTypes;
+interface IconProps {
+  name: string;
+}
 
-const Icon = (props) => {
+const Icon = (props: IconProps): JSX.Element => {
   const {name} = props;
 
   return IconSymbol[name.toUpperCase()];
-};
-
-Icon.propTypes = {
-  name: string.isRequired,
 };
 
 export default Icon;

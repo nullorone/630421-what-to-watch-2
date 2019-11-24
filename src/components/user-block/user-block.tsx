@@ -1,9 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 
-const {string} = PropTypes;
+interface UserBlockProps {
+  avatarSrc: string;
+}
 
-const UserBlock = (props) => {
+const UserBlock: React.FC<UserBlockProps> = (props) => {
   const {avatarSrc} = props;
 
   return (
@@ -13,10 +14,6 @@ const UserBlock = (props) => {
       </div>
     </div>
   );
-};
-
-UserBlock.propTypes = {
-  avatarSrc: string.isRequired,
 };
 
 export default UserBlock;

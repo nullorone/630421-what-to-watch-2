@@ -1,9 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 
-const {string, any} = PropTypes;
+interface MovieCardColProps {
+  type: string;
+}
 
-const MovieCardCol = (props) => {
+const MovieCardCol: React.FC<MovieCardColProps> = (props) => {
   const {type} = props;
 
   const colClassName = type && `movie-card__${type}-col`;
@@ -13,11 +14,6 @@ const MovieCardCol = (props) => {
       {props.children}
     </div>
   );
-};
-
-MovieCardCol.propTypes = {
-  type: string.isRequired,
-  children: any,
 };
 
 export default MovieCardCol;

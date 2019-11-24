@@ -1,9 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {Button} from "../../types";
 
-const {string} = PropTypes;
-
-const MovieCardButton = (props) => {
+const MovieCardButton: React.FC<Button> = (props) => {
   const {
     iconName,
     classModifier,
@@ -21,12 +19,6 @@ const MovieCardButton = (props) => {
       <span>{text}</span>
     </button>
   );
-};
-
-MovieCardButton.propTypes = {
-  iconName: string.isRequired,
-  classModifier: string.isRequired,
-  text: string.isRequired,
 };
 
 export default MovieCardButton;

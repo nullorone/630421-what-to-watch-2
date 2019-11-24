@@ -1,10 +1,13 @@
-import React from "react";
-import PropTypes from 'prop-types';
+import * as React from "react";
 import Genre from "../genre/genre";
 
-const {string, arrayOf, func} = PropTypes;
+interface GenreListProps {
+  genres: string[];
+  selectedGenre: string;
+  onGenreClick: () => void;
+}
 
-const GenreList = (props) => {
+const GenreList: React.FC<GenreListProps> = (props) => {
   const {genres, selectedGenre, onGenreClick} = props;
 
   return (
@@ -24,12 +27,6 @@ const GenreList = (props) => {
         })}
     </ul>
   );
-};
-
-GenreList.propTypes = {
-  genres: arrayOf(string.isRequired),
-  selectedGenre: string.isRequired,
-  onGenreClick: func.isRequired,
 };
 
 export default GenreList;

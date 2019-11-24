@@ -1,9 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 
-const {bool} = PropTypes;
+interface LogoProps {
+  light: boolean;
+}
 
-const Logo = (props) => {
+const Logo: React.FC<LogoProps> = (props) => {
   const {light} = props;
   const logoClass = light ? `logo__link logo__link--light` : `logo__link`;
 
@@ -16,10 +17,6 @@ const Logo = (props) => {
       </a>
     </div>
   );
-};
-
-Logo.propTypes = {
-  light: bool.isRequired,
 };
 
 export default Logo;

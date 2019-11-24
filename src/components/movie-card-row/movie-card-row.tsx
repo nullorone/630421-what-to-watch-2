@@ -1,9 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 
-const {string, any} = PropTypes;
+interface MovieCardRowProps {
+  type: string;
+}
 
-const MovieCardRow = (props) => {
+const MovieCardRow: React.FC<MovieCardRowProps> = (props) => {
   const {type} = props;
 
   const rowClassName = type ? `movie-card__${type} movie-card__row` : `movie-card__row`;
@@ -13,11 +14,6 @@ const MovieCardRow = (props) => {
       {props.children}
     </div>
   );
-};
-
-MovieCardRow.propTypes = {
-  type: string.isRequired,
-  children: any,
 };
 
 export default MovieCardRow;

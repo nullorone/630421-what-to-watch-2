@@ -1,12 +1,23 @@
-import React from "react";
-import PropTypes from 'prop-types';
+import * as React from "react";
 import {Link} from "react-router-dom";
 import MovieCardPicture from "../movie-card-picture/movie-card-picture";
 import VideoPlayer from "../video-player/video-player";
+import {Video} from "../../types";
 
-const {string, number, bool, shape, func, arrayOf} = PropTypes;
+interface MovieCardSmallProps {
+  id: number;
+  name: string;
+  image: {
+    preview: string;
+    previewAlt: string;
+  };
+  video: Video;
+  isPlaying: boolean;
+  onCardMouseEnter: (id: number) => void;
+  onCardMouseLeave: () => void;
+}
 
-const MovieCardSmall = (props) => {
+const MovieCardSmall: React.FC<MovieCardSmallProps> = (props) => {
   const {
     id,
     name,
@@ -43,38 +54,6 @@ const MovieCardSmall = (props) => {
       </h3>
     </article>
   );
-};
-
-MovieCardSmall.propTypes = {
-  id: number.isRequired,
-  name: string.isRequired,
-  image: shape({
-    poster: string.isRequired,
-    posterAlt: string.isRequired,
-    preview: string.isRequired,
-    previewAlt: string.isRequired,
-    background: string.isRequired,
-  }),
-  backgroundColor: string.isRequired,
-  video: shape({
-    link: shape({
-      mp4: string.isRequired,
-      webm: string.isRequired,
-    }),
-    poster: string.isRequired,
-  }),
-  description: string.isRequired,
-  rating: number.isRequired,
-  scoresCount: number.isRequired,
-  director: string.isRequired,
-  starring: arrayOf(string.isRequired),
-  runTime: number.isRequired,
-  genre: string.isRequired,
-  released: number.isRequired,
-  isFavorite: bool.isRequired,
-  isPlaying: bool.isRequired,
-  onCardMouseEnter: func.isRequired,
-  onCardMouseLeave: func.isRequired,
 };
 
 export default MovieCardSmall;

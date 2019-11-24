@@ -1,9 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {Item} from "../../types";
 
-const {bool, string, func} = PropTypes;
+interface MovieNavItemProps extends Item {
+  onTabClick: (text: string) => void;
+}
 
-const MovieNavItem = (props) => {
+const MovieNavItem: React.FC<MovieNavItemProps> = (props) => {
   const {active, text, onTabClick} = props;
 
   const itemClassName = active ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`;
@@ -13,20 +15,14 @@ const MovieNavItem = (props) => {
       <a
         href="#"
         className="movie-nav__link"
-        onClick={(evt) => {
+        onClick={(evt): void => {
           evt.preventDefault();
-          onTabClick(evt.target.innerText.toLowerCase());
+          onTabClick(text.toLowerCase());
         }}>
         {text}
       </a>
     </li>
   );
-};
-
-MovieNavItem.propTypes = {
-  active: bool.isRequired,
-  text: string.isRequired,
-  onTabClick: func.isRequired,
 };
 
 export default MovieNavItem;

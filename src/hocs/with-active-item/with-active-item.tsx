@@ -1,8 +1,21 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
 import {MovieNavTabs} from "../../constants";
+import {Subtract} from "utility-types";
+
+interface WithActiveItemState {
+  item: string;
+}
+
+interface SubtractProps {
+  activeItem: string;
+  onItemClick: () => void;
+}
 
 const withActiveItem = (Component) => {
-  class WithActiveItem extends PureComponent {
+  type ComponentProps = React.ComponentProps<typeof Component>;
+  type WithActiveItemProps = Subtract<ComponentProps, SubtractProps>
+
+  class WithActiveItem extends React.PureComponent<WithActiveItemProps, WithActiveItemState> {
     constructor(props) {
       super(props);
 
@@ -13,7 +26,7 @@ const withActiveItem = (Component) => {
       this._handleItemClick = this._handleItemClick.bind(this);
     }
 
-    render() {
+    public render(): JSX.Element {
       return (
         <Component
           {...this.props}
@@ -23,12 +36,10 @@ const withActiveItem = (Component) => {
       );
     }
 
-    _handleItemClick(itemName) {
+    private _handleItemClick(itemName): void {
       this.setState({item: itemName});
     }
   }
-
-  WithActiveItem.propTypes = {};
 
   return WithActiveItem;
 };

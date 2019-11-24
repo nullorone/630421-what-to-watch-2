@@ -1,11 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import MovieCardButton from "../movie-card-button/movie-card-button";
 import {Value} from "../../constants";
+import {Button} from "../../types";
 
-const {shape, arrayOf, string, any} = PropTypes;
+interface MovieCardButtonListProps {
+  buttons: Button[];
+}
 
-const MovieCardButtonList = (props) => {
+const MovieCardButtonList: React.FC<MovieCardButtonListProps> = (props) => {
   const {buttons} = props;
 
   return (
@@ -18,17 +20,6 @@ const MovieCardButtonList = (props) => {
       {props.children}
     </div>
   );
-};
-
-MovieCardButtonList.propTypes = {
-  buttons: arrayOf(
-      shape({
-        iconName: string.isRequired,
-        classModifier: string.isRequired,
-        text: string.isRequired,
-      })
-  ),
-  children: any,
 };
 
 export default MovieCardButtonList;

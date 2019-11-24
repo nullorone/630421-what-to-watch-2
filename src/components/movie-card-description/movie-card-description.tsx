@@ -1,9 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 
-const {any, string, number} = PropTypes;
+interface MovieCardDescriptionProps {
+  title: string;
+  genre: string;
+  year: number;
+}
 
-const MovieCardDescription = (props) => {
+const MovieCardDescription: React.FC<MovieCardDescriptionProps> = (props) => {
   const {title, genre, year} = props;
 
   return (
@@ -13,18 +16,9 @@ const MovieCardDescription = (props) => {
         <span className="movie-card__genre">{genre}</span>
         <span className="movie-card__year">{year}</span>
       </p>
-
       {props.children}
-
     </div>
   );
-};
-
-MovieCardDescription.propTypes = {
-  title: string.isRequired,
-  genre: string.isRequired,
-  year: number.isRequired,
-  children: any,
 };
 
 export default MovieCardDescription;

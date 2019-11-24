@@ -1,20 +1,25 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {Video} from "../../types";
 
-const {string, bool, shape} = PropTypes;
+interface VideoPlayerProps {
+  video: Video;
+  isMuted?: boolean;
+}
 
-export default class VideoPlayer extends PureComponent {
+class VideoPlayer extends React.PureComponent<VideoPlayerProps, null> {
+  private readonly _videoRef: React.RefObject<HTMLVideoElement>;
+
   constructor(props) {
     super(props);
     this._videoRef = React.createRef();
   }
 
-  componentDidMount() {
+  public componentDidMount(): void {
     const video = this._videoRef.current;
     video.play();
   }
 
-  render() {
+  public render(): JSX.Element {
     const {
       video: {
         link: {
@@ -41,19 +46,10 @@ export default class VideoPlayer extends PureComponent {
     );
   }
 
-  componentWillUnmount() {
+  public componentWillUnmount(): void {
     const video = this._videoRef.current;
     video.load();
   }
 }
 
-VideoPlayer.propTypes = {
-  video: shape({
-    link: shape({
-      mp4: string.isRequired,
-      webm: string.isRequired,
-    }),
-    poster: string.isRequired,
-  }),
-  isMuted: bool,
-};
+export default VideoPlayer;

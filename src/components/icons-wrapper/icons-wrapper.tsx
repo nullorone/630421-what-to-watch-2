@@ -1,10 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import Icon from "../icon/icon";
 
-const {arrayOf, string} = PropTypes;
+interface IconsWrapperProps {
+  iconNames: string[];
+}
 
-const IconsWrapper = (props) => {
+const IconsWrapper: React.FC<IconsWrapperProps> = (props) => {
   const {iconNames} = props;
   return (
     <div className="visually-hidden">
@@ -13,10 +14,6 @@ const IconsWrapper = (props) => {
       </svg>
     </div>
   );
-};
-
-IconsWrapper.propTypes = {
-  iconNames: arrayOf(string.isRequired),
 };
 
 export default IconsWrapper;

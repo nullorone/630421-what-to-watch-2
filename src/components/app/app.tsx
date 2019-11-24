@@ -1,15 +1,32 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from "../../reducer";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Main from "../main/main";
 import MoviePageDetails from "../movie-page-details/movie-page-details";
 import {AmountSimilarFilms, Value} from "../../constants";
+import {Film} from "../../types";
 
-const {string, number, bool, shape, arrayOf, func} = PropTypes;
+interface AppProps {
+  films: Film[];
+  promo: Film;
+  genre: string;
+  genres: string[];
+  iconNames: string[];
+  onGenreClick: () => void;
+}
 
-const App = (props) => {
+interface StateFromProps {
+  genre: string;
+  films: Film[];
+  genres: string[];
+}
+
+interface DispatchFromProps {
+  onGenreClick: (genre: string) => void;
+}
+
+const App: React.FC<AppProps> = (props) => {
   const {
     films,
     promo,
@@ -19,16 +36,14 @@ const App = (props) => {
     onGenreClick
   } = props;
 
+  const getClickedFilm = (filmId: number): Film => films.find((film) => film.id === Number(filmId));
 
-  const getClickedFilm = (filmId) => films.find((film) => film.id === Number(filmId));
-
-  const getSimilarFilms = (clickedFilm) => films.filter((film) => film.genre === clickedFilm.genre);
-
+  const getSimilarFilms = (clickedFilm: Film): Film[] => films.filter((film) => film.genre === clickedFilm.genre);
 
   return (
     <Router>
       <Switch>
-        <Route exact path="/" render={() => (
+        <Route exact path="/" render={(): JSX.Element => (
           <Main
             promo={promo}
             films={films}
@@ -37,7 +52,7 @@ const App = (props) => {
             onSelectedGenreClick={onGenreClick}
             icons={iconNames}/>
         )}/>
-        <Route path="/films/:id" render={({match}) => {
+        <Route path="/films/:id" render={({match}): JSX.Element => {
           const clickedFilm = getClickedFilm(match.params.id);
           const similarFilms = getSimilarFilms(clickedFilm).slice(Value.EMPTY, AmountSimilarFilms.ON_PAGE_FILM);
 
@@ -53,76 +68,14 @@ const App = (props) => {
   );
 };
 
-App.propTypes = {
-  films: arrayOf(shape({
-    id: number.isRequired,
-    name: string.isRequired,
-    image: shape({
-      poster: string.isRequired,
-      posterAlt: string.isRequired,
-      preview: string.isRequired,
-      previewAlt: string.isRequired,
-      background: string.isRequired,
-      backgroundAlt: string.isRequired,
-    }),
-    backgroundColor: string.isRequired,
-    video: shape({
-      link: shape({
-        mp4: string.isRequired,
-        webm: string.isRequired,
-      }),
-      poster: string.isRequired,
-    }),
-    description: string.isRequired,
-    rating: number.isRequired,
-    scoresCount: number.isRequired,
-    director: string.isRequired,
-    starring: arrayOf(string.isRequired),
-    runTime: number.isRequired,
-    genre: string.isRequired,
-    released: number.isRequired,
-    isFavorite: bool.isRequired,
-  })),
-  promo: shape({
-    id: number.isRequired,
-    name: string.isRequired,
-    image: shape({
-      poster: string.isRequired,
-      posterAlt: string.isRequired,
-      preview: string.isRequired,
-      previewAlt: string.isRequired,
-      background: string.isRequired,
-      backgroundAlt: string.isRequired,
-    }),
-    backgroundColor: string.isRequired,
-    video: shape({
-      link: string.isRequired,
-      preview: string.isRequired,
-    }),
-    description: string.isRequired,
-    rating: number.isRequired,
-    scoresCount: number.isRequired,
-    director: string.isRequired,
-    starring: arrayOf(string.isRequired),
-    runTime: number.isRequired,
-    genre: string.isRequired,
-    released: number.isRequired,
-    isFavorite: bool.isRequired,
-  }),
-  genre: string.isRequired,
-  genres: arrayOf(string.isRequired),
-  iconNames: arrayOf(string.isRequired),
-  onGenreClick: func.isRequired,
-};
-
-const mapStateToProps = (state) => Object.assign({}, {
+const mapStateToProps = (state): StateFromProps => Object.assign({}, {
   genre: state.genre,
   films: state.films,
   genres: state.genres,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onGenreClick: (genre) => {
+const mapDispatchToProps = (dispatch): DispatchFromProps => ({
+  onGenreClick: (genre): void => {
     if (genre === `All genres`) {
       dispatch(ActionCreator.reset());
     } else {
@@ -135,4 +88,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 export {App};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect<StateFromProps, DispatchFromProps, void>(mapStateToProps, mapDispatchToProps)(App);

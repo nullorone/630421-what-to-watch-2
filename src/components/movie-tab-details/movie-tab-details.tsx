@@ -1,13 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import MovieCardRow from "../movie-card-row/movie-card-row";
 import {TypeCol} from "../../constants";
 import MovieCardCol from "../movie-card-col/movie-card-col";
 import MovieCardDetailsItem from "../movie-card-details-item/movie-card-details-item";
 
-const {string, number, arrayOf} = PropTypes;
+interface MovieTabDetailsProps {
+  director: string;
+  starring: string[];
+  runTime: number;
+  genre: string;
+  released: number;
+}
 
-const MovieTabDetails = (props) => {
+const MovieTabDetails: React.FC<MovieTabDetailsProps> = (props) => {
   const {
     director,
     starring,
@@ -33,14 +38,6 @@ const MovieTabDetails = (props) => {
       </MovieCardCol>
     </MovieCardRow>
   );
-};
-
-MovieTabDetails.propTypes = {
-  director: string.isRequired,
-  starring: arrayOf(string.isRequired),
-  runTime: number.isRequired,
-  genre: string.isRequired,
-  released: number.isRequired,
 };
 
 export default MovieTabDetails;

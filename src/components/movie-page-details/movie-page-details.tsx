@@ -1,5 +1,4 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import IconsWrapper from "../icons-wrapper/icons-wrapper";
 import Logo from "../logo/logo";
 import UserBlock from "../user-block/user-block";
@@ -15,11 +14,15 @@ import MovieCardButtonList from "../movie-card-button-list/movie-card-button-lis
 import MovieNavList from "../movie-nav-list/movie-nav-list";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import withChangeItem from "../../hocs/with-change-item/with-change-item";
+import {Film} from "../../types";
 
+interface MoviePageDetailsProps {
+  clickedFilm: Film;
+  films: Film[];
+  icons: string[];
+}
 
-const {arrayOf, string, shape, number, bool} = PropTypes;
-
-const MoviePageDetails = (props) => {
+const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
   const {
     clickedFilm,
     films,
@@ -109,68 +112,6 @@ const MoviePageDetails = (props) => {
       </div>
     </>
   );
-};
-
-MoviePageDetails.propTypes = {
-  clickedFilm: shape({
-    id: number.isRequired,
-    name: string.isRequired,
-    image: shape({
-      poster: string.isRequired,
-      posterAlt: string.isRequired,
-      preview: string.isRequired,
-      previewAlt: string.isRequired,
-      background: string.isRequired,
-      backgroundAlt: string.isRequired,
-    }),
-    backgroundColor: string.isRequired,
-    video: shape({
-      link: shape({
-        mp4: string.isRequired,
-        webm: string.isRequired,
-      }),
-      poster: string.isRequired,
-    }),
-    description: string.isRequired,
-    rating: number.isRequired,
-    scoresCount: number.isRequired,
-    director: string.isRequired,
-    starring: arrayOf(string.isRequired),
-    runTime: number.isRequired,
-    genre: string.isRequired,
-    released: number.isRequired,
-    isFavorite: bool.isRequired,
-  }),
-  films: arrayOf(shape({
-    id: number.isRequired,
-    name: string.isRequired,
-    image: shape({
-      poster: string.isRequired,
-      posterAlt: string.isRequired,
-      preview: string.isRequired,
-      previewAlt: string.isRequired,
-      background: string.isRequired,
-      backgroundAlt: string.isRequired,
-    }),
-    backgroundColor: string.isRequired,
-    video: shape({
-      link: shape({
-        mp4: string.isRequired,
-        webm: string.isRequired,
-      }),
-      poster: string.isRequired,
-    }),
-    description: string.isRequired,
-    rating: number.isRequired,
-    scoresCount: number.isRequired,
-    director: string.isRequired,
-    starring: arrayOf(string.isRequired),
-    runTime: number.isRequired,
-    genre: string.isRequired,
-    released: number.isRequired,
-    isFavorite: bool.isRequired,
-  })),
-  icons: arrayOf(string.isRequired),
 };
 
 export default MoviePageDetails;

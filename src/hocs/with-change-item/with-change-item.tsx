@@ -1,7 +1,23 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
+import {Subtract} from "utility-types";
+
+interface SubtractProps {
+  itemCurrentIndex: number | null;
+  onItemMouseEnter: (id: number) => void;
+  onItemMouseLeave: () => void;
+}
+
+interface WithChangeItemState {
+  currentIndex: number | null;
+}
 
 const withChangeItem = (Component) => {
-  class WithChangeItem extends PureComponent {
+  type ComponentProps = React.ComponentProps<typeof Component>;
+  type WithChangeItemProps = Subtract<ComponentProps, SubtractProps>
+
+  class WithChangeItem extends React.PureComponent<WithChangeItemProps, WithChangeItemState> {
+    private _timer;
+
     constructor(props) {
       super(props);
 
@@ -15,34 +31,32 @@ const withChangeItem = (Component) => {
       this._handleWithChangeItemMouseLeave = this._handleWithChangeItemMouseLeave.bind(this);
     }
 
-    render() {
+    public render(): JSX.Element {
       return (
         <Component
           {...this.props}
-          itemCurrentIndex={this.state.currentIndexCard}
+          itemCurrentIndex={this.state.currentIndex}
           onItemMouseEnter={this._handleWithChangeItemMouseEnter}
           onItemMouseLeave={this._handleWithChangeItemMouseLeave}
         />
       );
     }
 
-    componentWillUnmount() {
+    public componentWillUnmount(): void {
       clearTimeout(this._timer);
     }
 
-    _handleWithChangeItemMouseEnter(id) {
+    private _handleWithChangeItemMouseEnter(id): void {
       this._timer = setTimeout(() => {
-        this.setState(() => ({currentIndexCard: id}));
+        this.setState(() => ({currentIndex: id}));
       }, 1000);
     }
 
-    _handleWithChangeItemMouseLeave() {
+    private _handleWithChangeItemMouseLeave(): void {
       clearTimeout(this._timer);
-      this.setState(() => ({currentIndexCard: null}));
+      this.setState(() => ({currentIndex: null}));
     }
   }
-
-  WithChangeItem.propTypes = {};
 
   return WithChangeItem;
 };

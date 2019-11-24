@@ -1,9 +1,12 @@
-import React from "react";
-import PropTypes from 'prop-types';
+import * as React from "react";
 
-const {string, bool, func} = PropTypes;
+interface GenreProps {
+  genre: string;
+  isSelected: boolean;
+  onGenreClick: (genre: string) => void;
+}
 
-const Genre = (props) => {
+const Genre: React.FC<GenreProps> = (props) => {
   const {genre, isSelected, onGenreClick} = props;
   const activeClass = isSelected ? `catalog__genres-item--active` : ``;
 
@@ -22,12 +25,6 @@ const Genre = (props) => {
     </li>
   );
 
-};
-
-Genre.propTypes = {
-  genre: string.isRequired,
-  isSelected: bool.isRequired,
-  onGenreClick: func.isRequired,
 };
 
 export default Genre;

@@ -1,9 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 
-const {func} = PropTypes;
+interface CatalogButtonProps {
+  onButtonClick: () => void;
+}
 
-const CatalogButton = (props) => {
+const CatalogButton: React.FC<CatalogButtonProps> = (props) => {
   const {onButtonClick} = props;
 
   return (
@@ -11,16 +12,15 @@ const CatalogButton = (props) => {
       <button
         className="catalog__button"
         type="button"
-        onClick={onButtonClick}
+        onClick={(evt): void => {
+          evt.preventDefault();
+          onButtonClick();
+        }}
       >
         ShowMore
       </button>
     </div>
   );
-};
-
-CatalogButton.propTypes = {
-  onButtonClick: func.isRequired,
 };
 
 export default CatalogButton;

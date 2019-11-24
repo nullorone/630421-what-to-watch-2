@@ -1,13 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {AMOUNT_COMMENT_IN_COL, TypeCol, Value} from "../../constants";
 import MovieCardReview from "../movie-card-review/movie-card-review";
 import MovieCardCol from "../movie-card-col/movie-card-col";
 import MovieCardRow from "../movie-card-row/movie-card-row";
+import {Comment} from "../../types";
 
-const {string, number, arrayOf, shape} = PropTypes;
+interface MovieTabReviewsProps {
+  comments: Comment[];
+  rating?: number;
+  comment?: string;
+  date?: string;
+}
 
-const MovieTabReviews = (props) => {
+const MovieTabReviews: React.FC<MovieTabReviewsProps> = (props) => {
   const {comments} = props;
   const commentReview = [];
 
@@ -33,19 +38,6 @@ const MovieTabReviews = (props) => {
       {commentReview}
     </MovieCardRow>
   );
-};
-
-MovieTabReviews.propTypes = {
-  comments: arrayOf(shape({
-    id: number.isRequired,
-    user: shape({
-      id: number.isRequired,
-      name: string.isRequired,
-    }),
-    rating: number.isRequired,
-    comment: string.isRequired,
-    date: string.isRequired,
-  })),
 };
 
 export default MovieTabReviews;

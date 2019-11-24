@@ -1,9 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 
-const {string, number, arrayOf} = PropTypes;
+interface MovieTabOverviewProps {
+  rating: number;
+  scoresCount: number;
+  description: string;
+  starring: string[];
+  director: string;
+}
 
-const MovieTabOverview = (props) => {
+const MovieTabOverview: React.FC<MovieTabOverviewProps> = (props) => {
   const {rating, scoresCount, description, starring, director} = props;
   return (
     <>
@@ -24,14 +29,6 @@ const MovieTabOverview = (props) => {
       </div>
     </>
   );
-};
-
-MovieTabOverview.propTypes = {
-  rating: number.isRequired,
-  scoresCount: number.isRequired,
-  description: string.isRequired,
-  starring: arrayOf(string.isRequired),
-  director: string.isRequired,
 };
 
 export default MovieTabOverview;

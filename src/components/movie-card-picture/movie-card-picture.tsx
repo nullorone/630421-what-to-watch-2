@@ -1,10 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {Img} from "../../constants";
 
-const {string, shape, func} = PropTypes;
+interface MovieCardPictureProps {
+  className: string;
+  picture: {
+    src: string;
+    alt: string;
+    width?: string;
+    height?: string;
+  };
+  onImgClick?: () => void;
+}
 
-const MovieCardPicture = (props) => {
+const MovieCardPicture: React.FC<MovieCardPictureProps> = (props) => {
   const {
     className,
     picture: {
@@ -29,17 +37,6 @@ const MovieCardPicture = (props) => {
       />
     </div>
   );
-};
-
-MovieCardPicture.propTypes = {
-  className: string.isRequired,
-  picture: shape({
-    src: string.isRequired,
-    alt: string.isRequired,
-    width: string,
-    height: string,
-  }),
-  onImgClick: func,
 };
 
 export default MovieCardPicture;

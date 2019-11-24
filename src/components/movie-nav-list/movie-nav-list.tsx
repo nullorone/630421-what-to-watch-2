@@ -1,15 +1,30 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import MovieNavItem from "../movie-nav-item/movie-nav-item";
 import {comments} from "../../mocks/comments";
 import MovieTabReviews from "../movie-tab-reviews/movie-tab-reviews";
 import MovieTabOverview from "../movie-tab-overview/movie-tab-overview";
 import MovieTabDetails from "../movie-tab-details/movie-tab-details";
 import {MovieNavTabs} from "../../constants";
+import {Film, Item, Image, Video} from "../../types";
+import {Subtract} from "utility-types";
 
-const {arrayOf, shape, string, bool, number, func} = PropTypes;
+interface MovieNavListProps {
+  navItems: Item[];
+  clickedFilm: Film;
+  activeItem: string;
+  onItemClick: () => void;
+}
 
-const getTabDescription = (film, activeTab) => {
+interface SubtractProps {
+  id: number;
+  name: string;
+  image: Image;
+  backgroundColor: string;
+  video: Video;
+  isFavorite: boolean;
+}
+
+const getTabDescription = (film: Subtract<Film, SubtractProps>, activeTab: string): JSX.Element | null => {
   const {
     rating,
     scoresCount,
@@ -49,7 +64,7 @@ const getTabDescription = (film, activeTab) => {
   }
 };
 
-const MovieNavList = (props) => {
+const MovieNavList: React.FC<MovieNavListProps> = (props) => {
   const {navItems, activeItem, onItemClick, clickedFilm} = props;
 
   return (
@@ -74,31 +89,6 @@ const MovieNavList = (props) => {
       {getTabDescription(clickedFilm, activeItem)}
     </>
   );
-};
-
-MovieNavList.propTypes = {
-  navItems: arrayOf(
-      shape({
-        active: bool.isRequired,
-        text: string.isRequired,
-      })
-  ),
-  clickedFilm: shape({
-    name: string.isRequired,
-    image: shape({
-      poster: string.isRequired,
-      posterAlt: string.isRequired,
-      background: string.isRequired,
-      backgroundAlt: string.isRequired,
-    }),
-    director: string.isRequired,
-    starring: arrayOf(string.isRequired),
-    runTime: number.isRequired,
-    genre: string.isRequired,
-    released: number.isRequired,
-  }),
-  activeItem: string.isRequired,
-  onItemClick: func.isRequired,
 };
 
 export default MovieNavList;
