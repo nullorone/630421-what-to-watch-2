@@ -5,6 +5,8 @@ import GenreList from "../genre-list/genre-list";
 import IconsWrapper from "../icons-wrapper/icons-wrapper";
 import Logo from "../logo/logo";
 import MovieCard from "../movie-card/movie-card";
+import withChangeItem from "../../hocs/with-change-item/with-change-item";
+import withAddItemButton from "../../hocs/with-add-item-button/with-add-item-button";
 
 const {string, shape, number, bool, arrayOf, func} = PropTypes;
 
@@ -17,6 +19,8 @@ const Main = (props) => {
     selectedGenre,
     onSelectedGenreClick,
   } = props;
+
+  const MovieCardSmallListWrapped = withAddItemButton(withChangeItem(MovieCardSmallList));
 
   return (
     <>
@@ -36,7 +40,7 @@ const Main = (props) => {
             selectedGenre={selectedGenre}
             onGenreClick={onSelectedGenreClick}/>}
 
-          {films && <MovieCardSmallList films={films}/>}
+          <MovieCardSmallListWrapped films={films}/>
         </section>
 
         <footer className="page-footer">
