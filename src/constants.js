@@ -75,3 +75,9 @@ export const ActionType = {
   RESET: `RESET`,
   FILTERED_FILMS: `FILTERED_FILMS`,
 };
+
+export const MovieNavTabs = {
+  OVERVIEW: `overview`,
+  DETAILS: `details`,
+  REVIEWS: `reviews`,
+};

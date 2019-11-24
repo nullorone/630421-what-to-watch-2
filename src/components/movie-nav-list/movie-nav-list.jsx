@@ -1,95 +1,80 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import MovieNavItem from "../movie-nav-item/movie-nav-item";
 import {comments} from "../../mocks/comments";
 import MovieTabReviews from "../movie-tab-reviews/movie-tab-reviews";
 import MovieTabOverview from "../movie-tab-overview/movie-tab-overview";
 import MovieTabDetails from "../movie-tab-details/movie-tab-details";
+import {MovieNavTabs} from "../../constants";
 
-const {arrayOf, shape, string, bool, number} = PropTypes;
+const {arrayOf, shape, string, bool, number, func} = PropTypes;
 
-class MovieNavList extends PureComponent {
-  constructor(props) {
-    super(props);
+const getTabDescription = (film, activeTab) => {
+  const {
+    rating,
+    scoresCount,
+    description,
+    director,
+    starring,
+    runTime,
+    genre,
+    released
+  } = film;
 
-    this._handleMovieNavListClick = this._handleMovieNavListClick.bind(this);
-
-    this.state = {
-      tab: `details`,
-    };
+  switch (activeTab) {
+    case (MovieNavTabs.OVERVIEW):
+      return (
+        <MovieTabOverview
+          rating={rating}
+          scoresCount={scoresCount}
+          description={description}
+          director={director}
+          starring={starring}
+        />
+      );
+    case (MovieNavTabs.DETAILS):
+      return (
+        <MovieTabDetails
+          director={director}
+          runTime={runTime}
+          genre={genre}
+          released={released}
+          starring={starring}
+        />
+      );
+    case (MovieNavTabs.REVIEWS):
+      return <MovieTabReviews comments={comments}/>;
+    default:
+      return null;
   }
+};
 
-  render() {
-    const {navItems} = this.props;
+const MovieNavList = (props) => {
+  const {navItems, activeItem, onItemClick, clickedFilm} = props;
 
-    return (
-      <>
-        <nav className="movie-nav movie-card__nav">
-          <ul className="movie-nav__list">
-            {navItems
-              .map((item, index) => {
-                const itemKey = `movie-nav-item-${index + 1}`;
-                const isActiveTab = item.text.toLowerCase() === this.state.tab;
+  return (
+    <>
+      <nav className="movie-nav movie-card__nav">
+        <ul className="movie-nav__list">
+          {navItems
+            .map((item, index) => {
+              const itemKey = `movie-nav-item-${index + 1}`;
+              const isActiveTab = item.text.toLowerCase() === activeItem;
 
-                return (
-                  <MovieNavItem
-                    key={itemKey}
-                    onTabClick={this._handleMovieNavListClick}
-                    active={isActiveTab}
-                    text={item.text}/>
-                );
-              })}
-          </ul>
-        </nav>
-        {this._getTabDescription()}
-      </>
-    );
-  }
-
-  _getTabDescription() {
-    const {
-      rating,
-      scoresCount,
-      description,
-      director,
-      starring,
-      runTime,
-      genre,
-      released
-    } = this.props.clickedFilm;
-
-    switch (this.state.tab) {
-      case (`overview`):
-        return (
-          <MovieTabOverview
-            rating={rating}
-            scoresCount={scoresCount}
-            description={description}
-            director={director}
-            starring={starring}
-          />
-        );
-      case (`details`):
-        return (
-          <MovieTabDetails
-            director={director}
-            runTime={runTime}
-            genre={genre}
-            released={released}
-            starring={starring}
-          />
-        );
-      case (`reviews`):
-        return <MovieTabReviews comments={comments}/>;
-      default:
-        return null;
-    }
-  }
-
-  _handleMovieNavListClick(tabName) {
-    this.setState({tab: tabName});
-  }
-}
+              return (
+                <MovieNavItem
+                  key={itemKey}
+                  onTabClick={onItemClick}
+                  active={isActiveTab}
+                  text={item.text}/>
+              );
+            })}
+        </ul>
+      </nav>
+      {getTabDescription(clickedFilm, activeItem)}
+    </>
+  );
+};
 
 MovieNavList.propTypes = {
   navItems: arrayOf(
@@ -112,6 +97,8 @@ MovieNavList.propTypes = {
     genre: string.isRequired,
     released: number.isRequired,
   }),
+  activeItem: string.isRequired,
+  onItemClick: func.isRequired,
 };
 
 export default MovieNavList;

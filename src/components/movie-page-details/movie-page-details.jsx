@@ -13,6 +13,8 @@ import {
 import MovieCardDescription from "../movie-card-description/movie-card-description";
 import MovieCardButtonList from "../movie-card-button-list/movie-card-button-list";
 import MovieNavList from "../movie-nav-list/movie-nav-list";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
+import withChangeItem from "../../hocs/with-change-item/with-change-item";
 
 
 const {arrayOf, string, shape, number, bool} = PropTypes;
@@ -35,6 +37,9 @@ const MoviePageDetails = (props) => {
     genre,
     released,
   } = clickedFilm;
+
+  const MovieNavListWrapped = withActiveItem(MovieNavList);
+  const MovieCardSmallListWrapped = withChangeItem(MovieCardSmallList);
 
   return (
     <>
@@ -83,7 +88,7 @@ const MoviePageDetails = (props) => {
               }}/>
 
             <div className="movie-card__desc">
-              <MovieNavList clickedFilm={clickedFilm} navItems={MOVIE_NAV_ITEMS}/>
+              <MovieNavListWrapped clickedFilm={clickedFilm} navItems={MOVIE_NAV_ITEMS}/>
             </div>
           </div>
         </div>
@@ -92,8 +97,7 @@ const MoviePageDetails = (props) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
-          {films && <MovieCardSmallList films={films}/>}
+          <MovieCardSmallListWrapped films={films}/>
         </section>
 
         <footer className="page-footer">

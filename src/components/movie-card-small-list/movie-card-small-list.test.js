@@ -34,6 +34,9 @@ describe(`Make snapshot`, () => {
       released: Value.FULL,
       isFavorite: false,
     }],
+    itemCurrentIndex: Value.FULL,
+    onItemMouseEnter: jest.fn(),
+    onItemMouseLeave: jest.fn(),
   };
 
   it(`Get snapshot component`, () => {

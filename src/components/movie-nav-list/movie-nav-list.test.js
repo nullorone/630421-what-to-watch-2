@@ -23,6 +23,8 @@ describe(`Make snapshot`, () => {
       genre: `Life`,
       released: Value.FULL,
     },
+    activeItem: `Describe`,
+    onItemClick: jest.fn(),
   };
 
   it(`Get snapshot component`, () => {
