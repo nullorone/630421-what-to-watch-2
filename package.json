@@ -9,7 +9,7 @@
     ]
   },
   "scripts": {
-    "eslint": "eslint --ext .jsx --ext .js src/",
+    "eslint": "eslint --ext .jsx --ext .js --ext .tsx --ext .ts src/",
     "test": "npm run eslint && jest",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open",
@@ -19,7 +19,10 @@
     "@babel/core": "7.6.4",
     "@babel/preset-env": "7.6.3",
     "@babel/preset-react": "7.6.3",
+    "@babel/preset-typescript": "7.7.4",
     "@types/react": "16.9.13",
+    "@typescript-eslint/eslint-plugin": "2.8.0",
+    "@typescript-eslint/parser": "2.8.0",
     "babel-jest": "24.9.0",
     "babel-loader": "8.0.6",
     "enzyme": "3.10.0",
@@ -42,7 +45,6 @@
     "node": "10"
   },
   "dependencies": {
-    "prop-types": "15.7.2",
     "react": "16.10.2",
     "react-dom": "16.10.2",
     "react-redux": "7.1.3",
