@@ -4,8 +4,10 @@ import {ActionCreator} from "../../reducer";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Main from "../main/main";
 import MoviePageDetails from "../movie-page-details/movie-page-details";
+import withVideoControls from "../../hocs/with-video-controls/with-video-controls";
 import {AmountSimilarFilms, Value} from "../../constants";
 import {Film} from "../../types";
+import VideoPlayer from "../video-player/video-player";
 
 interface AppProps {
   films: Film[];
@@ -40,6 +42,15 @@ const App: React.FC<AppProps> = (props) => {
 
   const getSimilarFilms = (clickedFilm: Film): Film[] => films.filter((film) => film.genre === clickedFilm.genre);
 
+  const VideoPlayerWrapped = withVideoControls(VideoPlayer);
+  const videoProps = {
+    link: {
+      mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    },
+    poster: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  };
+
   return (
     <Router>
       <Switch>
@@ -61,6 +72,15 @@ const App: React.FC<AppProps> = (props) => {
               clickedFilm={clickedFilm}
               films={similarFilms}
               icons={iconNames}/>
+          );
+        }}/>
+        <Route path="/player" render={(): JSX.Element => {
+          return (
+            <VideoPlayerWrapped
+              video={{
+                link: videoProps.link,
+                poster: videoProps.poster,
+              }}/>
           );
         }}/>
       </Switch>

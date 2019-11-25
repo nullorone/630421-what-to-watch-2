@@ -3,17 +3,28 @@ import {Button} from "../../types";
 
 const MovieCardButton: React.FC<Button> = (props) => {
   const {
+    className,
     iconName,
     classModifier,
     text,
+    size,
+    onButtonClick,
   } = props;
 
-  const buttonClassName = `btn ${classModifier && `btn--${classModifier}`} movie-card__button`;
+  const width = size ? size.width : 19;
+  const height = size ? size.height : 19;
+  const buttonClassName = className || `btn ${classModifier && `btn--${classModifier}`} movie-card__button`;
   const useIcon = `#${iconName}`;
 
   return (
-    <button className={buttonClassName} type="button">
-      <svg viewBox="0 0 19 19" width="19" height="19">
+    <button
+      className={buttonClassName}
+      type="button"
+      onClick={(evt): void => {
+        evt.preventDefault();
+        onButtonClick();
+      }}>
+      <svg viewBox={`0 0 ${width} ${height}`} width={`${width}`} height={`${height}`}>
         <use xlinkHref={useIcon} />
       </svg>
       <span>{text}</span>
