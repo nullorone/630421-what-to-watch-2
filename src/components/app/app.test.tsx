@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
 import {App} from "./app";
 import {EMPTY_STRING, Value} from "../../constants";
@@ -48,8 +48,10 @@ describe(`Make snapshot`, () => {
       },
       backgroundColor: EMPTY_STRING,
       video: {
-        link: EMPTY_STRING,
-        preview: EMPTY_STRING,
+        link: {
+          mp4: EMPTY_STRING,
+        },
+        poster: EMPTY_STRING,
       },
       description: EMPTY_STRING,
       rating: Value.FULL,
@@ -63,7 +65,7 @@ describe(`Make snapshot`, () => {
     },
     genre: EMPTY_STRING,
     genres: [`ECMA`, `CSS`],
-    icons: [`PAUSE`],
+    iconNames: [`PAUSE`],
     onGenreClick: jest.fn(),
   };
 

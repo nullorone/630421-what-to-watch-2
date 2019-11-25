@@ -2,6 +2,46 @@
 
 exports[`Make snapshot Get snapshot component 1`] = `
 Array [
+  <div
+    className="visually-hidden"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
+      <symbol
+        id="pause"
+        viewBox="0 0 14 21"
+      >
+        <title>
+          Artboard
+        </title>
+        <desc>
+          Created with Sketch.
+        </desc>
+        <g
+          fill="none"
+          fillRule="evenodd"
+          id="Artboard"
+          stroke="none"
+          strokeWidth="1"
+        >
+          <polygon
+            fill="#EEE5B5"
+            fillRule="nonzero"
+            id="Line"
+            points="0 -1.11910481e-13 4 -1.11910481e-13 4 21 0 21"
+          />
+          <polygon
+            fill="#EEE5B5"
+            fillRule="nonzero"
+            id="Line"
+            points="10 -1.11910481e-13 14 -1.11910481e-13 14 21 10 21"
+          />
+        </g>
+      </symbol>
+    </svg>
+  </div>,
   <section
     className="movie-card"
   >
