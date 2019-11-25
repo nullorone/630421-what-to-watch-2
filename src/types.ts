@@ -23,7 +23,7 @@ export interface Image {
 export interface Video {
   link: {
     mp4: string;
-    webm: string;
+    webm?: string;
   };
   poster: string;
 }
@@ -51,7 +51,13 @@ export interface Item {
 }
 
 export interface Button {
-  iconName: string;
-  classModifier: string;
+  className?: string;
+  iconName?: string;
+  classModifier?: string;
   text: string;
+  size?: {
+    width?: number;
+    height?: number;
+  };
+  onButtonClick?: () => void;
 }
