@@ -1,22 +1,13 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from "../../reducer";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import Main from "../main/main";
+import {Router, Route, Switch} from "react-router-dom";
+import {createBrowserHistory} from "history";
 import MoviePageDetails from "../movie-page-details/movie-page-details";
-import withVideoControls from "../../hocs/with-video-controls/with-video-controls";
 import {AmountSimilarFilms, Value} from "../../constants";
 import {Film} from "../../types";
-import VideoPlayer from "../video-player/video-player";
-
-interface AppProps {
-  films: Film[];
-  promo: Film;
-  genre: string;
-  genres: string[];
-  iconNames: string[];
-  onGenreClick: () => void;
-}
+import withTogglePlayer from "../../hocs/with-toggle-player/with-toggle-player";
+import Main from "../main/main";
 
 interface StateFromProps {
   genre: string;
@@ -28,59 +19,50 @@ interface DispatchFromProps {
   onGenreClick: (genre: string) => void;
 }
 
+
+interface AppProps extends StateFromProps {
+  promo: Film;
+  onGenreClick: () => void;
+}
+
 const App: React.FC<AppProps> = (props) => {
   const {
     films,
     promo,
     genre,
     genres,
-    iconNames,
     onGenreClick
   } = props;
+
+  const history = createBrowserHistory();
 
   const getClickedFilm = (filmId: number): Film => films.find((film) => film.id === Number(filmId));
 
   const getSimilarFilms = (clickedFilm: Film): Film[] => films.filter((film) => film.genre === clickedFilm.genre);
 
-  const VideoPlayerWrapped = withVideoControls(VideoPlayer);
-  const videoProps = {
-    link: {
-      mp4: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-      webm: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    },
-    poster: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-  };
+  const MainWrapped = withTogglePlayer(Main);
+  const MoviePageDetailsWrapped = withTogglePlayer(MoviePageDetails);
 
   return (
-    <Router>
+    <Router history={history}>
       <Switch>
         <Route exact path="/" render={(): JSX.Element => (
-          <Main
+          <MainWrapped
             promo={promo}
             films={films}
             genres={genres}
             selectedGenre={genre}
-            onSelectedGenreClick={onGenreClick}
-            icons={iconNames}/>
+            onSelectedGenreClick={onGenreClick}/>
         )}/>
-        <Route path="/films/:id" render={({match}): JSX.Element => {
+        <Route exact path="/films/:id" render={({match}): JSX.Element => {
           const clickedFilm = getClickedFilm(match.params.id);
           const similarFilms = getSimilarFilms(clickedFilm).slice(Value.EMPTY, AmountSimilarFilms.ON_PAGE_FILM);
 
           return (
-            <MoviePageDetails
+            <MoviePageDetailsWrapped
               clickedFilm={clickedFilm}
               films={similarFilms}
-              icons={iconNames}/>
-          );
-        }}/>
-        <Route path="/player" render={(): JSX.Element => {
-          return (
-            <VideoPlayerWrapped
-              video={{
-                link: videoProps.link,
-                poster: videoProps.poster,
-              }}/>
+              promo={clickedFilm}/>
           );
         }}/>
       </Switch>
