@@ -36,12 +36,6 @@ exports[`Make snapshot Get snapshot component 1`] = `
       id="pause"
       viewBox="0 0 14 21"
     >
-      <title>
-        Artboard
-      </title>
-      <desc>
-        Created with Sketch.
-      </desc>
       <g
         fill="none"
         fillRule="evenodd"
