@@ -63,6 +63,8 @@ export const ActionType = {
   SELECT_GENRE: `SELECT_GENRE`,
   RESET: `RESET`,
   FILTERED_FILMS: `FILTERED_FILMS`,
+  LOAD_FILMS: `LOAD_FILMS`,
+  GENRES: `GENRES`,
 };
 
 export const MovieNavTabs = {

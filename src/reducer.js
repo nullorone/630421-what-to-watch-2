@@ -1,16 +1,15 @@
 import {films} from "./mocks/films";
-import {ActionType} from "./constants";
+import {ActionType, Url} from "./constants";
+import createApi from "src/api";
 
 const getGenres = (filmsOnPage) => {
   return new Set(filmsOnPage.map((film) => film.genre));
 };
 
-const genres = [`All genres`, ...getGenres(films)];
-
 const initState = {
   genre: `All genres`,
   films,
-  genres,
+  genres: ``,
 };
 
 const ActionCreator = {
@@ -24,6 +23,14 @@ const ActionCreator = {
   filteredFilms: (genre) => ({
     type: ActionType.FILTERED_FILMS,
     payload: initState.films.filter((film) => film.genre === genre)
+  }),
+  loadFilms: (loadedFilms) => ({
+    type: ActionType.LOAD_FILMS,
+    payload: loadedFilms,
+  }),
+  uniqueGenres: () => ({
+    type: ActionType.GENRES,
+    payload: [initState.genre, ...getGenres(initState.films)],
   }),
 };
 
@@ -39,13 +46,32 @@ const reducer = (state = initState, action) => {
       return Object.assign({}, state, {
         films: action.payload,
       });
+    case (ActionType.LOAD_FILMS):
+      return Object.assign({}, state, {
+        films: action.payload,
+      });
+    case (ActionType.GENRES):
+      return Object.assign({}, state, {
+        genres: action.payload,
+      });
   }
 
   return state;
+};
+
+const Operation = {
+  loadFilms: () => (dispatch) => {
+    return createApi(dispatch)
+      .get(Url.FILMS)
+      .then((response) => {
+        return dispatch(ActionCreator.loadFilms(response.data));
+      });
+  }
 };
 
 export {
   initState,
   ActionCreator,
   reducer,
+  Operation,
 };
