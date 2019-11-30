@@ -9,7 +9,7 @@
     ]
   },
   "scripts": {
-    "eslint": "eslint --ext .tsx --ext .ts src/",
+    "eslint": "eslint src/**/*.js src/**/*.ts src/**/*.tsx",
     "test": "npm run eslint && jest",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open",
