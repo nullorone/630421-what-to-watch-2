@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Make snapshot Get snapshot component 1`] = `
+<symbol
+  id="pause"
+  viewBox="0 0 14 21"
+>
+  <g
+    fill="none"
+    fillRule="evenodd"
+    id="Artboard"
+    stroke="none"
+    strokeWidth="1"
+  >
+    <polygon
+      fill="#EEE5B5"
+      fillRule="nonzero"
+      id="Line"
+      points="0 -1.11910481e-13 4 -1.11910481e-13 4 21 0 21"
+    />
+    <polygon
+      fill="#EEE5B5"
+      fillRule="nonzero"
+      id="Line"
+      points="10 -1.11910481e-13 14 -1.11910481e-13 14 21 10 21"
+    />
+  </g>
+</symbol>
+`;

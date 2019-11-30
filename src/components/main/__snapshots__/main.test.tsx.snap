@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Make snapshot Render main screen 1`] = `
+Array [
+  <IconsWrapper
+    iconNames={
+      Array [
+        "add",
+        "fullscreen",
+        "in_list",
+        "pause",
+        "play",
+      ]
+    }
+  />,
+  <MovieCard
+    backgroundColor=""
+    description=""
+    director="Keks"
+    genre=""
+    id={0}
+    image={
+      Object {
+        "background": "",
+        "backgroundAlt": "",
+        "poster": "",
+        "posterAlt": "1",
+        "preview": "",
+        "previewAlt": "",
+      }
+    }
+    isFavorite={true}
+    name="Keks"
+    rating={1}
+    released={1}
+    runTime={0}
+    scoresCount={1}
+    starring={
+      Array [
+        "Me",
+        "You",
+        "They",
+      ]
+    }
+    video={
+      Object {
+        "link": "",
+        "preview": "",
+      }
+    }
+  />,
+  <div
+    className="page-content"
+  >
+    <section
+      className="catalog"
+    >
+      <h2
+        className="catalog__title visually-hidden"
+      >
+        Catalog
+      </h2>
+      <GenreList
+        genres={
+          Array [
+            "ECMA",
+            "CSS",
+          ]
+        }
+        onGenreClick={[MockFunction]}
+        selectedGenre=""
+      />
+      <MovieCardSmallList
+        films={
+          Array [
+            Object {
+              "backgroundColor": "",
+              "description": "",
+              "director": "Keks",
+              "genre": "",
+              "id": 0,
+              "image": Object {
+                "background": "",
+                "backgroundAlt": "",
+                "poster": "",
+                "posterAlt": "1",
+                "preview": "",
+                "previewAlt": "",
+              },
+              "isFavorite": true,
+              "name": "Keks",
+              "rating": 1,
+              "released": 1,
+              "runTime": 0,
+              "scoresCount": 1,
+              "starring": Array [
+                "Me",
+                "You",
+                "They",
+              ],
+              "video": Object {
+                "link": Object {
+                  "mp4": "",
+                  "webm": "",
+                },
+                "poster": "",
+              },
+            },
+          ]
+        }
+        itemCurrentIndex={null}
+        onItemMouseEnter={[Function]}
+        onItemMouseLeave={[Function]}
+      />
+    </section>
+    <footer
+      className="page-footer"
+    >
+      <Logo
+        light={true}
+      />
+      <div
+        className="copyright"
+      >
+        <p>
+          © 2019 What to watch Ltd.
+        </p>
+      </div>
+    </footer>
+  </div>,
+]
+`;
