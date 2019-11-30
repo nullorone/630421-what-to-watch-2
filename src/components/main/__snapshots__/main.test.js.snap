@@ -5,7 +5,11 @@ Array [
   <IconsWrapper
     iconNames={
       Array [
-        "PAUSE",
+        "add",
+        "fullscreen",
+        "in_list",
+        "pause",
+        "play",
       ]
     }
   />,
@@ -104,6 +108,7 @@ Array [
             },
           ]
         }
+        itemCurrentIndex={null}
         onItemMouseEnter={[Function]}
         onItemMouseLeave={[Function]}
       />

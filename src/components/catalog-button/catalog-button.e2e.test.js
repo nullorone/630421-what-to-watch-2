@@ -13,7 +13,7 @@ describe(`Test cases CatalogButton component`, () =>{
         <CatalogButton {...initProps}/>
     );
 
-    wrapper.find(`button`).simulate(`click`);
+    wrapper.find(`button`).simulate(`click`, {preventDefault() {}});
 
     expect(initProps.onButtonClick).toHaveBeenCalledTimes(Value.FULL);
   });
