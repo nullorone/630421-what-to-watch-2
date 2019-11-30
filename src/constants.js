@@ -72,3 +72,10 @@ export const MovieNavTabs = {
 };
 
 export const MILLISECONDS_IN_SECOND = 1000;
+
+export const Url = {
+  BASE: `https://htmlacademy-react-2.appspot.com/wtw`,
+  FILMS: `/films`,
+};
+
+export const API_TIMEOUT = 5000;
