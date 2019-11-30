@@ -5,28 +5,28 @@ import UserBlock from "../user-block/user-block";
 import MovieCardPicture from "../movie-card-picture/movie-card-picture";
 import MovieCardSmallList from "../movie-card-small-list/movie-card-small-list";
 import {
-  MOVIE_CARD_BUTTONS,
+  iconNames,
   Img,
   MOVIE_NAV_ITEMS,
 } from "../../constants";
 import MovieCardDescription from "../movie-card-description/movie-card-description";
-import MovieCardButtonList from "../movie-card-button-list/movie-card-button-list";
 import MovieNavList from "../movie-nav-list/movie-nav-list";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import withChangeItem from "../../hocs/with-change-item/with-change-item";
 import {Film} from "../../types";
+import MovieCardButton from "../movie-card-button/movie-card-button";
 
 interface MoviePageDetailsProps {
   clickedFilm: Film;
   films: Film[];
-  icons: string[];
+  onButtonClick?: () => void;
 }
 
 const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
   const {
     clickedFilm,
     films,
-    icons,
+    onButtonClick,
   } = props;
 
   const {
@@ -46,7 +46,7 @@ const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
 
   return (
     <>
-      {icons && <IconsWrapper iconNames={icons}/>}
+      <IconsWrapper iconNames={iconNames}/>
 
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
@@ -71,9 +71,22 @@ const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
               genre={genre}
               year={released}
             >
-              <MovieCardButtonList buttons={MOVIE_CARD_BUTTONS}>
+              <div className="movie-card__buttons">
+                <MovieCardButton
+                  text={`Play`}
+                  iconName={`play-s`}
+                  classModifier={`play`}
+                  onButtonClick={onButtonClick}
+                />
+
+                <MovieCardButton
+                  text={`My list`}
+                  iconName={`add`}
+                  classModifier={`list`}
+                />
+
                 <a href="add-review.html" className="btn movie-card__button">Add review</a>
-              </MovieCardButtonList>
+              </div>
             </MovieCardDescription>
           </div>
         </div>
