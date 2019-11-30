@@ -11,7 +11,7 @@ interface SubtractProps {
   onItemClick: () => void;
 }
 
-const withActiveItem = (Component) => {
+const withActiveItem = (Component)=> {
   type ComponentProps = React.ComponentProps<typeof Component>;
   type WithActiveItemProps = Subtract<ComponentProps, SubtractProps>
 
