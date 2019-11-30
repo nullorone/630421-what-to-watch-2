@@ -22,20 +22,7 @@ export const Img = {
   }
 };
 
-export const iconNames = [`add`, `fullscreen`, `in_list`, `pause`];
-
-export const MOVIE_CARD_BUTTONS = [
-  {
-    iconName: `play-s`,
-    classModifier: `play`,
-    text: `Play`,
-  },
-  {
-    iconName: `add`,
-    classModifier: `list`,
-    text: `My list`,
-  }
-];
+export const iconNames = [`add`, `fullscreen`, `in_list`, `pause`, `play`];
 
 export const MAX_TIME_LENGTH = 3;
 
@@ -68,6 +55,8 @@ export const AMOUNT_ADDED_FILMS = 20;
 
 export const MINUTES_IN_HOUR = 60;
 
+export const SECONDS_IN_MINUTE = 60;
+
 export const AMOUNT_COMMENT_IN_COL = 3;
 
 export const ActionType = {
@@ -81,3 +70,5 @@ export const MovieNavTabs = {
   DETAILS: `details`,
   REVIEWS: `reviews`,
 };
+
+export const MILLISECONDS_IN_SECOND = 1000;
