@@ -15,7 +15,7 @@ const Genre: React.FC<GenreProps> = (props) => {
       <a
         href="#"
         className="catalog__genres-link"
-        onClick={(evt) => {
+        onClick={(evt): void=> {
           evt.preventDefault();
           onGenreClick(genre);
         }}

@@ -34,7 +34,7 @@ const MovieCardSmall: React.FC<MovieCardSmallProps> = (props) => {
   return (
     <article
       className="small-movie-card catalog__movies-card"
-      onMouseEnter={() => onCardMouseEnter(id)}
+      onMouseEnter={(): void => onCardMouseEnter(id)}
       onMouseLeave={onCardMouseLeave}>
       {isPlaying
         ? <VideoPlayer video={video}/>
