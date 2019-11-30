@@ -3,7 +3,6 @@ import * as ReactDOM from 'react-dom';
 import App from './components/app/app';
 import {films} from './mocks/films';
 import {promo} from "./mocks/promo";
-import {iconNames} from "./constants";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import {reducer} from "./reducer";
@@ -13,7 +12,6 @@ declare const __REDUX_DEVTOOLS_EXTENSION__: () => any;
 const initData = {
   promo,
   films,
-  iconNames,
 };
 
 const init = (initialData) => {

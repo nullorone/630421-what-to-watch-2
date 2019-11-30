@@ -7,6 +7,7 @@ import MovieCard from "../movie-card/movie-card";
 import withChangeItem from "../../hocs/with-change-item/with-change-item";
 import withAddItemButton from "../../hocs/with-add-item-button/with-add-item-button";
 import {Film} from "../../types";
+import {iconNames} from "../../constants";
 
 interface MainProps {
   films: Film[];
@@ -14,7 +15,7 @@ interface MainProps {
   genres: string[];
   selectedGenre: string;
   onSelectedGenreClick: () => void;
-  icons: string[];
+  onButtonClick: () => void;
 }
 
 const Main: React.FC<MainProps> = (props) => {
@@ -22,18 +23,18 @@ const Main: React.FC<MainProps> = (props) => {
     films,
     promo,
     genres,
-    icons,
     selectedGenre,
     onSelectedGenreClick,
+    onButtonClick,
   } = props;
 
   const MovieCardSmallListWrapped = withAddItemButton(withChangeItem(MovieCardSmallList));
 
   return (
     <>
-      {icons && <IconsWrapper iconNames={icons}/>}
+      <IconsWrapper iconNames={iconNames}/>
 
-      <MovieCard {...promo}/>
+      <MovieCard {...promo} onPlayButtonClick={onButtonClick}/>
 
       <div className="page-content">
         <section className="catalog">
