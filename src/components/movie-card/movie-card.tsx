@@ -2,16 +2,18 @@ import * as React from "react";
 import MovieCardPicture from "../movie-card-picture/movie-card-picture";
 import Logo from "../logo/logo";
 import UserBlock from "../user-block/user-block";
-import {Img, MOVIE_CARD_BUTTONS} from "../../constants";
+import {Img} from "../../constants";
 import MovieCardDescription from "../movie-card-description/movie-card-description";
-import MovieCardButtonList from "../movie-card-button-list/movie-card-button-list";
 import {Image} from "../../types";
+import MovieCardButton from "../movie-card-button/movie-card-button";
 
 interface MovieCardProps {
+  id: number;
   name: string;
   image: Image;
   genre: string;
   released: number;
+  onPlayButtonClick?: () => void;
 }
 
 const MovieCard: React.FC<MovieCardProps> = (props) => {
@@ -25,6 +27,7 @@ const MovieCard: React.FC<MovieCardProps> = (props) => {
     },
     genre,
     released,
+    onPlayButtonClick,
   } = props;
 
   return (
@@ -60,7 +63,16 @@ const MovieCard: React.FC<MovieCardProps> = (props) => {
             genre={genre}
             year={released}
           >
-            <MovieCardButtonList buttons={MOVIE_CARD_BUTTONS}/>
+            <div className="movie-card__buttons">
+              <MovieCardButton
+                text={`Play`}
+                iconName={`play-s`}
+                classModifier={`play`}
+                onButtonClick={onPlayButtonClick}
+              />
+
+              <MovieCardButton text={`My list`} iconName={`add`} classModifier={`list`}/>
+            </div>
           </MovieCardDescription>
         </div>
       </div>
