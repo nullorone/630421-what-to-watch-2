@@ -22,7 +22,9 @@ const MovieCardButton: React.FC<Button> = (props) => {
       type="button"
       onClick={(evt): void => {
         evt.preventDefault();
-        onButtonClick();
+        if (onButtonClick) {
+          onButtonClick();
+        }
       }}>
       <svg viewBox={`0 0 ${width} ${height}`} width={`${width}`} height={`${height}`}>
         <use xlinkHref={useIcon} />
