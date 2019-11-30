@@ -3,6 +3,7 @@ import {Video} from "../../types";
 
 interface VideoPlayerProps {
   video: Video;
+  videoRef?: React.RefObject<HTMLVideoElement>;
   isMuted?: boolean;
 }
 
@@ -11,7 +12,7 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, null> {
 
   constructor(props) {
     super(props);
-    this._videoRef = React.createRef();
+    this._videoRef = this.props.videoRef ? this.props.videoRef : React.createRef();
   }
 
   public componentDidMount(): void {
