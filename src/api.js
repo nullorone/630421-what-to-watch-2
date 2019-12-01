@@ -1,9 +1,10 @@
 import axios from "axios";
-import {API_TIMEOUT, Status, Url} from "src/constants";
+import {API_TIMEOUT, Status, Url} from "./constants";
+import {ActionCreator} from "./reducer";
 
 const createApi = (dispatch) => {
   const api = axios.create({
-    baseUrl: Url.BASE,
+    baseURL: Url.BASE,
     timeout: API_TIMEOUT,
     withCredentials: true,
   });
@@ -12,7 +13,7 @@ const createApi = (dispatch) => {
 
   const onFail = (error) => {
     if (error.response.status === Status.AUTHORIZATION) {
-      dispatch();
+      dispatch(ActionCreator.requireAuthorization(true));
     }
 
     return error;

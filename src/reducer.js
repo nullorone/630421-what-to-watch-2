@@ -1,6 +1,4 @@
-import {films} from "./mocks/films";
-import {ActionType, Url} from "./constants";
-import createApi from "src/api";
+import {ActionType} from "./constants";
 
 const getGenres = (filmsOnPage) => {
   return new Set(filmsOnPage.map((film) => film.genre));
@@ -8,8 +6,11 @@ const getGenres = (filmsOnPage) => {
 
 const initState = {
   genre: `All genres`,
-  films,
+  films: [],
+  filteredFilms: [],
+  promo: {},
   genres: ``,
+  isAuthorization: true,
 };
 
 const ActionCreator = {
@@ -20,17 +21,27 @@ const ActionCreator = {
   reset: () => ({
     type: ActionType.RESET,
   }),
-  filteredFilms: (genre) => ({
+  filterFilms: (genre, stateFilms) => ({
     type: ActionType.FILTERED_FILMS,
-    payload: initState.films.filter((film) => film.genre === genre)
+    payload: genre === initState.genre
+      ? stateFilms.slice()
+      : stateFilms.slice().filter((film) => film.genre === genre)
   }),
   loadFilms: (loadedFilms) => ({
     type: ActionType.LOAD_FILMS,
     payload: loadedFilms,
   }),
-  uniqueGenres: () => ({
+  loadPromo: (loadedPromo) => ({
+    type: ActionType.LOAD_PROMO,
+    payload: loadedPromo,
+  }),
+  uniqueGenres: (loadedFilms) => ({
     type: ActionType.GENRES,
-    payload: [initState.genre, ...getGenres(initState.films)],
+    payload: [initState.genre, ...getGenres(loadedFilms)],
+  }),
+  requireAuthorization: (status) => ({
+    type: ActionType.AUTHORIZATION,
+    payload: status
   }),
 };
 
@@ -44,34 +55,31 @@ const reducer = (state = initState, action) => {
       return Object.assign({}, initState);
     case (ActionType.FILTERED_FILMS):
       return Object.assign({}, state, {
-        films: action.payload,
+        filteredFilms: action.payload,
       });
     case (ActionType.LOAD_FILMS):
       return Object.assign({}, state, {
         films: action.payload,
       });
+    case (ActionType.LOAD_PROMO):
+      return Object.assign({}, state, {
+        promo: action.payload,
+      });
     case (ActionType.GENRES):
       return Object.assign({}, state, {
         genres: action.payload,
+      });
+    case (ActionType.AUTHORIZATION):
+      return Object.assign({}, state, {
+        isAuthorization: action.payload,
       });
   }
 
   return state;
 };
 
-const Operation = {
-  loadFilms: () => (dispatch) => {
-    return createApi(dispatch)
-      .get(Url.FILMS)
-      .then((response) => {
-        return dispatch(ActionCreator.loadFilms(response.data));
-      });
-  }
-};
-
 export {
   initState,
   ActionCreator,
   reducer,
-  Operation,
 };

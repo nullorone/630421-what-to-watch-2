@@ -70,8 +70,11 @@ export default class Adapter {
       },
       backgroundColor: this._backgroundColor,
       video: {
-        link: this._video.link,
-        preview: this._video.preview,
+        link: {
+          mp4: this._video.link,
+          webm: this._video.preview,
+        },
+        poster: this._image.poster,
       },
       description: this._description,
       rating: this._rating,

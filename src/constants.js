@@ -64,7 +64,10 @@ export const ActionType = {
   RESET: `RESET`,
   FILTERED_FILMS: `FILTERED_FILMS`,
   LOAD_FILMS: `LOAD_FILMS`,
+  LOAD_PROMO: `LOAD_PROMO`,
   GENRES: `GENRES`,
+  AUTHORIZATION: `AUTHORIZATION`,
+  LOADING: `LOADING`,
 };
 
 export const MovieNavTabs = {
@@ -78,10 +81,12 @@ export const MILLISECONDS_IN_SECOND = 1000;
 export const Url = {
   BASE: `https://htmlacademy-react-2.appspot.com/wtw`,
   FILMS: `/films`,
+  PROMO: `/films/promo`,
 };
 
 export const API_TIMEOUT = 5000;
 
 export const Status = {
   AUTHORIZATION: 403,
+  SUCCESS: 200,
 };

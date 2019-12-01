@@ -1,13 +1,21 @@
 import * as React from "react";
+import {connect} from "react-redux";
+import {Film} from "../../types";
+import {Assign} from "utility-types";
+import store from "../../store";
 
 interface GenreProps {
   genre: string;
   isSelected: boolean;
-  onGenreClick: (genre: string) => void;
+  onGenreClick: (genre: string, films: Film[]) => void;
 }
 
-const Genre: React.FC<GenreProps> = (props) => {
-  const {genre, isSelected, onGenreClick} = props;
+interface StateFromProps {
+  films: Film[];
+}
+
+const Genre: React.FC<Assign<GenreProps, StateFromProps>> = (props) => {
+  const {genre, films, isSelected, onGenreClick} = props;
   const activeClass = isSelected ? `catalog__genres-item--active` : ``;
 
   return (
@@ -17,7 +25,8 @@ const Genre: React.FC<GenreProps> = (props) => {
         className="catalog__genres-link"
         onClick={(evt): void=> {
           evt.preventDefault();
-          onGenreClick(genre);
+          const isAllGenres = genre === `All genres` ? films : store.getState().films;
+          onGenreClick(genre, isAllGenres);
         }}
       >
         {genre}
@@ -27,4 +36,11 @@ const Genre: React.FC<GenreProps> = (props) => {
 
 };
 
-export default Genre;
+
+const mapStateToProps = (state): StateFromProps => Object.assign({}, {
+  films: state.films,
+});
+
+export {Genre};
+
+export default connect<StateFromProps, null, void>(mapStateToProps)(Genre);

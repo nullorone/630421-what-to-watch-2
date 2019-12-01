@@ -1,7 +1,9 @@
-import {reducer, initState, ActionCreator} from "./reducer";
-import {ActionType, Value} from "./constants";
-
-const FANTASY_GENRE = `Fantasy`;
+import {reducer, initState} from "./reducer";
+import {ActionType, Status, Url, Value} from "./constants";
+import MockAdapter from "axios-mock-adapter";
+import createApi from "./api";
+import Operation from "./operation";
+import Adapter from "./adapter";
 
 const lastFilm = initState.films[initState.films.length - Value.FULL];
 
@@ -30,15 +32,53 @@ describe(`Test actions`, () => {
       payload: [lastFilm]
     }))
       .toEqual(Object.assign({}, initState, {
-        films: [lastFilm]
+        filteredFilms: [lastFilm]
       }));
   });
 
-  it(`Filter films of ActionCreator`, () => {
-    expect(ActionCreator.filteredFilms(FANTASY_GENRE))
-      .toEqual({
-        type: ActionType.FILTERED_FILMS,
-        payload: initState.films.filter((film) => film.genre === FANTASY_GENRE)
+  it(`Get all films`, () => {
+    const dispatch = jest.fn();
+    const api = createApi(dispatch);
+    const mockApi = new MockAdapter(api);
+    const loadFilms = Operation.loadFilms();
+    const {genre} = [...Adapter.parseFilms([{fake: true}])];
+
+    mockApi
+      .onGet(Url.FILMS)
+      .reply(Status.SUCCESS, [{fake: true}]);
+
+    return loadFilms(dispatch, jest.fn(), api)
+      .then(() => {
+        expect(dispatch).toBeCalledTimes(2);
+        expect(dispatch).nthCalledWith(1, {
+          type: ActionType.LOAD_FILMS,
+          payload: Adapter.parseFilms([{fake: true}]),
+        });
+        expect(dispatch).nthCalledWith(2, {
+          type: ActionType.GENRES,
+          payload: [initState.genre, genre],
+        },
+        );
+      });
+  });
+
+  it(`Get promo`, () => {
+    const dispatch = jest.fn();
+    const api = createApi(dispatch);
+    const mockApi = new MockAdapter(api);
+    const loadPromo = Operation.loadPromo();
+
+    mockApi
+      .onGet(Url.PROMO)
+      .reply(Status.SUCCESS, [{fake: true}]);
+
+    return loadPromo(dispatch, jest.fn(), api)
+      .then(() => {
+        expect(dispatch).toBeCalledTimes(Value.FULL);
+        expect(dispatch).nthCalledWith(1, {
+          type: ActionType.LOAD_PROMO,
+          payload: Adapter.parseFilm([{fake: true}]),
+        });
       });
   });
 });

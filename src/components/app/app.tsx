@@ -1,22 +1,23 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from "../../reducer";
-import {Router, Route, Switch} from "react-router-dom";
-import {createBrowserHistory} from "history";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import MoviePageDetails from "../movie-page-details/movie-page-details";
 import {AmountSimilarFilms, Value} from "../../constants";
 import {Film} from "../../types";
 import withTogglePlayer from "../../hocs/with-toggle-player/with-toggle-player";
 import Main from "../main/main";
+import store from "../../store";
 
 interface StateFromProps {
   genre: string;
   films: Film[];
+  filteredFilms: Film[];
   genres: string[];
 }
 
 interface DispatchFromProps {
-  onGenreClick: (genre: string) => void;
+  onGenreClick: (genre: string, films: Film[]) => void;
 }
 
 
@@ -28,13 +29,12 @@ interface AppProps extends StateFromProps {
 const App: React.FC<AppProps> = (props) => {
   const {
     films,
+    filteredFilms,
     promo,
     genre,
     genres,
-    onGenreClick
+    onGenreClick,
   } = props;
-
-  const history = createBrowserHistory();
 
   const getClickedFilm = (filmId: number): Film => films.find((film) => film.id === Number(filmId));
 
@@ -44,12 +44,15 @@ const App: React.FC<AppProps> = (props) => {
   const MoviePageDetailsWrapped = withTogglePlayer(MoviePageDetails);
 
   return (
-    <Router history={history}>
+    <Router>
       <Switch>
         <Route exact path="/" render={(): JSX.Element => (
           <MainWrapped
             promo={promo}
-            films={films}
+            films={(filteredFilms.length !== 0)
+              ? filteredFilms
+              : films
+            }
             genres={genres}
             selectedGenre={genre}
             onSelectedGenreClick={onGenreClick}/>
@@ -72,18 +75,16 @@ const App: React.FC<AppProps> = (props) => {
 
 const mapStateToProps = (state): StateFromProps => Object.assign({}, {
   genre: state.genre,
+  promo: state.promo,
   films: state.films,
+  filteredFilms: state.filteredFilms,
   genres: state.genres,
 });
 
 const mapDispatchToProps = (dispatch): DispatchFromProps => ({
-  onGenreClick: (genre): void => {
-    if (genre === `All genres`) {
-      dispatch(ActionCreator.reset());
-    } else {
-      dispatch(ActionCreator.selectGenre(genre));
-      dispatch(ActionCreator.filteredFilms(genre));
-    }
+  onGenreClick: (genre, films): void => {
+    dispatch(ActionCreator.selectGenre(genre));
+    dispatch(ActionCreator.filterFilms(genre, films));
   },
 });
 
