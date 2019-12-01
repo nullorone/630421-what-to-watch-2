@@ -7,26 +7,24 @@ import {AmountSimilarFilms, Value} from "../../constants";
 import {Film} from "../../types";
 import withTogglePlayer from "../../hocs/with-toggle-player/with-toggle-player";
 import Main from "../main/main";
-import store from "../../store";
+import withAddItemButton from "../../hocs/with-add-item-button/with-add-item-button";
+import withChangeItem from "../../hocs/with-change-item/with-change-item";
+import MovieCardSmallList from "../movie-card-small-list/movie-card-small-list";
+import {Assign} from "utility-types";
 
 interface StateFromProps {
   genre: string;
+  promo: Film;
   films: Film[];
   filteredFilms: Film[];
   genres: string[];
 }
 
 interface DispatchFromProps {
-  onGenreClick: (genre: string, films: Film[]) => void;
+  onGenreClick: (genre: string) => void;
 }
 
-
-interface AppProps extends StateFromProps {
-  promo: Film;
-  onGenreClick: () => void;
-}
-
-const App: React.FC<AppProps> = (props) => {
+const App: React.FC<Assign<StateFromProps, DispatchFromProps>> = (props) => {
   const {
     films,
     filteredFilms,
@@ -42,6 +40,7 @@ const App: React.FC<AppProps> = (props) => {
 
   const MainWrapped = withTogglePlayer(Main);
   const MoviePageDetailsWrapped = withTogglePlayer(MoviePageDetails);
+  const MovieCardSmallListWrapped = withAddItemButton(withChangeItem(MovieCardSmallList));
 
   return (
     <Router>
@@ -49,13 +48,15 @@ const App: React.FC<AppProps> = (props) => {
         <Route exact path="/" render={(): JSX.Element => (
           <MainWrapped
             promo={promo}
-            films={(filteredFilms.length !== 0)
-              ? filteredFilms
-              : films
-            }
             genres={genres}
             selectedGenre={genre}
-            onSelectedGenreClick={onGenreClick}/>
+            onSelectedGenreClick={onGenreClick}>
+            <MovieCardSmallListWrapped
+              films={(filteredFilms.length !== 0)
+                ? filteredFilms
+                : films
+              }/>
+          </MainWrapped>
         )}/>
         <Route exact path="/films/:id" render={({match}): JSX.Element => {
           const clickedFilm = getClickedFilm(match.params.id);
@@ -82,9 +83,9 @@ const mapStateToProps = (state): StateFromProps => Object.assign({}, {
 });
 
 const mapDispatchToProps = (dispatch): DispatchFromProps => ({
-  onGenreClick: (genre, films): void => {
+  onGenreClick: (genre): void => {
     dispatch(ActionCreator.selectGenre(genre));
-    dispatch(ActionCreator.filterFilms(genre, films));
+    dispatch(ActionCreator.filterFilms(genre));
   },
 });
 

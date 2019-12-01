@@ -21,11 +21,9 @@ const ActionCreator = {
   reset: () => ({
     type: ActionType.RESET,
   }),
-  filterFilms: (genre, stateFilms) => ({
+  filterFilms: (genre) => ({
     type: ActionType.FILTERED_FILMS,
-    payload: genre === initState.genre
-      ? stateFilms.slice()
-      : stateFilms.slice().filter((film) => film.genre === genre)
+    payload: genre
   }),
   loadFilms: (loadedFilms) => ({
     type: ActionType.LOAD_FILMS,
@@ -55,7 +53,9 @@ const reducer = (state = initState, action) => {
       return Object.assign({}, initState);
     case (ActionType.FILTERED_FILMS):
       return Object.assign({}, state, {
-        filteredFilms: action.payload,
+        filteredFilms: action.payload === initState.genre
+          ? state.films.slice()
+          : state.films.slice().filter((film) => film.genre === action.payload),
       });
     case (ActionType.LOAD_FILMS):
       return Object.assign({}, state, {
