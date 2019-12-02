@@ -1,9 +1,10 @@
 import {applyMiddleware, createStore} from "redux";
 import thunk from "redux-thunk";
-import {reducer} from "./reducer";
+import reducer from "./reducer";
 import {compose} from "recompose";
-import createApi from "./api";
+import createApi from "../api";
 
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
 const api = createApi((...args) => store.dispatch(...args));
 /* eslint-disable no-underscore-dangle */
 const store = createStore(

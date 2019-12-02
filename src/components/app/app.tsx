@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {ActionCreator} from "../../reducer";
+import {ActionCreator} from "../../reducer/user/user";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import MoviePageDetails from "../movie-page-details/movie-page-details";
 import {AmountSimilarFilms, Value} from "../../constants";
@@ -11,6 +11,9 @@ import withAddItemButton from "../../hocs/with-add-item-button/with-add-item-but
 import withChangeItem from "../../hocs/with-change-item/with-change-item";
 import MovieCardSmallList from "../movie-card-small-list/movie-card-small-list";
 import {Assign} from "utility-types";
+import NameSpaces from "../../reducer/name-spaces";
+import {getFilteredFIlms} from "../../reducer/user/selectors";
+import {getUniqueGenres} from "../../reducer/data/selectors";
 
 interface StateFromProps {
   genre: string;
@@ -75,17 +78,16 @@ const App: React.FC<Assign<StateFromProps, DispatchFromProps>> = (props) => {
 };
 
 const mapStateToProps = (state): StateFromProps => Object.assign({}, {
-  genre: state.genre,
-  promo: state.promo,
-  films: state.films,
-  filteredFilms: state.filteredFilms,
-  genres: state.genres,
+  genre: state[NameSpaces.USER].genre,
+  promo: state[NameSpaces.DATA].promo,
+  films: state[NameSpaces.DATA].films,
+  filteredFilms: getFilteredFIlms(state),
+  genres: getUniqueGenres(state),
 });
 
 const mapDispatchToProps = (dispatch): DispatchFromProps => ({
   onGenreClick: (genre): void => {
     dispatch(ActionCreator.selectGenre(genre));
-    dispatch(ActionCreator.filterFilms(genre));
   },
 });
 

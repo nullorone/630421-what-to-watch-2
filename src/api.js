@@ -1,6 +1,6 @@
 import axios from "axios";
 import {API_TIMEOUT, Status, Url} from "./constants";
-import {ActionCreator} from "./reducer";
+import {ActionCreator} from "./reducer/data/data";
 
 const createApi = (dispatch) => {
   const api = axios.create({

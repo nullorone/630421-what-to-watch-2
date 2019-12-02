@@ -59,17 +59,6 @@ export const SECONDS_IN_MINUTE = 60;
 
 export const AMOUNT_COMMENT_IN_COL = 3;
 
-export const ActionType = {
-  SELECT_GENRE: `SELECT_GENRE`,
-  RESET: `RESET`,
-  FILTERED_FILMS: `FILTERED_FILMS`,
-  LOAD_FILMS: `LOAD_FILMS`,
-  LOAD_PROMO: `LOAD_PROMO`,
-  GENRES: `GENRES`,
-  AUTHORIZATION: `AUTHORIZATION`,
-  LOADING: `LOADING`,
-};
-
 export const MovieNavTabs = {
   OVERVIEW: `overview`,
   DETAILS: `details`,

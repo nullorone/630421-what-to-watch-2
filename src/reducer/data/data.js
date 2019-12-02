@@ -1,30 +1,21 @@
-import {ActionType} from "./constants";
-
-const getGenres = (filmsOnPage) => {
-  return new Set(filmsOnPage.map((film) => film.genre));
-};
+import {Url} from "../../constants";
+import Adapter from "../../adapter";
 
 const initState = {
-  genre: `All genres`,
   films: [],
-  filteredFilms: [],
   promo: {},
-  genres: ``,
+  genres: [],
   isAuthorization: true,
 };
 
+const ActionType = {
+  LOAD_FILMS: `LOAD_FILMS`,
+  LOAD_PROMO: `LOAD_PROMO`,
+  GENRES: `GENRES`,
+  AUTHORIZATION: `AUTHORIZATION`,
+};
+
 const ActionCreator = {
-  selectGenre: (selectedGenre) => ({
-    type: ActionType.SELECT_GENRE,
-    payload: selectedGenre
-  }),
-  reset: () => ({
-    type: ActionType.RESET,
-  }),
-  filterFilms: (genre) => ({
-    type: ActionType.FILTERED_FILMS,
-    payload: genre
-  }),
   loadFilms: (loadedFilms) => ({
     type: ActionType.LOAD_FILMS,
     payload: loadedFilms,
@@ -32,10 +23,6 @@ const ActionCreator = {
   loadPromo: (loadedPromo) => ({
     type: ActionType.LOAD_PROMO,
     payload: loadedPromo,
-  }),
-  uniqueGenres: (loadedFilms) => ({
-    type: ActionType.GENRES,
-    payload: [initState.genre, ...getGenres(loadedFilms)],
   }),
   requireAuthorization: (status) => ({
     type: ActionType.AUTHORIZATION,
@@ -45,18 +32,6 @@ const ActionCreator = {
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
-    case (ActionType.SELECT_GENRE):
-      return Object.assign({}, state, {
-        genre: action.payload,
-      });
-    case (ActionType.RESET):
-      return Object.assign({}, initState);
-    case (ActionType.FILTERED_FILMS):
-      return Object.assign({}, state, {
-        filteredFilms: action.payload === initState.genre
-          ? state.films.slice()
-          : state.films.slice().filter((film) => film.genre === action.payload),
-      });
     case (ActionType.LOAD_FILMS):
       return Object.assign({}, state, {
         films: action.payload,
@@ -78,8 +53,26 @@ const reducer = (state = initState, action) => {
   return state;
 };
 
+
+const Operation = {
+  loadFilms: () => (dispatch, _, api) => {
+    return api.get(Url.FILMS)
+      .then((response) => {
+        dispatch(ActionCreator.loadFilms(Adapter.parseFilms(response.data)));
+      });
+  },
+  loadPromo: () => (dispatch, _, api) => {
+    return api.get(Url.PROMO)
+      .then((response) => {
+        dispatch(ActionCreator.loadPromo(Adapter.parseFilm(response.data)));
+      });
+  },
+};
+
 export {
   initState,
+  ActionType,
   ActionCreator,
   reducer,
+  Operation,
 };
