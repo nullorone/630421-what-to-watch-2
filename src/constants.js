@@ -59,12 +59,6 @@ export const SECONDS_IN_MINUTE = 60;
 
 export const AMOUNT_COMMENT_IN_COL = 3;
 
-export const ActionType = {
-  SELECT_GENRE: `SELECT_GENRE`,
-  RESET: `RESET`,
-  FILTERED_FILMS: `FILTERED_FILMS`,
-};
-
 export const MovieNavTabs = {
   OVERVIEW: `overview`,
   DETAILS: `details`,
@@ -72,3 +66,16 @@ export const MovieNavTabs = {
 };
 
 export const MILLISECONDS_IN_SECOND = 1000;
+
+export const Url = {
+  BASE: `https://htmlacademy-react-2.appspot.com/wtw`,
+  FILMS: `/films`,
+  PROMO: `/films/promo`,
+};
+
+export const API_TIMEOUT = 5000;
+
+export const Status = {
+  AUTHORIZATION: 403,
+  SUCCESS: 200,
+};

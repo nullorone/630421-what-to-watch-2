@@ -31,6 +31,7 @@ Array [
     }
     isFavorite={true}
     name="Keks"
+    onPlayButtonClick={[MockFunction]}
     rating={1}
     released={1}
     runTime={0}
@@ -44,8 +45,10 @@ Array [
     }
     video={
       Object {
-        "link": "",
-        "preview": "",
+        "link": Object {
+          "mp4": "",
+        },
+        "poster": "",
       }
     }
   />,
@@ -69,48 +72,6 @@ Array [
         }
         onGenreClick={[MockFunction]}
         selectedGenre=""
-      />
-      <MovieCardSmallList
-        films={
-          Array [
-            Object {
-              "backgroundColor": "",
-              "description": "",
-              "director": "Keks",
-              "genre": "",
-              "id": 0,
-              "image": Object {
-                "background": "",
-                "backgroundAlt": "",
-                "poster": "",
-                "posterAlt": "1",
-                "preview": "",
-                "previewAlt": "",
-              },
-              "isFavorite": true,
-              "name": "Keks",
-              "rating": 1,
-              "released": 1,
-              "runTime": 0,
-              "scoresCount": 1,
-              "starring": Array [
-                "Me",
-                "You",
-                "They",
-              ],
-              "video": Object {
-                "link": Object {
-                  "mp4": "",
-                  "webm": "",
-                },
-                "poster": "",
-              },
-            },
-          ]
-        }
-        itemCurrentIndex={null}
-        onItemMouseEnter={[Function]}
-        onItemMouseLeave={[Function]}
       />
     </section>
     <footer
