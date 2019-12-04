@@ -14,6 +14,7 @@ import {Assign} from "utility-types";
 import NameSpaces from "../../reducer/name-spaces";
 import {getFilteredFIlms} from "../../reducer/user/selectors";
 import {getUniqueGenres} from "../../reducer/data/selectors";
+import UserPage from "../user-page/user-page";
 
 interface StateFromProps {
   genre: string;
@@ -21,6 +22,7 @@ interface StateFromProps {
   films: Film[];
   filteredFilms: Film[];
   genres: string[];
+  isAuthorizationRequired: boolean;
 }
 
 interface DispatchFromProps {
@@ -35,7 +37,10 @@ const App: React.FC<Assign<StateFromProps, DispatchFromProps>> = (props) => {
     genre,
     genres,
     onGenreClick,
+    isAuthorizationRequired,
   } = props;
+
+  console.log(props)
 
   const getClickedFilm = (filmId: number): Film => films.find((film) => film.id === Number(filmId));
 
@@ -48,19 +53,23 @@ const App: React.FC<Assign<StateFromProps, DispatchFromProps>> = (props) => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" render={(): JSX.Element => (
-          <MainWrapped
-            promo={promo}
-            genres={genres}
-            selectedGenre={genre}
-            onSelectedGenreClick={onGenreClick}>
-            <MovieCardSmallListWrapped
-              films={(filteredFilms.length !== 0)
-                ? filteredFilms
-                : films
-              }/>
-          </MainWrapped>
-        )}/>
+        <Route exact path="/" render={(): JSX.Element => {
+          return isAuthorizationRequired
+            ? <UserPage/>
+            : (
+              <MainWrapped
+                promo={promo}
+                genres={genres}
+                selectedGenre={genre}
+                onSelectedGenreClick={onGenreClick}>
+                <MovieCardSmallListWrapped
+                  films={(filteredFilms.length !== 0)
+                    ? filteredFilms
+                    : films
+                  }/>
+              </MainWrapped>
+            );
+        }}/>
         <Route exact path="/films/:id" render={({match}): JSX.Element => {
           const clickedFilm = getClickedFilm(match.params.id);
           const similarFilms = getSimilarFilms(clickedFilm).slice(Value.EMPTY, AmountSimilarFilms.ON_PAGE_FILM);
@@ -83,6 +92,7 @@ const mapStateToProps = (state): StateFromProps => Object.assign({}, {
   films: state[NameSpaces.DATA].films,
   filteredFilms: getFilteredFIlms(state),
   genres: getUniqueGenres(state),
+  isAuthorizationRequired: state[NameSpaces.DATA].isAuthorizationRequired,
 });
 
 const mapDispatchToProps = (dispatch): DispatchFromProps => ({
