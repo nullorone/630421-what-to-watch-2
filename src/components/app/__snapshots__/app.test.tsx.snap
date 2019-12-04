@@ -160,20 +160,9 @@ Array [
           </span>
         </a>
       </div>
-      <div
-        className="user-block"
-      >
-        <div
-          className="user-block__avatar"
-        >
-          <img
-            alt="User avatar"
-            height="63"
-            src="./img/avatar.jpg"
-            width="63"
-          />
-        </div>
-      </div>
+      <UserBlock
+        avatarSrc="https://htmlacademy-react-2.appspot.com/wtw./img/keks.jpg"
+      />
     </header>
     <div
       className="movie-card__wrap"

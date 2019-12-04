@@ -1,3 +1,5 @@
+import {MASK_AVATAR} from "./constants";
+
 export default class Adapter {
   constructor(data) {
     this._id = data.id;
@@ -24,6 +26,12 @@ export default class Adapter {
     this._genre = data.genre;
     this._released = data.released;
     this._isFavorite = data.is_favorite;
+    this._email = data.email;
+    this._avatarUrl = data.avatar_url;
+  }
+
+  static parseUser(data) {
+    return new Adapter(data).getUser();
   }
 
   static parseFilm(data) {
@@ -53,6 +61,16 @@ export default class Adapter {
       'genre': this._genre,
       'released': this._released,
       'is_favorite': this._isFavorite,
+    };
+  }
+
+  getUser() {
+    const startIndexPathAvatar = this._avatarUrl.indexOf((MASK_AVATAR));
+    return {
+      id: this._id,
+      name: this._name,
+      email: this._email,
+      avatarUrl: this._avatarUrl.slice(startIndexPathAvatar),
     };
   }
 

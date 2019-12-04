@@ -4,6 +4,8 @@ import {App} from "./app";
 import {EMPTY_STRING, Value} from "../../constants";
 import {BrowserRouter} from "react-router-dom";
 
+jest.mock(`../user-block/user-block`, () => `UserBlock`);
+
 describe(`Make snapshot`, () => {
   const initProps = {
     films: [{
@@ -95,6 +97,13 @@ describe(`Make snapshot`, () => {
     genre: EMPTY_STRING,
     genres: [`ECMA`, `CSS`],
     onGenreClick: jest.fn(),
+    user: {
+      id: Value.FULL,
+      name: `Keks`,
+      email: `keks@gmail.com`,
+      avatarUrl: `./img/keks.jpg`,
+    },
+    isAuthorizationRequired: false,
   };
 
   it(`Get snapshot component`, () => {
