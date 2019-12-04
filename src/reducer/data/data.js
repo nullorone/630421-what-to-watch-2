@@ -6,6 +6,7 @@ const initState = {
   promo: {},
   genres: [],
   isAuthorizationRequired: true,
+  user: {},
 };
 
 const ActionType = {
@@ -13,6 +14,7 @@ const ActionType = {
   LOAD_PROMO: `LOAD_PROMO`,
   GENRES: `GENRES`,
   AUTHORIZATION: `AUTHORIZATION`,
+  LOAD_USER: `LOAD_USER`,
 };
 
 const ActionCreator = {
@@ -27,6 +29,10 @@ const ActionCreator = {
   requireAuthorization: (status) => ({
     type: ActionType.AUTHORIZATION,
     payload: status
+  }),
+  loadUser: (data) => ({
+    type: ActionType.LOAD_USER,
+    payload: data
   }),
 };
 
@@ -48,6 +54,10 @@ const reducer = (state = initState, action) => {
       return Object.assign({}, state, {
         isAuthorizationRequired: action.payload,
       });
+    case (ActionType.LOAD_USER):
+      return Object.assign({}, state, {
+        user: action.payload,
+      });
   }
 
   return state;
@@ -65,6 +75,16 @@ const Operation = {
     return api.get(Url.PROMO)
       .then((response) => {
         dispatch(ActionCreator.loadPromo(Adapter.parseFilm(response.data)));
+      });
+  },
+  sendUserData: (userData) => (dispatch, _, api) => {
+    return api.post(Url.LOGIN, {
+      email: userData.email,
+      password: userData.password,
+    })
+      .then((response) => {
+        dispatch(ActionCreator.loadUser(Adapter.parseUser(response.data)));
+        dispatch(ActionCreator.requireAuthorization(false));
       });
   },
 };

@@ -4,7 +4,7 @@ import {ActionCreator} from "../../reducer/user/user";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import MoviePageDetails from "../movie-page-details/movie-page-details";
 import {AmountSimilarFilms, Value} from "../../constants";
-import {Film} from "../../types";
+import {Film, UserData} from "../../types";
 import withTogglePlayer from "../../hocs/with-toggle-player/with-toggle-player";
 import Main from "../main/main";
 import withAddItemButton from "../../hocs/with-add-item-button/with-add-item-button";
@@ -23,6 +23,7 @@ interface StateFromProps {
   filteredFilms: Film[];
   genres: string[];
   isAuthorizationRequired: boolean;
+  user: UserData;
 }
 
 interface DispatchFromProps {
@@ -38,6 +39,7 @@ const App: React.FC<Assign<StateFromProps, DispatchFromProps>> = (props) => {
     genres,
     onGenreClick,
     isAuthorizationRequired,
+    user,
   } = props;
 
   console.log(props)
@@ -61,7 +63,8 @@ const App: React.FC<Assign<StateFromProps, DispatchFromProps>> = (props) => {
                 promo={promo}
                 genres={genres}
                 selectedGenre={genre}
-                onSelectedGenreClick={onGenreClick}>
+                onSelectedGenreClick={onGenreClick}
+                user={user}>
                 <MovieCardSmallListWrapped
                   films={(filteredFilms.length !== 0)
                     ? filteredFilms
@@ -78,7 +81,8 @@ const App: React.FC<Assign<StateFromProps, DispatchFromProps>> = (props) => {
             <MoviePageDetailsWrapped
               clickedFilm={clickedFilm}
               films={similarFilms}
-              promo={clickedFilm}/>
+              promo={clickedFilm}
+              user={user}/>
           );
         }}/>
       </Switch>
@@ -93,6 +97,7 @@ const mapStateToProps = (state): StateFromProps => Object.assign({}, {
   filteredFilms: getFilteredFIlms(state),
   genres: getUniqueGenres(state),
   isAuthorizationRequired: state[NameSpaces.DATA].isAuthorizationRequired,
+  user: state[NameSpaces.DATA].user,
 });
 
 const mapDispatchToProps = (dispatch): DispatchFromProps => ({

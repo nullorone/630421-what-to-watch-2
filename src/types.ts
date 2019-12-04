@@ -61,3 +61,15 @@ export interface Button {
   };
   onButtonClick?: () => void;
 }
+
+export type UserDataType = {
+  email: string;
+  password: string;
+}
+
+export interface UserData {
+  id: number;
+  email: string;
+  name: string;
+  avatarUrl: string;
+}

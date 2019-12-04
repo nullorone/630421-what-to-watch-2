@@ -71,6 +71,7 @@ export const Url = {
   BASE: `https://htmlacademy-react-2.appspot.com/wtw`,
   FILMS: `/films`,
   PROMO: `/films/promo`,
+  LOGIN: `/login`,
 };
 
 export const API_TIMEOUT = 5000;
@@ -79,3 +80,5 @@ export const Status = {
   AUTHORIZATION: 403,
   SUCCESS: 200,
 };
+
+export const MASK_AVATAR = `/static`;

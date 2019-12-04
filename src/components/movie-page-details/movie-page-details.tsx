@@ -13,13 +13,14 @@ import MovieCardDescription from "../movie-card-description/movie-card-descripti
 import MovieNavList from "../movie-nav-list/movie-nav-list";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import withChangeItem from "../../hocs/with-change-item/with-change-item";
-import {Film} from "../../types";
+import {Film, UserData} from "../../types";
 import MovieCardButton from "../movie-card-button/movie-card-button";
 
 interface MoviePageDetailsProps {
   clickedFilm: Film;
   films: Film[];
   onButtonClick?: () => void;
+  user: UserData;
 }
 
 const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
@@ -27,6 +28,7 @@ const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
     clickedFilm,
     films,
     onButtonClick,
+    user,
   } = props;
 
   const {
@@ -40,6 +42,8 @@ const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
     genre,
     released,
   } = clickedFilm;
+
+  const {avatarUrl} = user;
 
   const MovieNavListWrapped = withActiveItem(MovieNavList);
   const MovieCardSmallListWrapped = withChangeItem(MovieCardSmallList);
@@ -62,7 +66,7 @@ const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
 
           <header className="page-header movie-card__head">
             <Logo light={false}/>
-            <UserBlock avatarSrc={`../img/avatar.jpg`}/>
+            <UserBlock avatarSrc={avatarUrl}/>
           </header>
 
           <div className="movie-card__wrap">

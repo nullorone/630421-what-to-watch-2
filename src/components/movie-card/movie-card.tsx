@@ -2,9 +2,9 @@ import * as React from "react";
 import MovieCardPicture from "../movie-card-picture/movie-card-picture";
 import Logo from "../logo/logo";
 import UserBlock from "../user-block/user-block";
-import {Img} from "../../constants";
+import {Img, Url} from "../../constants";
 import MovieCardDescription from "../movie-card-description/movie-card-description";
-import {Image} from "../../types";
+import {Image, UserData} from "../../types";
 import MovieCardButton from "../movie-card-button/movie-card-button";
 
 interface MovieCardProps {
@@ -14,6 +14,7 @@ interface MovieCardProps {
   genre: string;
   released: number;
   onPlayButtonClick?: () => void;
+  user: UserData;
 }
 
 const MovieCard: React.FC<MovieCardProps> = (props) => {
@@ -28,7 +29,10 @@ const MovieCard: React.FC<MovieCardProps> = (props) => {
     genre,
     released,
     onPlayButtonClick,
+    user,
   } = props;
+
+  const {avatarUrl} = user;
 
   return (
     <section className="movie-card">
@@ -43,7 +47,7 @@ const MovieCard: React.FC<MovieCardProps> = (props) => {
 
       <header className="page-header movie-card__head">
         <Logo light={false}/>
-        <UserBlock avatarSrc={`./img/avatar.jpg`}/>
+        <UserBlock avatarSrc={`${Url.BASE}${avatarUrl}`}/>
       </header>
 
       <div className="movie-card__wrap">

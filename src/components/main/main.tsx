@@ -3,7 +3,7 @@ import GenreList from "../genre-list/genre-list";
 import IconsWrapper from "../icons-wrapper/icons-wrapper";
 import Logo from "../logo/logo";
 import MovieCard from "../movie-card/movie-card";
-import {Film} from "../../types";
+import {Film, UserData} from "../../types";
 import {iconNames} from "../../constants";
 
 interface MainProps {
@@ -12,6 +12,7 @@ interface MainProps {
   selectedGenre: string;
   onSelectedGenreClick: () => void;
   onButtonClick: () => void;
+  user: UserData;
 }
 
 const Main: React.FC<MainProps> = (props) => {
@@ -21,13 +22,14 @@ const Main: React.FC<MainProps> = (props) => {
     selectedGenre,
     onSelectedGenreClick,
     onButtonClick,
+    user,
   } = props;
 
   return (
     <>
       <IconsWrapper iconNames={iconNames}/>
 
-      <MovieCard {...promo} onPlayButtonClick={onButtonClick}/>
+      <MovieCard {...promo} user={user} onPlayButtonClick={onButtonClick}/>
 
       <div className="page-content">
         <section className="catalog">
