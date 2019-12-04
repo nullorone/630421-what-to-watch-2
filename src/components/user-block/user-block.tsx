@@ -1,19 +1,35 @@
 import * as React from "react";
+import NameSpaces from "../../reducer/name-spaces";
+import {connect} from "react-redux";
+import {Assign} from "utility-types";
 
 interface UserBlockProps {
   avatarSrc: string;
 }
 
-const UserBlock: React.FC<UserBlockProps> = (props) => {
-  const {avatarSrc} = props;
+interface StateToProps {
+  hasAuthorization: boolean;
+}
+
+const UserBlock: React.FC<Assign<UserBlockProps, StateToProps>> = (props) => {
+  const {avatarSrc, hasAuthorization} = props;
 
   return (
     <div className="user-block">
-      <div className="user-block__avatar">
-        <img src={avatarSrc} alt="User avatar" width="63" height="63"/>
-      </div>
+      {hasAuthorization
+        ? <a href="sign-in.html" className="user-block__link">Sign in</a>
+        : <div className="user-block__avatar">
+          <img src={avatarSrc} alt="User avatar" width="63" height="63"/>
+        </div>
+      }
     </div>
   );
 };
 
-export default UserBlock;
+export {UserBlock};
+
+const mapStateToProps = (state): StateToProps => Object.assign({}, {
+  hasAuthorization: state[NameSpaces.DATA].isAuthorizationRequired,
+});
+
+export default connect(mapStateToProps)(UserBlock);

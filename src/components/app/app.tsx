@@ -42,8 +42,6 @@ const App: React.FC<Assign<StateFromProps, DispatchFromProps>> = (props) => {
     user,
   } = props;
 
-  console.log(props)
-
   const getClickedFilm = (filmId: number): Film => films.find((film) => film.id === Number(filmId));
 
   const getSimilarFilms = (clickedFilm: Film): Film[] => films.filter((film) => film.genre === clickedFilm.genre);
