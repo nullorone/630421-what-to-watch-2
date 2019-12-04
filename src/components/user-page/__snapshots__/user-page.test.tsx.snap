@@ -37,7 +37,9 @@ exports[`Make snapshot Get snapshot component 1`] = `
       Sign in
     </h1>
   </header>
-  <SignIn />
+  <SignIn
+    onFormSubmitClick={[Function]}
+  />
   <footer
     className="page-footer"
   >

@@ -4,6 +4,8 @@ import MoviePageDetails from "./movie-page-details";
 import {EMPTY_STRING, Value} from "../../constants";
 import {BrowserRouter} from "react-router-dom";
 
+jest.mock(`../user-block/user-block`, () => `UserBlock`);
+
 describe(`Make snapshot`, () => {
   const initProps = {
     clickedFilm: {
@@ -65,6 +67,12 @@ describe(`Make snapshot`, () => {
       isFavorite: false,
     }],
     icons: [`PAUSE`],
+    user: {
+      id: Value.FULL,
+      name: `Keks`,
+      email: `keks@gmail.com`,
+      avatarUrl: `./img/keks.jpg`,
+    },
   };
 
   it(`Get snapshot component`, () => {

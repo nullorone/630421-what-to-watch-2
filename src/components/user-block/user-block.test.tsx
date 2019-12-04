@@ -1,11 +1,12 @@
 import * as React from "react";
 import renderer from "react-test-renderer";
 import {EMPTY_STRING} from "../../constants";
-import UserBlock from "./user-block";
+import {UserBlock} from "./user-block";
 
 describe(`Make snapshot`, () => {
   const initProps = {
     avatarSrc: EMPTY_STRING,
+    hasAuthorization: true,
   };
 
   it(`Get snapshot component`, () => {

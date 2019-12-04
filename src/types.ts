@@ -12,12 +12,12 @@ export interface Comment {
 }
 
 export interface Image {
-  poster: string;
-  posterAlt: string;
-  preview: string;
-  previewAlt: string;
-  background: string;
-  backgroundAlt: string;
+  poster?: string;
+  posterAlt?: string;
+  preview?: string;
+  previewAlt?: string;
+  background?: string;
+  backgroundAlt?: string;
 }
 
 export interface Video {
@@ -25,7 +25,7 @@ export interface Video {
     mp4: string;
     webm?: string;
   };
-  poster: string;
+  poster?: string;
 }
 
 export interface Film {

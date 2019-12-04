@@ -1,11 +1,12 @@
 import * as React from "react";
 import {shallow} from "enzyme";
 import {EMPTY_STRING} from "../../constants";
-import UserBlock from "./user-block";
+import {UserBlock} from "./user-block";
 
 describe(`Test cases UserBlock component`, () =>{
   const initProps = {
     avatarSrc: EMPTY_STRING,
+    hasAuthorization: true,
   };
 
   it(`Render component`, () => {

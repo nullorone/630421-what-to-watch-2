@@ -7,6 +7,7 @@ exports[`Make snapshot Get snapshot component 1`] = `
   <form
     action="#"
     className="sign-in__form"
+    onSubmit={[Function]}
   >
     <div
       className="sign-in__fields"
@@ -19,6 +20,7 @@ exports[`Make snapshot Get snapshot component 1`] = `
           id="user-email"
           name="user-email"
           placeholder="Email address"
+          required={true}
           type="email"
         />
         <label
@@ -36,6 +38,7 @@ exports[`Make snapshot Get snapshot component 1`] = `
           id="user-password"
           name="user-password"
           placeholder="Password"
+          required={true}
           type="password"
         />
         <label

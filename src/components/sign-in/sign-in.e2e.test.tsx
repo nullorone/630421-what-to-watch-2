@@ -13,6 +13,7 @@ describe(`Test cases  component`, () =>{
         <SignIn {...initProps}/>
     );
 
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     wrapper.find(`.sign-in__form`).simulate(`submit`, {preventDefault() {}});
 
     expect(initProps.onFormSubmitClick).toBeCalledTimes(Value.FULL);
