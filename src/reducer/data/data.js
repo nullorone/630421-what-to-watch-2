@@ -5,7 +5,7 @@ const initState = {
   films: [],
   promo: {},
   genres: [],
-  isAuthorization: true,
+  isAuthorizationRequired: true,
 };
 
 const ActionType = {
@@ -46,7 +46,7 @@ const reducer = (state = initState, action) => {
       });
     case (ActionType.AUTHORIZATION):
       return Object.assign({}, state, {
-        isAuthorization: action.payload,
+        isAuthorizationRequired: action.payload,
       });
   }
 
