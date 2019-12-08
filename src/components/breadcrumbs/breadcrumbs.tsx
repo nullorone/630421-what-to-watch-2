@@ -18,7 +18,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = (props) => {
           const {text, link} = breadcrumb;
           return (
             <li className="breadcrumbs__item" key={`breadcrumb-review-${index + Value.FULL}`}>
-              <a href={link ? link : `#`} className="breadcrumbs__link">{text}</a>
+              <a href={link} className="breadcrumbs__link">{text}</a>
             </li>
           );
         })}
