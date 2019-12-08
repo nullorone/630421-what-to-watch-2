@@ -15,6 +15,7 @@ import NameSpaces from "../../reducer/name-spaces";
 import {getFilteredFIlms} from "../../reducer/user/selectors";
 import {getUniqueGenres} from "../../reducer/data/selectors";
 import UserPage from "../user-page/user-page";
+import ReviewPage from "../review-page/review-page";
 
 interface StateFromProps {
   genre: string;
@@ -24,6 +25,7 @@ interface StateFromProps {
   genres: string[];
   isAuthorizationRequired: boolean;
   user: UserData;
+  comments: Comment[];
 }
 
 interface DispatchFromProps {
@@ -40,6 +42,7 @@ const App: React.FC<Assign<StateFromProps, DispatchFromProps>> = (props) => {
     onGenreClick,
     isAuthorizationRequired,
     user,
+    comments,
   } = props;
 
   const getClickedFilm = (filmId: number): Film => films.find((film) => film.id === Number(filmId));
@@ -80,8 +83,25 @@ const App: React.FC<Assign<StateFromProps, DispatchFromProps>> = (props) => {
               clickedFilm={clickedFilm}
               films={similarFilms}
               promo={clickedFilm}
-              user={user}/>
+              user={user}
+              comments={comments}
+              hasAuthorization={isAuthorizationRequired}/>
           );
+        }}/>
+        <Route exact path="/films/:id/review" render={({match}): JSX.Element => {
+          const clickedFilm = getClickedFilm(match.params.id);
+          const {id, name, image} = clickedFilm;
+
+          return isAuthorizationRequired
+            ? <UserPage/>
+            : (
+              <ReviewPage
+                id={id}
+                filmName={name}
+                image={image}
+                avatar={user.avatarUrl}
+              />
+            );
         }}/>
       </Switch>
     </Router>
@@ -96,6 +116,7 @@ const mapStateToProps = (state): StateFromProps => Object.assign({}, {
   genres: getUniqueGenres(state),
   isAuthorizationRequired: state[NameSpaces.DATA].isAuthorizationRequired,
   user: state[NameSpaces.DATA].user,
+  comments: state[NameSpaces.DATA].comments,
 });
 
 const mapDispatchToProps = (dispatch): DispatchFromProps => ({
