@@ -72,6 +72,7 @@ export const Url = {
   FILMS: `/films`,
   PROMO: `/films/promo`,
   LOGIN: `/login`,
+  COMMENTS: `/comments`,
 };
 
 export const API_TIMEOUT = 5000;
@@ -82,3 +83,11 @@ export const Status = {
 };
 
 export const MASK_AVATAR = `/static`;
+
+export const Rating = {
+  BAD: `bad`,
+  NORMAL: `normal`,
+  GOOD: `good`,
+  VERY_GOOD: `very good`,
+  AWESOME: `awesome`
+};

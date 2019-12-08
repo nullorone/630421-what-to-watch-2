@@ -15,12 +15,16 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import withChangeItem from "../../hocs/with-change-item/with-change-item";
 import {Film, UserData} from "../../types";
 import MovieCardButton from "../movie-card-button/movie-card-button";
+import {Link} from "react-router-dom";
+import {Url} from "../../constants";
 
 interface MoviePageDetailsProps {
   clickedFilm: Film;
   films: Film[];
   onButtonClick?: () => void;
   user: UserData;
+  hasAuthorization: boolean;
+  comments: Comment[];
 }
 
 const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
@@ -29,9 +33,12 @@ const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
     films,
     onButtonClick,
     user,
+    hasAuthorization,
+    comments,
   } = props;
 
   const {
+    id,
     name,
     image: {
       poster,
@@ -66,7 +73,7 @@ const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
 
           <header className="page-header movie-card__head">
             <Logo light={false}/>
-            <UserBlock avatarSrc={avatarUrl}/>
+            <UserBlock avatarSrc={`${Url.BASE}${avatarUrl}`}/>
           </header>
 
           <div className="movie-card__wrap">
@@ -89,7 +96,7 @@ const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
                   classModifier={`list`}
                 />
 
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                {!hasAuthorization && <Link to={`${id}/review`} className="btn movie-card__button">Add review</Link>}
               </div>
             </MovieCardDescription>
           </div>
@@ -108,7 +115,7 @@ const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
               }}/>
 
             <div className="movie-card__desc">
-              <MovieNavListWrapped clickedFilm={clickedFilm} navItems={MOVIE_NAV_ITEMS}/>
+              <MovieNavListWrapped clickedFilm={clickedFilm} navItems={MOVIE_NAV_ITEMS} comments={comments}/>
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ const initState = {
   genres: [],
   isAuthorizationRequired: true,
   user: {},
+  comments: [],
 };
 
 const ActionType = {
@@ -15,6 +16,7 @@ const ActionType = {
   GENRES: `GENRES`,
   AUTHORIZATION: `AUTHORIZATION`,
   LOAD_USER: `LOAD_USER`,
+  GET_COMMENTS: `GET_COMMENTS`,
 };
 
 const ActionCreator = {
@@ -33,6 +35,10 @@ const ActionCreator = {
   loadUser: (data) => ({
     type: ActionType.LOAD_USER,
     payload: data
+  }),
+  getComments: (comments) => ({
+    type: ActionType.GET_COMMENTS,
+    payload: comments
   }),
 };
 
@@ -57,6 +63,10 @@ const reducer = (state = initState, action) => {
     case (ActionType.LOAD_USER):
       return Object.assign({}, state, {
         user: action.payload,
+      });
+    case (ActionType.GET_COMMENTS):
+      return Object.assign({}, state, {
+        comments: action.payload,
       });
   }
 
@@ -85,6 +95,22 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.loadUser(Adapter.parseUser(response.data)));
         dispatch(ActionCreator.requireAuthorization(false));
+      });
+  },
+  loadComments: (id) => (dispatch, _, api) => {
+    return api.get(`${Url.COMMENTS}/${id}`)
+      .then((response) => {
+        dispatch(ActionCreator.getComments(response.data));
+      });
+  },
+  sendReview: (reviewData) => (dispatch, _, api) => {
+    const {id, rating, comment} = reviewData;
+    return api.post(`${Url.COMMENTS}/${id}`, {
+      rating,
+      comment,
+    })
+      .then((response) => {
+        dispatch(ActionCreator.getComments(response.data));
       });
   },
 };

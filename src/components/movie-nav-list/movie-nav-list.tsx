@@ -1,6 +1,5 @@
 import * as React from "react";
 import MovieNavItem from "../movie-nav-item/movie-nav-item";
-import {comments} from "../../mocks/comments";
 import MovieTabReviews from "../movie-tab-reviews/movie-tab-reviews";
 import MovieTabOverview from "../movie-tab-overview/movie-tab-overview";
 import MovieTabDetails from "../movie-tab-details/movie-tab-details";
@@ -9,6 +8,7 @@ import {Film, Item, Image, Video} from "../../types";
 import {Subtract} from "utility-types";
 
 interface MovieNavListProps {
+  comments: Comment[];
   navItems: Item[];
   clickedFilm: Film;
   activeItem: string;
@@ -24,7 +24,7 @@ interface SubtractProps {
   isFavorite: boolean;
 }
 
-const getTabDescription = (film: Subtract<Film, SubtractProps>, activeTab: string): JSX.Element | null => {
+const getTabDescription = (film: Subtract<Film, SubtractProps>, activeTab: string, filmComments): JSX.Element | null => {
   const {
     rating,
     scoresCount,
@@ -58,14 +58,14 @@ const getTabDescription = (film: Subtract<Film, SubtractProps>, activeTab: strin
         />
       );
     case (MovieNavTabs.REVIEWS):
-      return <MovieTabReviews comments={comments}/>;
+      return <MovieTabReviews comments={filmComments}/>;
     default:
       return null;
   }
 };
 
 const MovieNavList: React.FC<MovieNavListProps> = (props) => {
-  const {navItems, activeItem, onItemClick, clickedFilm} = props;
+  const {navItems, activeItem, onItemClick, clickedFilm, comments} = props;
 
   return (
     <>
@@ -86,7 +86,7 @@ const MovieNavList: React.FC<MovieNavListProps> = (props) => {
             })}
         </ul>
       </nav>
-      {getTabDescription(clickedFilm, activeItem)}
+      {getTabDescription(clickedFilm, activeItem, comments)}
     </>
   );
 };

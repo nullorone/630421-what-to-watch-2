@@ -1,7 +1,7 @@
 import createApi from "../../api";
 import MockAdapter from "axios-mock-adapter";
 import Adapter from "../../adapter";
-import {MASK_AVATAR, Status, Url, Value} from "../../constants";
+import {EMPTY_STRING, MASK_AVATAR, Status, Url, Value} from "../../constants";
 import {ActionType, Operation} from "./data";
 
 describe(`Test actions`, () => {
@@ -65,6 +65,72 @@ describe(`Test actions`, () => {
         expect(dispatch).nthCalledWith(2, {
           type: ActionType.AUTHORIZATION,
           payload: false,
+        });
+      });
+  });
+
+  it(`Get comments`, () => {
+    const dispatch = jest.fn();
+    const api = createApi(dispatch);
+    const mockApi = new MockAdapter(api);
+    const loadComments = Operation.loadComments(Value.FULL);
+
+    mockApi
+      .onGet(`${Url.COMMENTS}/${Value.FULL}`)
+      .reply(Status.SUCCESS, [{fake: true}]);
+
+    return loadComments(dispatch, jest.fn(), api)
+      .then(() => {
+        expect(dispatch).toBeCalledTimes(Value.FULL);
+        expect(dispatch).nthCalledWith(1, {
+          type: ActionType.GET_COMMENTS,
+          payload: [{fake: true}],
+        });
+      });
+  });
+
+  it(`Send comment`, () => {
+    const dispatch = jest.fn();
+    const api = createApi(dispatch);
+    const mockApi = new MockAdapter(api);
+    const sendReview = Operation.sendReview({
+      id: Value.FULL,
+      rating: Value.FULL,
+      comment: EMPTY_STRING
+    });
+
+    mockApi
+      .onPost(`${Url.COMMENTS}/${Value.FULL}`)
+      .reply(Status.SUCCESS, [
+        {
+          id: Value.FULL,
+          user: {
+            id: Value.FULL,
+            name: EMPTY_STRING
+          },
+          rating: Value.FULL,
+          comment: EMPTY_STRING,
+          date: EMPTY_STRING
+        }
+      ]);
+
+    return sendReview(dispatch, jest.fn(), api)
+      .then(() => {
+        expect(dispatch).toBeCalledTimes(Value.FULL);
+        expect(dispatch).nthCalledWith(1, {
+          type: ActionType.GET_COMMENTS,
+          payload: [
+            {
+              id: Value.FULL,
+              user: {
+                id: Value.FULL,
+                name: EMPTY_STRING
+              },
+              rating: Value.FULL,
+              comment: EMPTY_STRING,
+              date: EMPTY_STRING
+            }
+          ],
         });
       });
   });

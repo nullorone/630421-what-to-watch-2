@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Make snapshot Get snapshot component 1`] = `
+<nav
+  className="breadcrumbs"
+>
+  <ul
+    className="breadcrumbs__list"
+  >
+    <li
+      className="breadcrumbs__item"
+    >
+      <a
+        className="breadcrumbs__link"
+        href="https://htmlacademy.ru"
+      >
+        Keks
+      </a>
+    </li>
+  </ul>
+</nav>
+`;

@@ -17,7 +17,7 @@ const UserBlock: React.FC<Assign<UserBlockProps, StateToProps>> = (props) => {
   return (
     <div className="user-block">
       {hasAuthorization
-        ? <a href="sign-in.html" className="user-block__link">Sign in</a>
+        ? <a href="/" className="user-block__link">Sign in</a>
         : <div className="user-block__avatar">
           <img src={avatarSrc} alt="User avatar" width="63" height="63"/>
         </div>
