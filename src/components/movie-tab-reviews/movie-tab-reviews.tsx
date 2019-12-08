@@ -17,7 +17,10 @@ const MovieTabReviews: React.FC<MovieTabReviewsProps> = (props) => {
   const commentReview = [];
 
   for (let i = Value.EMPTY; i < comments.length; i = i + AMOUNT_COMMENT_IN_COL) {
-    const cardReviews = comments
+    const sortedComments = comments
+      .sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+
+    const cardReviews = sortedComments
       .slice(i, i + AMOUNT_COMMENT_IN_COL)
       .map((comment) => {
         const keyReview = `movie-card-review-${comment.id}`;
