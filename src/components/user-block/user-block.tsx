@@ -2,6 +2,7 @@ import * as React from "react";
 import NameSpaces from "../../reducer/name-spaces";
 import {connect} from "react-redux";
 import {Assign} from "utility-types";
+import {Link} from "react-router-dom";
 
 interface UserBlockProps {
   avatarSrc: string;
@@ -17,7 +18,7 @@ const UserBlock: React.FC<Assign<UserBlockProps, StateToProps>> = (props) => {
   return (
     <div className="user-block">
       {hasAuthorization
-        ? <a href="/" className="user-block__link">Sign in</a>
+        ? <Link to="/login" className="user-block__link">Sign in</Link>
         : <div className="user-block__avatar">
           <img src={avatarSrc} alt="User avatar" width="63" height="63"/>
         </div>

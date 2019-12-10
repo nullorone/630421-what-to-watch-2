@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from "../../reducer/user/user";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
 import MoviePageDetails from "../movie-page-details/movie-page-details";
 import {AmountSimilarFilms, Value} from "../../constants";
 import {Film, UserData} from "../../types";
@@ -57,22 +57,20 @@ const App: React.FC<Assign<StateFromProps, DispatchFromProps>> = (props) => {
     <Router>
       <Switch>
         <Route exact path="/" render={(): JSX.Element => {
-          return isAuthorizationRequired
-            ? <UserPage/>
-            : (
-              <MainWrapped
-                promo={promo}
-                genres={genres}
-                selectedGenre={genre}
-                onSelectedGenreClick={onGenreClick}
-                user={user}>
-                <MovieCardSmallListWrapped
-                  films={(filteredFilms.length !== 0)
-                    ? filteredFilms
-                    : films
-                  }/>
-              </MainWrapped>
-            );
+          return (
+            <MainWrapped
+              promo={promo}
+              genres={genres}
+              selectedGenre={genre}
+              onSelectedGenreClick={onGenreClick}
+              user={user}>
+              <MovieCardSmallListWrapped
+                films={(filteredFilms.length !== 0)
+                  ? filteredFilms
+                  : films
+                }/>
+            </MainWrapped>
+          );
         }}/>
         <Route exact path="/films/:id" render={({match}): JSX.Element => {
           const clickedFilm = getClickedFilm(match.params.id);
@@ -92,16 +90,17 @@ const App: React.FC<Assign<StateFromProps, DispatchFromProps>> = (props) => {
           const clickedFilm = getClickedFilm(match.params.id);
           const {id, name, image} = clickedFilm;
 
-          return isAuthorizationRequired
-            ? <UserPage/>
-            : (
-              <ReviewPage
-                id={id}
-                filmName={name}
-                image={image}
-                avatar={user.avatarUrl}
-              />
-            );
+          return (
+            <ReviewPage
+              id={id}
+              filmName={name}
+              image={image}
+              avatar={user.avatarUrl}
+            />
+          );
+        }}/>
+        <Route exact path="/login" render={(): JSX.Element => {
+          return isAuthorizationRequired ? <UserPage/> : <Redirect to="/"/>;
         }}/>
       </Switch>
     </Router>

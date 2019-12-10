@@ -78,7 +78,7 @@ export const Url = {
 export const API_TIMEOUT = 5000;
 
 export const Status = {
-  AUTHORIZATION: 403,
+  AUTHORIZATION: 401,
   SUCCESS: 200,
 };
 
