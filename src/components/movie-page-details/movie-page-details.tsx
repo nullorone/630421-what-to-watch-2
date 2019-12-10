@@ -48,6 +48,7 @@ const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
     },
     genre,
     released,
+    isFavorite,
   } = clickedFilm;
 
   const {avatarUrl} = user;
@@ -92,7 +93,7 @@ const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
 
                 <MovieCardButton
                   text={`My list`}
-                  iconName={`add`}
+                  iconName={isFavorite ? `in-list` : `add`}
                   classModifier={`list`}
                 />
 
