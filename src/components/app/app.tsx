@@ -12,6 +12,7 @@ import {getFilteredFIlms} from "../../reducer/user/selectors";
 import {getUniqueGenres} from "../../reducer/data/selectors";
 import UserPage from "../user-page/user-page";
 import ReviewPage from "../review-page/review-page";
+import MyListPage from "../my-list-page/my-list-page";
 
 interface StateFromProps {
   genre: string;
@@ -85,6 +86,13 @@ const App: React.FC<Assign<StateFromProps, DispatchFromProps>> = (props) => {
               image={image}
               avatar={user.avatarUrl}
             />);
+        }}/>
+        <Route path="/mylist" render={(): JSX.Element => {
+          return (
+            <MyListPage
+              favoriteFilms={films}
+              user={user}/>
+          );
         }}/>
         <Route exact path="/login" render={(): JSX.Element => {
           return isAuthorizationRequired ? <UserPage/> : <Redirect to="/"/>;

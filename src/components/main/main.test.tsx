@@ -3,7 +3,6 @@ import renderer from "react-test-renderer";
 import Main from './main';
 import {EMPTY_STRING, Value} from "../../constants";
 import {BrowserRouter} from "react-router-dom";
-import {UserData} from "../../types";
 
 jest.mock(`../icons-wrapper/icons-wrapper`, () => `IconsWrapper`);
 jest.mock(`../movie-card/movie-card`, () => `MovieCard`);
