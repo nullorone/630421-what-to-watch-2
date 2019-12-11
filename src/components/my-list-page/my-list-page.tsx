@@ -30,7 +30,7 @@ const MyListPage: React.FC<MyListPageProps> = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <MovieCardSmallListWrapped films={favoriteFilms}/>
+        {favoriteFilms && <MovieCardSmallListWrapped films={favoriteFilms}/>}
       </section>
 
       <footer className="page-footer">
