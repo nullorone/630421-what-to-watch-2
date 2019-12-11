@@ -59,7 +59,8 @@ export interface Button {
     width?: number;
     height?: number;
   };
-  onButtonClick?: () => void;
+  onButtonClick?: (usefulLoad?: boolean) => void;
+  usefulLoad?: boolean;
 }
 
 export type UserDataType = {

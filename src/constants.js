@@ -73,6 +73,7 @@ export const Url = {
   PROMO: `/films/promo`,
   LOGIN: `/login`,
   COMMENTS: `/comments`,
+  FAVORITE: `/favorite`,
 };
 
 export const API_TIMEOUT = 5000;

@@ -1,8 +1,6 @@
-import React from "react";
 import axios from "axios";
 import {API_TIMEOUT, Status, Url} from "./constants";
 import {ActionCreator} from "./reducer/data/data";
-import {Redirect} from "react-router-dom";
 
 const createApi = (dispatch) => {
   const api = axios.create({
@@ -16,7 +14,7 @@ const createApi = (dispatch) => {
   const onFail = (error) => {
     if (error.response.status === Status.AUTHORIZATION) {
       dispatch(ActionCreator.requireAuthorization(true));
-      return <Redirect to="/login"/>;
+      location.href = `/login`;
     }
 
     return error;

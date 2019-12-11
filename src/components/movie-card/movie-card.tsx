@@ -14,6 +14,7 @@ interface MovieCardProps {
   genre: string;
   released: number;
   onPlayButtonClick?: () => void;
+  onListClick?: (favorite: boolean) => void;
   user: UserData;
   isFavorite: boolean;
 }
@@ -30,6 +31,7 @@ const MovieCard: React.FC<MovieCardProps> = (props) => {
     genre,
     released,
     onPlayButtonClick,
+    onListClick,
     user,
     isFavorite,
   } = props;
@@ -81,6 +83,8 @@ const MovieCard: React.FC<MovieCardProps> = (props) => {
                 text={`My list`}
                 iconName={isFavorite ? `in-list` : `add`}
                 classModifier={`list`}
+                usefulLoad={isFavorite}
+                onButtonClick={onListClick}
               />
             </div>
           </MovieCardDescription>

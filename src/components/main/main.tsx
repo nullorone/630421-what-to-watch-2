@@ -5,12 +5,18 @@ import Logo from "../logo/logo";
 import MovieCard from "../movie-card/movie-card";
 import {Film, UserData} from "../../types";
 import {iconNames} from "../../constants";
+import withAddItemButton from "../../hocs/with-add-item-button/with-add-item-button";
+import withChangeItem from "../../hocs/with-change-item/with-change-item";
+import MovieCardSmallList from "../movie-card-small-list/movie-card-small-list";
 
 interface MainProps {
   promo: Film;
+  filteredFilms: Film[];
+  films: Film[];
   genres: string[];
   selectedGenre: string;
   onSelectedGenreClick: () => void;
+  onListClick?: (favorite: boolean) => void;
   onButtonClick: () => void;
   user: UserData;
 }
@@ -22,14 +28,19 @@ const Main: React.FC<MainProps> = (props) => {
     selectedGenre,
     onSelectedGenreClick,
     onButtonClick,
+    onListClick,
     user,
+    filteredFilms,
+    films,
   } = props;
+
+  const MovieCardSmallListWrapped = withAddItemButton(withChangeItem(MovieCardSmallList));
 
   return (
     <>
       <IconsWrapper iconNames={iconNames}/>
 
-      <MovieCard {...promo} user={user} onPlayButtonClick={onButtonClick}/>
+      <MovieCard {...promo} user={user} onPlayButtonClick={onButtonClick} onListClick={onListClick}/>
 
       <div className="page-content">
         <section className="catalog">
@@ -43,7 +54,11 @@ const Main: React.FC<MainProps> = (props) => {
             selectedGenre={selectedGenre}
             onGenreClick={onSelectedGenreClick}/>}
 
-          {props.children}
+          <MovieCardSmallListWrapped
+            films={(filteredFilms.length !== 0)
+              ? filteredFilms
+              : films
+            }/>
         </section>
 
         <footer className="page-footer">

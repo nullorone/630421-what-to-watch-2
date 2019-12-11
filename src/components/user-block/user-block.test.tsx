@@ -2,6 +2,7 @@ import * as React from "react";
 import renderer from "react-test-renderer";
 import {EMPTY_STRING} from "../../constants";
 import {UserBlock} from "./user-block";
+import {BrowserRouter} from "react-router-dom";
 
 describe(`Make snapshot`, () => {
   const initProps = {
@@ -12,7 +13,9 @@ describe(`Make snapshot`, () => {
   it(`Get snapshot component`, () => {
     const tree = renderer
       .create(
-          <UserBlock {...initProps}/>
+          <BrowserRouter>
+            <UserBlock {...initProps}/>
+          </BrowserRouter>
       )
       .toJSON();
 
