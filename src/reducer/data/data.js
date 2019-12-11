@@ -1,4 +1,4 @@
-import {Url} from "../../constants";
+import {Url, Value} from "../../constants";
 import Adapter from "../../adapter";
 
 const initState = {
@@ -17,6 +17,8 @@ const ActionType = {
   AUTHORIZATION: `AUTHORIZATION`,
   LOAD_USER: `LOAD_USER`,
   GET_COMMENTS: `GET_COMMENTS`,
+  UPDATE_FILMS: `UPDATE_FILMS`,
+  UPDATE_PROMO: `UPDATE_PROMO`,
 };
 
 const ActionCreator = {
@@ -39,6 +41,14 @@ const ActionCreator = {
   getComments: (comments) => ({
     type: ActionType.GET_COMMENTS,
     payload: comments
+  }),
+  updateFilms: (films) => ({
+    type: ActionType.UPDATE_FILMS,
+    payload: films
+  }),
+  updatePromo: (promo) => ({
+    type: ActionType.UPDATE_PROMO,
+    payload: promo
   }),
 };
 
@@ -67,6 +77,14 @@ const reducer = (state = initState, action) => {
     case (ActionType.GET_COMMENTS):
       return Object.assign({}, state, {
         comments: action.payload,
+      });
+    case (ActionType.UPDATE_FILMS):
+      return Object.assign({}, state, {
+        films: action.payload,
+      });
+    case (ActionType.UPDATE_PROMO):
+      return Object.assign({}, state, {
+        promo: action.payload,
       });
   }
 
@@ -111,6 +129,22 @@ const Operation = {
     })
       .then((response) => {
         dispatch(ActionCreator.getComments(response.data));
+      });
+  },
+  sendFavorite: (id, addInFavorite, films, promo) => (dispatch, _, api) => {
+    return api.post(`${Url.FAVORITE}/${id}/${addInFavorite}`)
+      .then((response) => {
+        const receivedFilm = Adapter.parseFilm(response.data);
+        const changedFilmIndex = films.findIndex((film) => film.id === receivedFilm.id);
+        const updatedFilms = [
+          ...films.slice(0, changedFilmIndex),
+          receivedFilm,
+          ...films.slice(changedFilmIndex + Value.FULL)
+        ];
+        dispatch(ActionCreator.updateFilms(updatedFilms));
+        if (promo) {
+          dispatch(ActionCreator.updatePromo(receivedFilm));
+        }
       });
   },
 };

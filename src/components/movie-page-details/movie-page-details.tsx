@@ -8,6 +8,8 @@ import {
   iconNames,
   Img,
   MOVIE_NAV_ITEMS,
+  Value,
+  AmountSimilarFilms,
 } from "../../constants";
 import MovieCardDescription from "../movie-card-description/movie-card-description";
 import MovieNavList from "../movie-nav-list/movie-nav-list";
@@ -22,6 +24,7 @@ interface MoviePageDetailsProps {
   clickedFilm: Film;
   films: Film[];
   onButtonClick?: () => void;
+  onListClick?: (favorite: boolean) => void;
   user: UserData;
   hasAuthorization: boolean;
   comments: Comment[];
@@ -32,6 +35,7 @@ const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
     clickedFilm,
     films,
     onButtonClick,
+    onListClick,
     user,
     hasAuthorization,
     comments,
@@ -48,12 +52,15 @@ const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
     },
     genre,
     released,
+    isFavorite,
   } = clickedFilm;
 
   const {avatarUrl} = user;
 
   const MovieNavListWrapped = withActiveItem(MovieNavList);
   const MovieCardSmallListWrapped = withChangeItem(MovieCardSmallList);
+  const getSimilarFilms = (currentFilm: Film): Film[] => films.filter((film) => film.genre === currentFilm.genre);
+  const similarFilms = getSimilarFilms(clickedFilm).slice(Value.EMPTY, AmountSimilarFilms.ON_PAGE_FILM);
 
   return (
     <>
@@ -92,8 +99,10 @@ const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
 
                 <MovieCardButton
                   text={`My list`}
-                  iconName={`add`}
+                  iconName={isFavorite ? `in-list` : `add`}
                   classModifier={`list`}
+                  usefulLoad={isFavorite}
+                  onButtonClick={onListClick}
                 />
 
                 {!hasAuthorization && <Link to={`${id}/review`} className="btn movie-card__button">Add review</Link>}
@@ -124,7 +133,7 @@ const MoviePageDetails: React.FC<MoviePageDetailsProps> = (props) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <MovieCardSmallListWrapped films={films}/>
+          <MovieCardSmallListWrapped films={similarFilms}/>
         </section>
 
         <footer className="page-footer">

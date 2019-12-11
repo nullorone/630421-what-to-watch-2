@@ -4,6 +4,10 @@ import {EMPTY_STRING, Value} from "../../constants";
 import MovieCard from "./movie-card";
 
 jest.mock(`../user-block/user-block`, () => `UserBlock`);
+jest.mock(`../movie-card-picture/movie-card-picture`, () => `MovieCardPicture`);
+jest.mock(`../logo/logo`, () => `Logo`);
+jest.mock(`../movie-card-description/movie-card-description`, () => `MovieCardDescription`);
+jest.mock(`../movie-card-button/movie-card-button`, () => `MovieCardButton`);
 
 describe(`Make snapshot`, () => {
   const initProps = {
@@ -23,6 +27,9 @@ describe(`Make snapshot`, () => {
       email: `keks@gmail.com`,
       avatarUrl: `./img/keks.jpg`,
     },
+    isFavorite: false,
+    onPlayButtonClick: jest.fn(),
+    onListClick: jest.fn(),
   };
 
   it(`Get snapshot component`, () => {

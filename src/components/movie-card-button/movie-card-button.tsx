@@ -9,6 +9,7 @@ const MovieCardButton: React.FC<Button> = (props) => {
     text,
     size,
     onButtonClick,
+    usefulLoad,
   } = props;
 
   const width = size ? size.width : 19;
@@ -22,7 +23,9 @@ const MovieCardButton: React.FC<Button> = (props) => {
       type="button"
       onClick={(evt): void => {
         evt.preventDefault();
-        if (onButtonClick) {
+        if (onButtonClick && usefulLoad !== undefined) {
+          onButtonClick(usefulLoad);
+        } else if (onButtonClick && usefulLoad === undefined) {
           onButtonClick();
         }
       }}>

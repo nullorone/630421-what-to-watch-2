@@ -14,6 +14,7 @@ const createApi = (dispatch) => {
   const onFail = (error) => {
     if (error.response.status === Status.AUTHORIZATION) {
       dispatch(ActionCreator.requireAuthorization(true));
+      location.href = `/login`;
     }
 
     return error;

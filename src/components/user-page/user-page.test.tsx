@@ -5,6 +5,7 @@ import store from "../../reducer/store";
 import {Provider} from "react-redux";
 
 jest.mock(`../sign-in/sign-in`, () => `SignIn`);
+jest.mock(`../logo/logo`, () => `Logo`);
 
 describe(`Make snapshot`, () => {
   it(`Get snapshot component`, () => {

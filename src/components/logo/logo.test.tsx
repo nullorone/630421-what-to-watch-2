@@ -1,6 +1,7 @@
 import * as React from "react";
 import renderer from "react-test-renderer";
 import Logo from "./logo";
+import {BrowserRouter} from "react-router-dom";
 
 describe(`Make snapshot`, () => {
   const initProps = {
@@ -10,7 +11,9 @@ describe(`Make snapshot`, () => {
   it(`Get snapshot component`, () => {
     const tree = renderer
       .create(
-          <Logo {...initProps}/>
+          <BrowserRouter>
+            <Logo {...initProps}/>
+          </BrowserRouter>
       )
       .toJSON();
 

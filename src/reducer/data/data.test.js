@@ -2,7 +2,7 @@ import createApi from "../../api";
 import MockAdapter from "axios-mock-adapter";
 import Adapter from "../../adapter";
 import {EMPTY_STRING, MASK_AVATAR, Status, Url, Value} from "../../constants";
-import {ActionType, Operation} from "./data";
+import {ActionType, Operation, reducer} from "./data";
 
 describe(`Test actions`, () => {
   it(`Get all films`, () => {
@@ -133,5 +133,77 @@ describe(`Test actions`, () => {
           ],
         });
       });
+  });
+
+  it(`Update favorite film`, () => {
+    const mockFilm = {
+      id: Value.EMPTY,
+      name: `Keks`,
+      image: {
+        poster: EMPTY_STRING,
+        posterAlt: `1`,
+        preview: EMPTY_STRING,
+        previewAlt: EMPTY_STRING,
+        background: EMPTY_STRING,
+        backgroundAlt: EMPTY_STRING,
+      },
+      backgroundColor: EMPTY_STRING,
+      video: {
+        link: {
+          mp4: EMPTY_STRING,
+        },
+        poster: EMPTY_STRING,
+      },
+      description: EMPTY_STRING,
+      rating: Value.FULL,
+      scoresCount: Value.FULL,
+      director: `Keks`,
+      starring: [`Me`, `You`, `They`],
+      runTime: Value.EMPTY,
+      genre: EMPTY_STRING,
+      released: Value.FULL,
+      isFavorite: true,
+    };
+
+    expect(reducer({films: [mockFilm]}, {
+      type: ActionType.UPDATE_FILMS,
+      payload: [mockFilm]
+    })).toEqual({films: [mockFilm]});
+  });
+
+  it(`Update promo`, () => {
+    const mockFilm = {
+      id: Value.EMPTY,
+      name: `Keks`,
+      image: {
+        poster: EMPTY_STRING,
+        posterAlt: `1`,
+        preview: EMPTY_STRING,
+        previewAlt: EMPTY_STRING,
+        background: EMPTY_STRING,
+        backgroundAlt: EMPTY_STRING,
+      },
+      backgroundColor: EMPTY_STRING,
+      video: {
+        link: {
+          mp4: EMPTY_STRING,
+        },
+        poster: EMPTY_STRING,
+      },
+      description: EMPTY_STRING,
+      rating: Value.FULL,
+      scoresCount: Value.FULL,
+      director: `Keks`,
+      starring: [`Me`, `You`, `They`],
+      runTime: Value.EMPTY,
+      genre: EMPTY_STRING,
+      released: Value.FULL,
+      isFavorite: true,
+    };
+
+    expect(reducer({promo: mockFilm}, {
+      type: ActionType.UPDATE_PROMO,
+      payload: mockFilm
+    })).toEqual({promo: mockFilm});
   });
 });

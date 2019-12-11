@@ -73,12 +73,13 @@ export const Url = {
   PROMO: `/films/promo`,
   LOGIN: `/login`,
   COMMENTS: `/comments`,
+  FAVORITE: `/favorite`,
 };
 
 export const API_TIMEOUT = 5000;
 
 export const Status = {
-  AUTHORIZATION: 403,
+  AUTHORIZATION: 401,
   SUCCESS: 200,
 };
 

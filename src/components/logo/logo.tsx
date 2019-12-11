@@ -1,4 +1,5 @@
 import * as React from "react";
+import {Link} from "react-router-dom";
 
 interface LogoProps {
   light: boolean;
@@ -10,11 +11,11 @@ const Logo: React.FC<LogoProps> = (props) => {
 
   return (
     <div className="logo">
-      <a href="/" className={logoClass}>
+      <Link to="/" className={logoClass}>
         <span className="logo__letter logo__letter--1">W</span>
         <span className="logo__letter logo__letter--2">T</span>
         <span className="logo__letter logo__letter--3">W</span>
-      </a>
+      </Link>
     </div>
   );
 };

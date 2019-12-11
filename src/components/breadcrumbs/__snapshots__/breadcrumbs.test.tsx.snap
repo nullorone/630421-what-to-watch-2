@@ -12,7 +12,8 @@ exports[`Make snapshot Get snapshot component 1`] = `
     >
       <a
         className="breadcrumbs__link"
-        href="https://htmlacademy.ru"
+        href="/https://htmlacademy.ru"
+        onClick={[Function]}
       >
         Keks
       </a>

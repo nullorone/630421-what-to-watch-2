@@ -6,7 +6,8 @@ exports[`Make snapshot Get snapshot component 1`] = `
 >
   <a
     className="user-block__link"
-    href="/"
+    href="/login"
+    onClick={[Function]}
   >
     Sign in
   </a>
