@@ -78,14 +78,13 @@ const App: React.FC<Assign<StateFromProps, DispatchFromProps>> = (props) => {
           const clickedFilm = getClickedFilm(match.params.id);
           const {id, name, image} = clickedFilm;
 
-          return !isAuthorizationRequired
-            ? <ReviewPage
+          return (
+            <ReviewPage
               id={id}
               filmName={name}
               image={image}
               avatar={user.avatarUrl}
-            />
-            : <Redirect to="/login"/>;
+            />);
         }}/>
         <Route exact path="/login" render={(): JSX.Element => {
           return isAuthorizationRequired ? <UserPage/> : <Redirect to="/"/>;
