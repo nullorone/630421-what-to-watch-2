@@ -1,6 +1,6 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import App from './components/app/app';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import App from "./components/app/app";
 import {Provider} from "react-redux";
 import {Operation} from "./reducer/data/data";
 import store from "./reducer/store";

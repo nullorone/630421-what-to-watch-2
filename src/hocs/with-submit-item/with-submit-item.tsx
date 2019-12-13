@@ -32,17 +32,6 @@ const withSubmitItem = (Component) => {
       this._handleWithSubmitItem = this._handleWithSubmitItem.bind(this);
     }
 
-    public render(): JSX.Element {
-      return (
-        <Component
-          {...this.props}
-          formRef={this._formRef}
-          buttonRef={this._submitButtonRef}
-          onFormSubmit={this._handleWithSubmitItem}
-        />
-      );
-    }
-
     private _handleWithSubmitItem(id: number): void {
       const radios = [...this._formRef.current.elements[`rating`]];
       const checkedRadio = radios.filter((radio) => radio.checked);
@@ -65,6 +54,17 @@ const withSubmitItem = (Component) => {
             this._submitButtonRef.current.disabled = false;
           });
       }
+    }
+
+    public render(): JSX.Element {
+      return (
+        <Component
+          {...this.props}
+          formRef={this._formRef}
+          buttonRef={this._submitButtonRef}
+          onFormSubmit={this._handleWithSubmitItem}
+        />
+      );
     }
   }
 

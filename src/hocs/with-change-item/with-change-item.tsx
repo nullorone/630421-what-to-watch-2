@@ -31,17 +31,6 @@ const withChangeItem = (Component) => {
       this._handleWithChangeItemMouseLeave = this._handleWithChangeItemMouseLeave.bind(this);
     }
 
-    public render(): JSX.Element {
-      return (
-        <Component
-          {...this.props}
-          itemCurrentIndex={this.state.currentIndex}
-          onItemMouseEnter={this._handleWithChangeItemMouseEnter}
-          onItemMouseLeave={this._handleWithChangeItemMouseLeave}
-        />
-      );
-    }
-
     public componentWillUnmount(): void {
       clearTimeout(this._timer);
     }
@@ -55,6 +44,17 @@ const withChangeItem = (Component) => {
     private _handleWithChangeItemMouseLeave(): void {
       clearTimeout(this._timer);
       this.setState(() => ({currentIndex: null}));
+    }
+
+    public render(): JSX.Element {
+      return (
+        <Component
+          {...this.props}
+          itemCurrentIndex={this.state.currentIndex}
+          onItemMouseEnter={this._handleWithChangeItemMouseEnter}
+          onItemMouseLeave={this._handleWithChangeItemMouseLeave}
+        />
+      );
     }
   }
 

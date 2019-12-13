@@ -13,7 +13,7 @@ describe(`Make snapshot`, () => {
       name: `Keks`,
       image: {
         poster: EMPTY_STRING,
-        posterAlt: EMPTY_STRING,
+        posterAlt: `1`,
         preview: EMPTY_STRING,
         previewAlt: EMPTY_STRING,
         background: EMPTY_STRING,
@@ -23,7 +23,6 @@ describe(`Make snapshot`, () => {
       video: {
         link: {
           mp4: EMPTY_STRING,
-          webm: EMPTY_STRING,
         },
         poster: EMPTY_STRING,
       },
@@ -70,7 +69,7 @@ describe(`Make snapshot`, () => {
       name: `Keks`,
       image: {
         poster: EMPTY_STRING,
-        posterAlt: EMPTY_STRING,
+        posterAlt: `1`,
         preview: EMPTY_STRING,
         previewAlt: EMPTY_STRING,
         background: EMPTY_STRING,
@@ -80,7 +79,34 @@ describe(`Make snapshot`, () => {
       video: {
         link: {
           mp4: EMPTY_STRING,
-          webm: EMPTY_STRING,
+        },
+        poster: EMPTY_STRING,
+      },
+      description: EMPTY_STRING,
+      rating: Value.FULL,
+      scoresCount: Value.FULL,
+      director: `Keks`,
+      starring: [`Me`, `You`, `They`],
+      runTime: Value.EMPTY,
+      genre: EMPTY_STRING,
+      released: Value.FULL,
+      isFavorite: true,
+    }],
+    favoritesFilms: [{
+      id: Value.EMPTY,
+      name: `Keks`,
+      image: {
+        poster: EMPTY_STRING,
+        posterAlt: `1`,
+        preview: EMPTY_STRING,
+        previewAlt: EMPTY_STRING,
+        background: EMPTY_STRING,
+        backgroundAlt: EMPTY_STRING,
+      },
+      backgroundColor: EMPTY_STRING,
+      video: {
+        link: {
+          mp4: EMPTY_STRING,
         },
         poster: EMPTY_STRING,
       },
@@ -104,6 +130,16 @@ describe(`Make snapshot`, () => {
       avatarUrl: `./img/keks.jpg`,
     },
     isAuthorizationRequired: false,
+    comments: [{
+      id: Value.FULL,
+      user: {
+        id: Value.FULL,
+        name: EMPTY_STRING
+      },
+      rating: Value.FULL,
+      comment: EMPTY_STRING,
+      date: EMPTY_STRING
+    }]
   };
 
   it(`Get snapshot component`, () => {

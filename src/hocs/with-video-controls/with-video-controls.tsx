@@ -47,70 +47,6 @@ const withVideoControls = (Component) => {
       };
     }
 
-    public render(): JSX.Element {
-      const buttonPlayProps: Button = {
-        className: `player__play`,
-        iconName: `play-s`,
-        text: `Play`,
-      };
-
-      const buttonPauseProps: Button = {
-        className: `player__play`,
-        iconName: `pause`,
-        text: `Pause`,
-      };
-
-      const {name, video} = this.props;
-      const playerButtonProps = this.state.isPause ? buttonPauseProps : buttonPlayProps;
-
-      return (
-        <>
-          <div className="player">
-            <Component
-              videoRef={this._videoPlayerRef}
-              video={video}/>
-
-            <button
-              type="button"
-              className="player__exit"
-              onClick={this._onExitButtonClick}>
-              Exit
-            </button>
-
-            <div className="player__controls">
-              <div className="player__controls-row">
-                <div className="player__time">
-                  <progress className="player__progress" ref={this._progressRef} max="100"/>
-                  <div className="player__toggler" ref={this._playerTogglerRef}>Toggler</div>
-                </div>
-                <div className="player__time-value" ref={this._timeValueRef}/>
-              </div>
-
-              <div className="player__controls-row">
-                <MovieCardButton
-                  {...playerButtonProps}
-                  iconName={this.state.isPause ? `play-s` : `pause`}
-                  onButtonClick={this._onPlayButtonClick}/>
-
-                <div className="player__name">{name}</div>
-
-                <MovieCardButton
-                  className={`player__full-screen`}
-                  iconName={`full-screen`}
-                  text={`Full screen`}
-                  size={{
-                    width: 27,
-                    height: 27,
-                  }}
-                  onButtonClick={this._onFullscreenButtonClick}
-                />
-              </div>
-            </div>
-          </div>
-        </>
-      );
-    }
-
     public componentDidMount(): void {
       this._getTimeEverySecond();
     }
@@ -178,6 +114,69 @@ const withVideoControls = (Component) => {
       }
     }
 
+    public render(): JSX.Element {
+      const buttonPlayProps: Button = {
+        className: `player__play`,
+        iconName: `play-s`,
+        text: `Play`,
+      };
+
+      const buttonPauseProps: Button = {
+        className: `player__play`,
+        iconName: `pause`,
+        text: `Pause`,
+      };
+
+      const {name, video} = this.props;
+      const playerButtonProps = this.state.isPause ? buttonPauseProps : buttonPlayProps;
+
+      return (
+        <>
+          <div className="player">
+            <Component
+              videoRef={this._videoPlayerRef}
+              video={video}/>
+
+            <button
+              type="button"
+              className="player__exit"
+              onClick={this._onExitButtonClick}>
+              Exit
+            </button>
+
+            <div className="player__controls">
+              <div className="player__controls-row">
+                <div className="player__time">
+                  <progress className="player__progress" ref={this._progressRef} max="100"/>
+                  <div className="player__toggler" ref={this._playerTogglerRef}>Toggler</div>
+                </div>
+                <div className="player__time-value" ref={this._timeValueRef}/>
+              </div>
+
+              <div className="player__controls-row">
+                <MovieCardButton
+                  {...playerButtonProps}
+                  iconName={this.state.isPause ? `play-s` : `pause`}
+                  onButtonClick={this._onPlayButtonClick}/>
+
+                <div className="player__name">{name}</div>
+
+                <MovieCardButton
+                  className={`player__full-screen`}
+                  iconName={`full-screen`}
+                  text={`Full screen`}
+                  size={{
+                    width: 27,
+                    height: 27,
+                  }}
+                  onButtonClick={this._onFullscreenButtonClick}
+                />
+              </div>
+            </div>
+          </div>
+        </>
+      );
+    }
   }
 
   return WithVideoControls;

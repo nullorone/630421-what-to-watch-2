@@ -73,6 +73,17 @@ describe(`Make snapshot`, () => {
       email: `keks@gmail.com`,
       avatarUrl: `./img/keks.jpg`,
     },
+    comments: [{
+      id: Value.FULL,
+      user: {
+        id: Value.FULL,
+        name: EMPTY_STRING
+      },
+      rating: Value.FULL,
+      comment: EMPTY_STRING,
+      date: EMPTY_STRING
+    }],
+    hasAuthorization: false
   };
 
   it(`Get snapshot component`, () => {
