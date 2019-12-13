@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {connect} from 'react-redux';
+import * as React from "react";
+import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/user/user";
 import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
 import MoviePageDetails from "../movie-page-details/movie-page-details";

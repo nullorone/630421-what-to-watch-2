@@ -1,6 +1,6 @@
-import * as React from 'react';
+import * as React from "react";
 import renderer from "react-test-renderer";
-import Main from './main';
+import Main from "./main";
 import {EMPTY_STRING, Value} from "../../constants";
 import {BrowserRouter} from "react-router-dom";
 

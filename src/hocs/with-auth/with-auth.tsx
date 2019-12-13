@@ -1,6 +1,6 @@
 import * as React from "react";
 import NameSpaces from "../../reducer/name-spaces";
-import {connect} from 'react-redux';
+import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 
 interface StateFromProps {
