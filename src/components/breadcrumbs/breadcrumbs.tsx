@@ -16,7 +16,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = (props) => {
     <nav className="breadcrumbs">
       <ul className="breadcrumbs__list">
         {props.breadcrumbs.map((breadcrumb, index) => {
-          const {text, link} = breadcrumb;
+          const {text, link = `#`} = breadcrumb;
           return (
             <li className="breadcrumbs__item" key={`breadcrumb-review-${index + Value.FULL}`}>
               <Link to={link} className="breadcrumbs__link">{text}</Link>
