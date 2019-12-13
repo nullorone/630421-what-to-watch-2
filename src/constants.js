@@ -92,3 +92,8 @@ export const Rating = {
   VERY_GOOD: `very good`,
   AWESOME: `awesome`
 };
+
+export const TextareaLength = {
+  MIN: 50,
+  MAX: 400,
+};

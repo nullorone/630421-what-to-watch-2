@@ -2,6 +2,7 @@ import * as React from "react";
 import {Subtract} from "utility-types";
 import {Operation} from "../../reducer/data/data";
 import store from "../../reducer/store";
+import {Value, TextareaLength} from "../../constants";
 
 interface SubtractProps {
   formRef: React.RefObject<HTMLFormElement>;
@@ -36,7 +37,7 @@ const withSubmitItem = (Component) => {
       const radios = [...this._formRef.current.elements[`rating`]];
       const checkedRadio = radios.filter((radio) => radio.checked);
       const textarea = this._formRef.current.elements[`review-text`];
-      if ((textarea.value.length > 50 && textarea.value.length < 400) && checkedRadio) {
+      if ((textarea.value.length > TextareaLength.MIN && textarea.value.length < TextareaLength.MAX) && checkedRadio.length > Value.EMPTY) {
         const review = {
           id,
           rating: checkedRadio[0].value,
