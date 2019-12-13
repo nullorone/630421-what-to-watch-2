@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {ActionCreator} from "../../reducer/user/user";
 import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
 import MoviePageDetails from "../movie-page-details/movie-page-details";
-import {Film, UserData} from "../../types";
+import {Film, UserData, Comment} from "../../types";
 import withTogglePlayer from "../../hocs/with-toggle-player/with-toggle-player";
 import Main from "../main/main";
 import {Assign} from "utility-types";
@@ -13,11 +13,13 @@ import {getUniqueGenres} from "../../reducer/data/selectors";
 import UserPage from "../user-page/user-page";
 import ReviewPage from "../review-page/review-page";
 import MyListPage from "../my-list-page/my-list-page";
+import withAuth from "../../hocs/with-auth/with-auth";
 
 interface StateFromProps {
   genre: string;
   promo: Film;
   films: Film[];
+  favoritesFilms: Film[];
   filteredFilms: Film[];
   genres: string[];
   isAuthorizationRequired: boolean;
@@ -33,6 +35,7 @@ const App: React.FC<Assign<StateFromProps, DispatchFromProps>> = (props) => {
   const {
     films,
     filteredFilms,
+    favoritesFilms,
     promo,
     genre,
     genres,
@@ -78,9 +81,10 @@ const App: React.FC<Assign<StateFromProps, DispatchFromProps>> = (props) => {
         <Route exact path="/films/:id/review" render={({match}): JSX.Element => {
           const clickedFilm = getClickedFilm(match.params.id);
           const {id, name, image} = clickedFilm;
+          const ReviewPageWrapped = withAuth(ReviewPage);
 
           return (
-            <ReviewPage
+            <ReviewPageWrapped
               id={id}
               filmName={name}
               image={image}
@@ -88,9 +92,10 @@ const App: React.FC<Assign<StateFromProps, DispatchFromProps>> = (props) => {
             />);
         }}/>
         <Route path="/mylist" render={(): JSX.Element => {
+          const MyListWrapped = withAuth(MyListPage);
           return (
-            <MyListPage
-              favoriteFilms={films}
+            <MyListWrapped
+              favoritesFilms={favoritesFilms}
               user={user}/>
           );
         }}/>
@@ -106,6 +111,7 @@ const mapStateToProps = (state): StateFromProps => Object.assign({}, {
   genre: state[NameSpaces.USER].genre,
   promo: state[NameSpaces.DATA].promo,
   films: state[NameSpaces.DATA].films,
+  favoritesFilms: state[NameSpaces.DATA].favoritesFilms,
   filteredFilms: getFilteredFIlms(state),
   genres: getUniqueGenres(state),
   isAuthorizationRequired: state[NameSpaces.DATA].isAuthorizationRequired,

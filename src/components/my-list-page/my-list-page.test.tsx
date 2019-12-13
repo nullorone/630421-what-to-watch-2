@@ -9,7 +9,7 @@ jest.mock(`../user-block/user-block`, () => `UserBlock`);
 
 describe(`Make snapshot`, () => {
   const initProps = {
-    favoriteFilms: [{
+    favoritesFilms: [{
       id: Value.EMPTY,
       name: `Keks`,
       image: {

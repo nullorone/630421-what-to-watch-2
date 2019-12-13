@@ -206,4 +206,24 @@ describe(`Test actions`, () => {
       payload: mockFilm
     })).toEqual({promo: mockFilm});
   });
+
+  it(`Get favorites films`, () => {
+    const dispatch = jest.fn();
+    const api = createApi(dispatch);
+    const mockApi = new MockAdapter(api);
+    const loadFavoritesFilms = Operation.loadFavoritesFilms();
+
+    mockApi
+      .onGet(Url.FAVORITE)
+      .reply(Status.SUCCESS, [{fake: true}]);
+
+    return loadFavoritesFilms(dispatch, jest.fn(), api)
+      .then(() => {
+        expect(dispatch).toBeCalledTimes(Value.FULL);
+        expect(dispatch).nthCalledWith(Value.FULL, {
+          type: ActionType.LOAD_FAVORITES_FILMS,
+          payload: Adapter.parseFilms([{fake: true}]),
+        });
+      });
+  });
 });

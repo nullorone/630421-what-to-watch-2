@@ -7,14 +7,14 @@ import UserBlock from "../user-block/user-block";
 import {Url} from "../../constants";
 
 interface MyListPageProps {
-  favoriteFilms: Film[];
+  favoritesFilms: Film[];
   user: UserData;
 }
 
 const MovieCardSmallListWrapped = withChangeItem(MovieCardSmallList);
 
 const MyListPage: React.FC<MyListPageProps> = (props) => {
-  const {favoriteFilms, user} = props;
+  const {favoritesFilms, user} = props;
   const {avatarUrl} = user;
 
   return (
@@ -30,7 +30,7 @@ const MyListPage: React.FC<MyListPageProps> = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        {favoriteFilms && <MovieCardSmallListWrapped films={favoriteFilms}/>}
+        {favoritesFilms && <MovieCardSmallListWrapped films={favoritesFilms}/>}
       </section>
 
       <footer className="page-footer">

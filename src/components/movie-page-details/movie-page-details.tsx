@@ -15,7 +15,7 @@ import MovieCardDescription from "../movie-card-description/movie-card-descripti
 import MovieNavList from "../movie-nav-list/movie-nav-list";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import withChangeItem from "../../hocs/with-change-item/with-change-item";
-import {Film, UserData} from "../../types";
+import {Film, UserData, Comment} from "../../types";
 import MovieCardButton from "../movie-card-button/movie-card-button";
 import {Link} from "react-router-dom";
 import {Url} from "../../constants";

@@ -8,10 +8,12 @@ const initState = {
   isAuthorizationRequired: true,
   user: {},
   comments: [],
+  favoritesFilms: [],
 };
 
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
+  LOAD_FAVORITES_FILMS: `LOAD_FAVORITES_FILMS`,
   LOAD_PROMO: `LOAD_PROMO`,
   GENRES: `GENRES`,
   AUTHORIZATION: `AUTHORIZATION`,
@@ -25,6 +27,10 @@ const ActionCreator = {
   loadFilms: (loadedFilms) => ({
     type: ActionType.LOAD_FILMS,
     payload: loadedFilms,
+  }),
+  loadFavoritesFilms: (favoritesFilms) => ({
+    type: ActionType.LOAD_FAVORITES_FILMS,
+    payload: favoritesFilms,
   }),
   loadPromo: (loadedPromo) => ({
     type: ActionType.LOAD_PROMO,
@@ -57,6 +63,10 @@ const reducer = (state = initState, action) => {
     case (ActionType.LOAD_FILMS):
       return Object.assign({}, state, {
         films: action.payload,
+      });
+    case (ActionType.LOAD_FAVORITES_FILMS):
+      return Object.assign({}, state, {
+        favoritesFilms: action.payload,
       });
     case (ActionType.LOAD_PROMO):
       return Object.assign({}, state, {
@@ -97,6 +107,12 @@ const Operation = {
     return api.get(Url.FILMS)
       .then((response) => {
         dispatch(ActionCreator.loadFilms(Adapter.parseFilms(response.data)));
+      });
+  },
+  loadFavoritesFilms: () => (dispatch, _, api) => {
+    return api.get(Url.FAVORITE)
+      .then((response) => {
+        dispatch(ActionCreator.loadFavoritesFilms(Adapter.parseFilms(response.data)));
       });
   },
   loadPromo: () => (dispatch, _, api) => {
