@@ -26,6 +26,10 @@ const withActiveItem = (Component)=> {
       this._handleItemClick = this._handleItemClick.bind(this);
     }
 
+    private _handleItemClick(itemName): void {
+      this.setState({item: itemName});
+    }
+
     public render(): JSX.Element {
       return (
         <Component
@@ -34,10 +38,6 @@ const withActiveItem = (Component)=> {
           onItemClick={this._handleItemClick}
         />
       );
-    }
-
-    private _handleItemClick(itemName): void {
-      this.setState({item: itemName});
     }
   }
 

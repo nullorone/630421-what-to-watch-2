@@ -24,6 +24,12 @@ const withAddItemButton = (Component) => {
 
     }
 
+    private _catalogButtonsClickHandler(): void {
+      this.setState((prevState) => ({
+        endIndexFilm: prevState.endIndexFilm + AMOUNT_ADDED_FILMS
+      }));
+    }
+
     public render(): JSX.Element {
       const currentFilms = this.props.films.slice(Value.EMPTY, this.state.endIndexFilm);
 
@@ -37,13 +43,6 @@ const withAddItemButton = (Component) => {
           && <CatalogButton onButtonClick={this._catalogButtonsClickHandler}/>}
         </>
       );
-    }
-
-    private _catalogButtonsClickHandler(): void {
-      this.setState((prevState) => ({
-        endIndexFilm: prevState.endIndexFilm + AMOUNT_ADDED_FILMS
-      }));
-
     }
   }
 
