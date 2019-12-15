@@ -17,7 +17,12 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, null> {
 
   public componentDidMount(): void {
     const video = this._videoRef.current;
-    video.play();
+    video.load();
+  }
+
+  public componentWillUnmount(): void {
+    const video = this._videoRef.current;
+    video.onplay = null;
   }
 
   public render(): JSX.Element {
@@ -25,7 +30,6 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, null> {
       video: {
         link: {
           mp4,
-          webm,
         },
         poster,
       },
@@ -38,18 +42,14 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, null> {
           width: `100%`,
           height: `100%`,
         }}
+        preload="none"
         ref={this._videoRef}
         muted={isMuted}
+        autoPlay={true}
         poster={poster}>
         {mp4 && <source src={mp4} type="video/mp4"/>}
-        {webm && <source src={webm} type="video/webm"/>}
       </video>
     );
-  }
-
-  public componentWillUnmount(): void {
-    const video = this._videoRef.current;
-    video.load();
   }
 }
 

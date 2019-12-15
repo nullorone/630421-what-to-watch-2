@@ -2,8 +2,10 @@
 
 exports[`Make snapshot Get snapshot component 1`] = `
 <video
+  autoPlay={true}
   muted={true}
   poster="./img/Holly"
+  preload="none"
   style={
     Object {
       "height": "100%",
@@ -14,10 +16,6 @@ exports[`Make snapshot Get snapshot component 1`] = `
   <source
     src="New Year"
     type="video/mp4"
-  />
-  <source
-    src="Christmas"
-    type="video/webm"
   />
 </video>
 `;

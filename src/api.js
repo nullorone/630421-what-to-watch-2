@@ -12,7 +12,7 @@ const createApi = (dispatch) => {
   const onSuccess = (response) => response;
 
   const onFail = (error) => {
-    if (error.response.status === Status.AUTHORIZATION) {
+    if (error.response && (error.response.status === Status.AUTHORIZATION || error.response.status === Status.FORBIDDEN)) {
       dispatch(ActionCreator.requireAuthorization(true));
       location.href = `/login`;
     }
