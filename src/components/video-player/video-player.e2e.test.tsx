@@ -16,7 +16,7 @@ describe(`Render Component`, () => {
   };
 
   jest
-    .spyOn(window.HTMLMediaElement.prototype, `play`)
+    .spyOn(window.HTMLMediaElement.prototype, `load`)
     .mockImplementation(() => {});
 
   it(`Get amount source node`, () => {
@@ -27,10 +27,10 @@ describe(`Render Component`, () => {
     );
 
     const currentVideoElement = wrapper.instance()._videoRef.current;
-    const spy = jest.spyOn(currentVideoElement, `play`);
+    const spy = jest.spyOn(currentVideoElement, `load`);
 
     expect(spy).toHaveBeenCalled();
-    expect(currentVideoElement.play).toBeCalledTimes(Value.FULL);
+    expect(currentVideoElement.load).toBeCalledTimes(Value.FULL);
 
     spy.mockRestore();
   });

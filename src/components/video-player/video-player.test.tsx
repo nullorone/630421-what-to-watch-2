@@ -17,7 +17,7 @@ describe(`Make snapshot`, () => {
   const createNodeMock = (element) => {
     return element.type === `video`
       ? {
-        play: () => {},
+        load: () => {},
         pause: () => {},
       }
       : null;
