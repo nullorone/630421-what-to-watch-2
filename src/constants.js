@@ -80,6 +80,7 @@ export const API_TIMEOUT = 5000;
 
 export const Status = {
   AUTHORIZATION: 401,
+  FORBIDDEN: 403,
   SUCCESS: 200,
 };
 

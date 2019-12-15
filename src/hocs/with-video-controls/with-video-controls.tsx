@@ -38,9 +38,9 @@ const withVideoControls = (Component) => {
       this._timePlayFilm = Number(this.props.runTime);
       this._progress = 0;
 
-      this._onFullscreenButtonClick = this._onFullscreenButtonClick.bind(this);
-      this._onPlayButtonClick = this._onPlayButtonClick.bind(this);
-      this._onExitButtonClick = this._onExitButtonClick.bind(this);
+      this._handleFullscreenButtonClick = this._handleFullscreenButtonClick.bind(this);
+      this._handlePlayButtonClick = this._handlePlayButtonClick.bind(this);
+      this._handleExitButtonClick = this._handleExitButtonClick.bind(this);
 
       this.state = {
         isPause: false,
@@ -48,14 +48,14 @@ const withVideoControls = (Component) => {
     }
 
     public componentDidMount(): void {
-      this._getTimeEverySecond();
+      this._handleProgressChange();
     }
 
     public componentWillUnmount(): void {
       clearInterval(this._timer);
     }
 
-    private _getTimeEverySecond(): void {
+    private _handleProgressChange(): void {
       const getTime = (time): string => {
         const minutes = Math.floor(time / MINUTES_IN_HOUR);
         const seconds = Math.round(time % MINUTES_IN_HOUR);
@@ -76,7 +76,7 @@ const withVideoControls = (Component) => {
       }, MILLISECONDS_IN_SECOND);
     }
 
-    private _onPlayButtonClick(): void {
+    private _handlePlayButtonClick(): void {
       const videoPlayer = this._videoPlayerRef.current;
 
       if (this.state.isPause) {
@@ -88,13 +88,13 @@ const withVideoControls = (Component) => {
       this.setState((prevState) => ({isPause: !prevState.isPause}));
 
       if (this.state.isPause) {
-        this._getTimeEverySecond();
+        this._handleProgressChange();
       } else {
         clearInterval(this._timer);
       }
     }
 
-    private _onFullscreenButtonClick(): void {
+    private _handleFullscreenButtonClick(): void {
       const videoPlayer = this._videoPlayerRef.current;
 
       if (!document.fullscreenElement) {
@@ -104,7 +104,7 @@ const withVideoControls = (Component) => {
       }
     }
 
-    private _onExitButtonClick(evt): void {
+    private _handleExitButtonClick(evt): void {
       evt.preventDefault();
       this._videoPlayerRef.current.pause();
       if (this.props.onExitClick) {
@@ -140,7 +140,7 @@ const withVideoControls = (Component) => {
             <button
               type="button"
               className="player__exit"
-              onClick={this._onExitButtonClick}>
+              onClick={this._handleExitButtonClick}>
               Exit
             </button>
 
@@ -157,7 +157,7 @@ const withVideoControls = (Component) => {
                 <MovieCardButton
                   {...playerButtonProps}
                   iconName={this.state.isPause ? `play-s` : `pause`}
-                  onButtonClick={this._onPlayButtonClick}/>
+                  onButtonClick={this._handlePlayButtonClick}/>
 
                 <div className="player__name">{name}</div>
 
@@ -169,7 +169,7 @@ const withVideoControls = (Component) => {
                     width: 27,
                     height: 27,
                   }}
-                  onButtonClick={this._onFullscreenButtonClick}
+                  onButtonClick={this._handleFullscreenButtonClick}
                 />
               </div>
             </div>
