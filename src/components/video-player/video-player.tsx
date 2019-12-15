@@ -20,6 +20,11 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, null> {
     video.play();
   }
 
+  public componentWillUnmount(): void {
+    const video = this._videoRef.current;
+    video.load();
+  }
+
   public render(): JSX.Element {
     const {
       video: {
@@ -45,11 +50,6 @@ class VideoPlayer extends React.PureComponent<VideoPlayerProps, null> {
         {webm && <source src={webm} type="video/webm"/>}
       </video>
     );
-  }
-
-  public componentWillUnmount(): void {
-    const video = this._videoRef.current;
-    video.load();
   }
 }
 
