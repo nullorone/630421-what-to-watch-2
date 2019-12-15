@@ -32,7 +32,7 @@ const MovieCard: React.FC<MovieCardProps> = (props) => {
   } = props;
 
   const {
-    poster,
+    poster = ``,
     posterAlt,
     background,
     backgroundAlt,
