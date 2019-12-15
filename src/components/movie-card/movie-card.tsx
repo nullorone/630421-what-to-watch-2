@@ -22,12 +22,7 @@ interface MovieCardProps {
 const MovieCard: React.FC<MovieCardProps> = (props) => {
   const {
     name,
-    image: {
-      poster,
-      posterAlt,
-      background,
-      backgroundAlt,
-    },
+    image,
     genre,
     released,
     onPlayButtonClick,
@@ -35,6 +30,13 @@ const MovieCard: React.FC<MovieCardProps> = (props) => {
     user,
     isFavorite,
   } = props;
+
+  const {
+    poster,
+    posterAlt,
+    background,
+    backgroundAlt,
+  } = image;
 
   const {avatarUrl} = user;
 
