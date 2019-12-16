@@ -40,7 +40,7 @@ const Main: React.FC<MainProps> = (props) => {
     <>
       <IconsWrapper iconNames={iconNames}/>
 
-      <MovieCard {...promo} user={user} onPlayButtonClick={onButtonClick} onListClick={onListClick}/>
+      {promo && <MovieCard {...promo} user={user} onPlayButtonClick={onButtonClick} onListClick={onListClick}/>}
 
       <div className="page-content">
         <section className="catalog">
