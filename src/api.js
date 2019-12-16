@@ -16,8 +16,6 @@ const createApi = (dispatch) => {
       dispatch(ActionCreator.requireAuthorization(true));
       location.href = `/login`;
     }
-
-    return error;
   };
 
   api.interceptors.response.use(onSuccess, onFail);
